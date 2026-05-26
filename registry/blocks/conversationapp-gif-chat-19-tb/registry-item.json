@@ -1,0 +1,18 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "conversationapp-gif-chat-19-tb",
+  "type": "hyperframes:block",
+  "title": "Conversation App — GIF Chat (Horizontal)",
+  "description": "Horizontal 16:9 — Talking head con burbuja iMessage flotante con GIF de reacción en la esquina inferior izquierda. La cara queda a la derecha para no chocarse.",
+  "tags": ["conversationapp","chat","gif","horizontal","tareabox"],
+  "dimensions": { "width": 1920, "height": 1080 },
+  "duration": 6,
+  "files": [
+    { "path": "conversationapp-gif-chat-19-tb.html", "target": "compositions/conversationapp-gif-chat-19-tb.html", "type": "hyperframes:composition" },
+    { "path": "tb-media/tb-react-clap.mp4", "target": "assets/tb-media/tb-react-clap.mp4", "type": "hyperframes:asset" }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-conversationapp-gif-chat-19-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-conversationapp-gif-chat-19-tb.png"
+  }
+}

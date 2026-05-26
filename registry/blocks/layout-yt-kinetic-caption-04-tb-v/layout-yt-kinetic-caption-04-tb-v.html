@@ -1,0 +1,228 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  layout-yt-kinetic-caption-04-tb-v (vertical 1080x1920)
+  Tareabox Hyperframes Effect
+  Description: Vertical 9:16 — Top face cam + oversized kinetic statement caption below, commentary creator style.
+  Category: layout
+  Duration: 5 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"kcLabel","type":"string","label":"Label","default":"Hot Take"},
+  {"id":"kcLine1","type":"string","label":"Line 1","default":"Your layouts"},
+  {"id":"kcLine2","type":"string","label":"Line 2 (accent)","default":"are what sells."},
+  {"id":"kcSub","type":"string","label":"Sub text","default":"What top tutorials do differently"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#facc15"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#000000"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="layout-yt-kinetic-caption-04-tb-v" data-composition-id="layout-yt-kinetic-caption-04-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="5">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-yt-kinetic-caption-04-tb-v"] {
+      --tb-bg:           #000;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #d4d4d8;
+      --tb-accent:       var(--tb-brand-accent, #facc15);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --kc-label:      "Hot Take";
+      --kc-line1:      "Your layouts";
+      --kc-line2:      "are what sells.";
+      --kc-sub:        "What top tutorials do differently";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-yt-kinetic-caption-04-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="layout-yt-kinetic-caption-04-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Video pushed to TOP — bottom is clean black for text */
+    [data-composition-id="layout-yt-kinetic-caption-04-tb-v"] .bg-video {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 55%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+    }
+
+    /* Soft fade where video meets the dark strip */
+    [data-composition-id="layout-yt-kinetic-caption-04-tb-v"] .overlay {
+      position: absolute;
+      left: 0; right: 0;
+      top: 42%;
+      height: 18%;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0.55) 50%,
+        #000 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Kinetic text block — bottom area */
+    [data-composition-id="layout-yt-kinetic-caption-04-tb-v"] .kc-block {
+      position: absolute;
+      top: 58%; left: 6%; right: 6%; bottom: 6%;
+      display: flex; flex-direction: column;
+      justify-content: flex-start;
+      gap: 2vmin;
+    }
+
+    /* Label pill */
+    [data-composition-id="layout-yt-kinetic-caption-04-tb-v"] .kc-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 1vmin;
+      background: var(--tb-accent);
+      color: #09090b;
+      font-size: clamp(18px, 2vmin, 26px);
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.9vmin 2vmin;
+      border-radius: 6px;
+      width: fit-content;
+      opacity: 0;
+    }
+
+    /* Big statement lines */
+    [data-composition-id="layout-yt-kinetic-caption-04-tb-v"] .kc-line {
+      font-size: clamp(60px, 9.5vmin, 130px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      color: var(--tb-text);
+      overflow: hidden;
+    }
+    [data-composition-id="layout-yt-kinetic-caption-04-tb-v"] .kc-line span {
+      display: block;
+      opacity: 0;
+    }
+    [data-composition-id="layout-yt-kinetic-caption-04-tb-v"] .kc-line2 span {
+      color: var(--tb-accent);
+    }
+
+    /* Sub text */
+    [data-composition-id="layout-yt-kinetic-caption-04-tb-v"] .kc-sub {
+      font-size: clamp(18px, 2.2vmin, 30px);
+      font-weight: 500;
+      color: var(--tb-text-dim);
+      letter-spacing: 0.01em;
+      opacity: 0;
+      margin-top: 1.5vmin;
+    }
+
+    /* Accent bar — left edge of text block */
+    [data-composition-id="layout-yt-kinetic-caption-04-tb-v"] .kc-bar {
+      position: absolute;
+      left: calc(6% - 1.8vmin);
+      top: 60%;
+      width: 5px;
+      height: 0;
+      background: var(--tb-accent);
+      border-radius: 3px;
+      box-shadow: 0 0 22px color-mix(in srgb, var(--tb-accent) 75%, transparent);
+    }
+</style>
+
+
+    <!--
+      ASSET (vertical) — demo from Pexels (free license, attribution in README).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+                      (the `..` walks up from compositions/ to the project root)
+    -->
+    <video id="yk04v-vid"
+           class="bg-video"
+           src="https://videos.pexels.com/video-files/8048324/8048324-hd_1280_720_50fps.mp4" crossorigin="anonymous" data-tb-asset="vertical"
+           data-start="0" data-duration="5" data-track-index="0"
+           muted playsinline></video>
+
+    <div class="overlay"></div>
+
+    <div class="kc-bar" id="yk04v-bar"></div>
+
+    <div class="kc-block">
+      <div class="kc-label" id="yk04v-label"></div>
+      <div class="kc-line kc-line1"><span id="yk04v-l1"></span></div>
+      <div class="kc-line kc-line2"><span id="yk04v-l2"></span></div>
+      <div class="kc-sub" id="yk04v-sub"></div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["layout-yt-kinetic-caption-04-tb-v"] = (function () {
+      const root  = document.querySelector('[data-composition-id="layout-yt-kinetic-caption-04-tb-v"]');
+      const cs    = getComputedStyle(root);
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, '"' + String(val) + '"'); };
+      const setRaw = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, String(val)); };
+      setStr("--kc-label", V.kcLabel);
+      setStr("--kc-line1", V.kcLine1);
+      setStr("--kc-line2", V.kcLine2);
+      setStr("--kc-sub",   V.kcSub);
+      setRaw("--tb-accent", V.accent);
+      setRaw("--tb-bg",     V.bg);
+
+      const bar   = root.querySelector("#yk04v-bar");
+      const label = root.querySelector("#yk04v-label");
+      const l1    = root.querySelector("#yk04v-l1");
+      const l2    = root.querySelector("#yk04v-l2");
+      const sub   = root.querySelector("#yk04v-sub");
+
+      label.textContent = cs.getPropertyValue("--kc-label").trim().replace(/^["']|["']$/g,"");
+      l1.textContent    = cs.getPropertyValue("--kc-line1").trim().replace(/^["']|["']$/g,"");
+      l2.textContent    = cs.getPropertyValue("--kc-line2").trim().replace(/^["']|["']$/g,"");
+      sub.textContent   = cs.getPropertyValue("--kc-sub").trim().replace(/^["']|["']$/g,"");
+
+      const TOTAL = 5;
+      const tl = gsap.timeline({ paused: true });
+
+      /* Bar grows from top */
+      tl.to(bar, { height: "30%", duration: 0.45, ease: "expo.out" }, 0.2);
+
+      /* Label slides in */
+      tl.to(label, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.3);
+      tl.from(label, { y: 10, duration: 0.3, ease: "power2.out" }, 0.3);
+
+      /* Line 1 — clips from below its overflow container */
+      tl.to(l1, { opacity: 1, duration: 0.01 }, 0.42);
+      tl.from(l1, { y: "100%", duration: 0.45, ease: "expo.out" }, 0.42);
+
+      /* Line 2 — slight stagger, accent color */
+      tl.to(l2, { opacity: 1, duration: 0.01 }, 0.56);
+      tl.from(l2, { y: "100%", duration: 0.45, ease: "expo.out" }, 0.56);
+
+      /* Sub text fades */
+      tl.to(sub, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.72);
+      tl.from(sub, { x: -12, duration: 0.4, ease: "power2.out" }, 0.72);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

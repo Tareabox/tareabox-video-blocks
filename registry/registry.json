@@ -1,0 +1,539 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry.json",
+  "name": "tareabox",
+  "homepage": "https://tareabox.com",
+  "items": [
+    {
+      "name": "conversationapp-android-notif-17-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-android-notif-17-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-discord-13-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-discord-13-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-gif-chat-19-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-gif-chat-19-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-imessage-09-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-imessage-09-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-imessage-pure-18-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-imessage-pure-18-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-instagram-comment-15-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-instagram-comment-15-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-instagram-dm-11-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-instagram-dm-11-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-ios-notif-12-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-ios-notif-12-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-slack-14-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-slack-14-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-tweet-08-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-tweet-08-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-tweet-quote-16-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-tweet-quote-16-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-whatsapp-10-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "conversationapp-whatsapp-10-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "data-checklist-02-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "data-checklist-02-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "data-metric-flip-03-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "data-metric-flip-03-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-perspective-scroll-14-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-recap-card-03-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-recap-card-03-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-split-annotation-02-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-split-annotation-02-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-tutorial-step-01-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-tutorial-step-01-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-video-caption-04-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-video-caption-04-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-video-hero-01-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-video-hero-01-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-video-hook-05-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-video-hook-05-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-video-pip-03-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-video-pip-03-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-video-split-02-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-code-theater-05-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-code-theater-05-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-concept-cards-07-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-concept-cards-07-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-kinetic-caption-04-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-kinetic-caption-04-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-lower-third-03-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-lower-third-03-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-pip-face-01-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-pip-face-01-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-reaction-title-06-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-reaction-title-06-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-split-screen-02-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-split-screen-02-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-tier-list-08-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-tier-list-08-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-watchlater-12-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-watchlater-12-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-watchlater-grid-13-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-watchlater-grid-13-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "layout-yt-watchlater-persp-15-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-chapter-reveal-21-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-chapter-reveal-21-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-definition-22-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-definition-22-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-delete-rewrite-07-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-delete-rewrite-07-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-elastic-11-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-elastic-11-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-freeze-pop-24-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-fullscreen-statement-20-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-fullscreen-statement-20-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-glitch-brackets-05-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-glitch-brackets-05-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-gravity-drop-15-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-gravity-drop-15-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-headline-highlight-09-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-headline-highlight-09-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-kinetic-08-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-kinetic-08-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-morph-06-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-morph-06-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-neon-flashing-12-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-neon-flashing-12-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-neon-glow-03-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-neon-glow-03-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-outline-to-fill-13-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-outline-to-fill-13-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-popup-words-28-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-pro-tip-23-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-pro-tip-23-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-split-apart-14-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-split-apart-14-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-typewriter-dark-01-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-typewriter-dark-01-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-typewriter-light-02-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-typewriter-light-02-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-typewriter-wide-19-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-typewriter-wide-19-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-vhs-16-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-vhs-16-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-warp-arc-18-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-warp-arc-18-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-warp-diagonal-wave-10-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-warp-diagonal-wave-10-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-warp-scurve-17-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "text-warp-scurve-17-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-callout-note-03-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-callout-note-03-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-callout-tip-01-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-callout-tip-01-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-callout-warning-02-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-callout-warning-02-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-gif-burst-10-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-gif-burst-10-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-gif-crumple-11-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-gif-crumple-11-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-gif-stickers-08-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-gif-stickers-08-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-keyboard-shortcut-04-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-keyboard-shortcut-04-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-meme-cutin-09-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-meme-cutin-09-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-progress-bar-05-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-progress-bar-05-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-timestamp-cue-07-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-timestamp-cue-07-tb-v",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-zoom-indicator-06-tb",
+      "type": "hyperframes:block"
+    },
+    {
+      "name": "visual-zoom-indicator-06-tb-v",
+      "type": "hyperframes:block"
+    }
+  ]
+}

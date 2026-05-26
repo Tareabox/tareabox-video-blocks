@@ -1,0 +1,192 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  layout-yt-pip-face-01-tb
+  Tareabox Hyperframes Effect
+  Description: Screen recording full-width, face cam PiP rounded rect in bottom-right — the classic YouTube tutorial layout.
+  Category: layout
+  Duration: 5 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="layout-yt-pip-face-01-tb" data-composition-id="layout-yt-pip-face-01-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="5">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-yt-pip-face-01-tb"] {
+      --tb-bg:           #09090b;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #d4d4d8;
+      --tb-accent:       var(--tb-brand-accent, #2563eb);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --pip-step:    "Step 01";
+      --pip-title:   "Hook them in 3 seconds";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-yt-pip-face-01-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: #0a0a0a;
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="layout-yt-pip-face-01-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Screen recording — full background */
+    [data-composition-id="layout-yt-pip-face-01-tb"] .screen-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    /* Subtle vignette for depth */
+    [data-composition-id="layout-yt-pip-face-01-tb"] .vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(0,0,0,0.45) 100%);
+    }
+
+    /* Step badge — top left */
+    [data-composition-id="layout-yt-pip-face-01-tb"] .step-badge {
+      position: absolute;
+      top: 5%; left: 4%;
+      display: flex; align-items: center; gap: 1.4vmin;
+      background: rgba(9,9,11,0.82);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 10px;
+      padding: 1vmin 2.2vmin;
+      backdrop-filter: blur(12px);
+      opacity: 0;
+    }
+    [data-composition-id="layout-yt-pip-face-01-tb"] .step-dot {
+      width: 1.2vmin; height: 1.2vmin;
+      border-radius: 50%;
+      background: var(--tb-accent);
+      box-shadow: 0 0 8px color-mix(in srgb, var(--tb-accent) 80%, transparent);
+      flex-shrink: 0;
+    }
+    [data-composition-id="layout-yt-pip-face-01-tb"] .step-text {
+      font-size: clamp(13px, 1.4vmin, 18px);
+      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--tb-accent);
+    }
+    [data-composition-id="layout-yt-pip-face-01-tb"] .step-sep {
+      width: 1px; align-self: stretch;
+      background: rgba(255,255,255,0.18);
+    }
+    [data-composition-id="layout-yt-pip-face-01-tb"] .step-title {
+      font-size: clamp(13px, 1.4vmin, 18px);
+      font-weight: 500;
+      color: var(--tb-text-dim);
+    }
+
+    /* Face cam PiP — bottom right */
+    [data-composition-id="layout-yt-pip-face-01-tb"] .pip-wrap {
+      position: absolute;
+      bottom: 5%; right: 3%;
+      width: 17%;
+      aspect-ratio: 9/13;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.22);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.9),
+        0 12px 44px rgba(0,0,0,0.7),
+        0 0 28px color-mix(in srgb, var(--tb-accent) 25%, transparent);
+      opacity: 0;
+    }
+    [data-composition-id="layout-yt-pip-face-01-tb"] .pip-video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+    }
+    /* live indicator dot */
+    [data-composition-id="layout-yt-pip-face-01-tb"] .pip-live {
+      position: absolute;
+      top: 8%; right: 8%;
+      width: 1.4vmin; height: 1.4vmin;
+      border-radius: 50%;
+      background: #ef4444;
+      box-shadow: 0 0 6px #ef4444;
+    }
+</style>
+
+
+    <!--
+      ASSET (horizontal) — demo from Pexels (free license, attribution in README).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+                      (the `..` walks up from compositions/ to the project root)
+    -->
+    <video id="yp01-screen"
+           class="screen-bg"
+           src="https://videos.pexels.com/video-files/19329261/19329261-hd_1920_1080_24fps.mp4" crossorigin="anonymous" data-tb-asset="horizontal"
+           data-start="0" data-duration="5" data-track-index="0"
+           muted playsinline></video>
+
+    <div class="vignette"></div>
+
+    <div class="step-badge" id="yp01-badge">
+      <div class="step-dot"></div>
+      <span class="step-text" id="yp01-step"></span>
+      <div class="step-sep"></div>
+      <span class="step-title" id="yp01-title"></span>
+    </div>
+
+    <div class="pip-wrap" id="yp01-pip">
+      <!--
+        ASSET (horizontal) — demo from Pexels (free license, attribution in README).
+        To use your own footage, replace the `src` with one of these:
+          Public URL:   src="https://yourdomain.com/your-video.mp4"
+          Local path:   src="../assets/tb-media/your-video.mp4"
+                        (the `..` walks up from compositions/ to the project root)
+      -->
+      <video id="yp01-face"
+             class="pip-video"
+             src="https://videos.pexels.com/video-files/5442623/5442623-hd_1920_1080_25fps.mp4" crossorigin="anonymous" data-tb-asset="horizontal"
+             data-start="0" data-duration="5" data-track-index="2"
+             muted playsinline></video>
+      <div class="pip-live"></div>
+    </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["layout-yt-pip-face-01-tb"] = (function () {
+      const root  = document.querySelector('[data-composition-id="layout-yt-pip-face-01-tb"]');
+      const cs    = getComputedStyle(root);
+      const badge = root.querySelector("#yp01-badge");
+      const pip   = root.querySelector("#yp01-pip");
+
+      root.querySelector("#yp01-step").textContent  = cs.getPropertyValue("--pip-step").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#yp01-title").textContent = cs.getPropertyValue("--pip-title").trim().replace(/^["']|["']$/g,"");
+
+      const TOTAL = 5;
+      const tl = gsap.timeline({ paused: true });
+
+      tl.to(badge, { opacity: 1, duration: 0.4, ease: "expo.out" }, 0.3);
+      tl.from(badge, { x: -20, duration: 0.4, ease: "expo.out" }, 0.3);
+
+      gsap.set(pip, { scale: 0.85, y: 20 });
+      tl.to(pip, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.6)" }, 0.5);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  visual-zoom-indicator-06-tb-v (vertical 1080x1920)
+  Tareabox Hyperframes Effect
+  Description: Vertical 9:16 — Animated ring pulses around a focal point with a zoom label — signals screen zoom to viewers.
+  Category: visual
+  Duration: 3 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"zoomLabel","type":"string","label":"Zoom label","default":"Zooming in"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#f97316"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#09090b"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="visual-zoom-indicator-06-tb-v" data-composition-id="visual-zoom-indicator-06-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="3">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] {
+      --tb-bg:           #09090b;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #c4c4c8;
+      --tb-accent:       var(--tb-brand-accent, #f97316);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --zoom-label: "Zooming in";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Background video — provides context (the user's screen / footage being zoomed into) */
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .bg-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      filter: brightness(0.65);
+      transform-origin: 50% 50%;
+      will-change: transform;
+    }
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.55) 75%);
+      pointer-events: none;
+    }
+
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .stage {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 5vmin;
+    }
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .ring-wrap {
+      position: relative;
+      width: 38vmin; height: 38vmin;
+      display: flex; align-items: center; justify-content: center;
+    }
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .ring {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      border: 3px solid var(--tb-accent);
+      opacity: 0;
+    }
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .ring-pulse {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      border: 2px solid color-mix(in srgb, var(--tb-accent) 50%, transparent);
+      opacity: 0;
+    }
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .dot {
+      width: 2.4vmin; height: 2.4vmin;
+      border-radius: 50%;
+      background: var(--tb-accent);
+      opacity: 0;
+    }
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .corners {
+      position: absolute; inset: -6px;
+    }
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .corner {
+      position: absolute;
+      width: 4.4vmin; height: 4.4vmin;
+      border-color: var(--tb-accent);
+      border-style: solid;
+      opacity: 0;
+    }
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .corner.tl { top:0; left:0; border-width:3px 0 0 3px; border-radius:5px 0 0 0; }
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .corner.tr { top:0; right:0; border-width:3px 3px 0 0; border-radius:0 5px 0 0; }
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .corner.bl { bottom:0; left:0; border-width:0 0 3px 3px; border-radius:0 0 0 5px; }
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .corner.br { bottom:0; right:0; border-width:0 3px 3px 0; border-radius:0 0 5px 0; }
+    [data-composition-id="visual-zoom-indicator-06-tb-v"] .zoom-label {
+      font-size: clamp(28px, 4vmin, 40px);
+      font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--tb-accent);
+      opacity: 0;
+    }
+</style>
+
+    <!--
+      ASSET (vertical) — demo from Pexels (free license, attribution in README).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+                      (the `..` walks up from compositions/ to the project root)
+    -->
+    <video id="zi06v-bg"
+           class="bg-video"
+           src="https://videos.pexels.com/video-files/8048324/8048324-hd_1280_720_50fps.mp4" crossorigin="anonymous" data-tb-asset="vertical"
+           data-start="0" data-duration="3" data-track-index="0"
+           muted playsinline></video>
+    <div class="vignette"></div>
+    <div class="stage">
+      <div class="ring-wrap">
+        <div class="ring"       id="zi06v-ring"></div>
+        <div class="ring-pulse" id="zi06v-pulse"></div>
+        <div class="corners">
+          <div class="corner tl" id="zi06v-c1"></div>
+          <div class="corner tr" id="zi06v-c2"></div>
+          <div class="corner bl" id="zi06v-c3"></div>
+          <div class="corner br" id="zi06v-c4"></div>
+        </div>
+        <div class="dot" id="zi06v-dot"></div>
+      </div>
+      <div class="zoom-label" id="zi06v-label"></div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["visual-zoom-indicator-06-tb-v"] = (function () {
+      const root  = document.querySelector('[data-composition-id="visual-zoom-indicator-06-tb-v"]');
+      const cs    = getComputedStyle(root);
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, '"' + String(val) + '"'); };
+      const setRaw = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, String(val)); };
+      setStr("--zoom-label", V.zoomLabel);
+      setRaw("--tb-accent",  V.accent);
+      setRaw("--tb-bg",      V.bg);
+
+      const ring  = root.querySelector("#zi06v-ring");
+      const pulse = root.querySelector("#zi06v-pulse");
+      const dot   = root.querySelector("#zi06v-dot");
+      const label = root.querySelector("#zi06v-label");
+      const corners = [root.querySelector("#zi06v-c1"), root.querySelector("#zi06v-c2"),
+                       root.querySelector("#zi06v-c3"), root.querySelector("#zi06v-c4")];
+
+      label.textContent = cs.getPropertyValue("--zoom-label").trim().replace(/^["']|["']$/g,"");
+
+      const bg = root.querySelector("#zi06v-bg");
+      const TOTAL = 3;
+      const tl = gsap.timeline({ paused: true });
+
+      /* REAL zoom-in on bg-video: scale 1 → 1.45 centered on focal point */
+      gsap.set(bg, { scale: 1 });
+      tl.to(bg, { scale: 1.45, duration: 2.4, ease: "power2.inOut" }, 0.4);
+
+      tl.to(corners, { opacity: 1, duration: 0.3, ease: "power2.out", stagger: 0.06 }, 0.1);
+      tl.from(corners, { scale: 1.3, duration: 0.3, ease: "power2.out", stagger: 0.06, transformOrigin: "center center" }, 0.1);
+
+      tl.to(ring, { opacity: 1, scale: 1, duration: 0.4, ease: "expo.out" }, 0.35);
+      tl.from(ring,{ scale: 1.3, duration: 0.4, ease: "expo.out" }, 0.35);
+
+      tl.to(dot,  { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(3)" }, 0.5);
+      tl.from(dot,{ scale: 0, duration: 0.25, ease: "back.out(3)" }, 0.5);
+
+      tl.to(pulse, { opacity: 0.8, scale: 1, duration: 0.1, ease: "none" }, 0.8);
+      tl.to(pulse, { opacity: 0, scale: 1.6, duration: 0.55, ease: "power2.out" }, 0.9);
+
+      tl.to(label, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.7);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

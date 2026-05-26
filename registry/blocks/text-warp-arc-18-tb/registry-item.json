@@ -1,0 +1,27 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "text-warp-arc-18-tb",
+  "type": "hyperframes:block",
+  "title": "Text Warp Arc",
+  "description": "Efecto Tareabox: Text Warp Arc",
+  "tags": [
+    "text",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 8,
+  "files": [
+    {
+      "path": "text-warp-arc-18-tb.html",
+      "target": "compositions/text-warp-arc-18-tb.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-warp-arc-18-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-warp-arc-18-tb.png"
+  }
+}

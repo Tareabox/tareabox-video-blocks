@@ -1,0 +1,46 @@
+Tareabox Free Catalog License v1.0
+Copyright (c) 2026 Natalie Abadie ("Natalie Digital") · tareabox.com
+
+This catalog contains video composition blocks for HyperFrames
+(https://hyperframes.heygen.com — Apache 2.0).
+
+PERMITTED USE
+You are free to use the blocks in your own video projects, personal or
+commercial. You may:
+  - Install any block into your HyperFrames project (via `hyperframes add`,
+    git clone, or manual copy).
+  - Modify a block's CSS, text, variables, or assets to fit your design.
+  - Embed the rendered output in any platform (YouTube, Instagram, TikTok,
+    LinkedIn, websites, paid courses, client deliverables, etc.).
+  - Use the blocks for commercial purposes including client work and
+    monetized content.
+
+PROHIBITED USE
+You may NOT:
+  - Redistribute the blocks as a standalone product, package, asset bundle,
+    or catalog (free or paid).
+  - Resell individual blocks, modified versions of them, or any derivative
+    catalog built primarily from them.
+  - Remove the copyright header from block HTML files when distributing or
+    sharing source code publicly.
+  - Use the "Tareabox" or "Natalie Digital" names, marks, or logos to imply
+    endorsement, partnership, or affiliation with your derivative work
+    without written permission.
+  - Train machine-learning models on the blocks for the purpose of
+    generating competing block catalogs.
+
+ATTRIBUTION
+Attribution is appreciated but not required. A "Made with Tareabox blocks"
+mention in your project README, video description, or credits is welcome.
+
+THIRD-PARTY DEPENDENCIES
+The blocks depend on HyperFrames (Apache 2.0), GSAP (via CDN, Standard
+"no-charge" license for many uses), the Geist font (SIL Open Font License),
+and stream demo assets from the Pexels CDN (Pexels License, attribution
+not required). End users are responsible for complying with those licenses
+in their own projects.
+
+WARRANTY
+The blocks are provided "AS IS", without warranty of any kind, express or
+implied. The author is not liable for any damages or losses arising from
+the use of these blocks.

@@ -1,0 +1,274 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  layout-yt-watchlater-grid-13-tb (horizontal 1920x1080)
+  Description: YouTube Watch Later page mockup with 2-column grid of video cards,
+               real thumbnails via YouTube CDN, and PIP talking-head video overlay.
+  Category: layout
+  Duration: 8 seconds
+  REQUIRES: gsap (CDN), Google Fonts (Roboto)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"headerText","type":"string","label":"Page header","default":"Watch later"},
+  {"id":"countText","type":"string","label":"Video count","default":"47 saved videos"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#ff0000"},
+  {"id":"bg","type":"color","label":"Background color","default":"#0f0f0f"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=block" rel="stylesheet" />
+</head>
+<body style="margin:0;background:#0f0f0f;">
+<div id="layout-yt-watchlater-grid-13-tb" data-composition-id="layout-yt-watchlater-grid-13-tb"
+     data-width="1920" data-height="1080"
+     data-start="0" data-duration="8">
+<style>
+  /* ═══════════════════════════════════════════════════════ */
+  /* 🎨 CUSTOMIZE HERE                                       */
+  /* ═══════════════════════════════════════════════════════ */
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] {
+    --tb-bg:           var(--tb-brand-bg, #0f0f0f);
+    --tb-text:         #ffffff;
+    --tb-text-muted:   #aaaaaa;
+    --tb-accent:       var(--tb-brand-accent, #ff0000);
+    --tb-border:       #272727;
+    --tb-surface:      #121212;
+    --tb-font:         var(--tb-brand-font-display, "Roboto", sans-serif);
+
+    /* Video IDs for thumbnails (change to any YouTube video IDs) */
+    --tb-vid-00: "fb_SQe51UCk";  --tb-vid-01: "M1gu9MDucMA";
+    --tb-vid-02: "t5SieIcMMjo";  --tb-vid-03: "myzs0mcpmFI";
+    --tb-vid-04: "7iJrn8iwCtI";  --tb-vid-05: "ar9gkUGGfcE";
+    --tb-vid-06: "Ir7xFCQP1pQ";  --tb-vid-07: "IyYC-hSFEFQ";
+    --tb-vid-08: "Gc4Xh8u19NU";  --tb-vid-09: "6sJFI8LbhpY";
+    --tb-vid-10: "oxneJ4czNSw";  --tb-vid-11: "BtiQvhQF8IA";
+    --tb-vid-12: "2v4_95OJ7k4";  --tb-vid-13: "rf60MejMz3E";
+    --tb-vid-14: "ZFeByEwsjME";  --tb-vid-15: "UB1O30fR-EE";
+    --tb-vid-16: "SznYHNMktQQ";  --tb-vid-17: "_shA5Xwe8_4";
+    --tb-vid-18: "uD8FluUovqI";  --tb-vid-19: "3dHNOWTI7H8";
+
+    /* Video titles (customize per card) */
+    --tb-title-00: "Build your landing page from scratch with AI";
+    --tb-title-01: "COMPLETE Notion tutorial for productivity 2025";
+    --tb-title-02: "How to automate your business with Make";
+    --tb-title-03: "SEO for beginners: Step by step guide";
+    --tb-title-04: "Web design with Figma: intensive tutorial";
+    --tb-title-05: "Email marketing that WORKS: full strategy";
+    --tb-title-06: "Google Ads from zero: campaigns that convert";
+    --tb-title-07: "Edit videos like a PRO with CapCut";
+    --tb-title-08: "WordPress vs Webflow vs Framer: which one?";
+    --tb-title-09: "Complete Python course for automation";
+    --tb-title-10: "How to start a podcast from scratch";
+    --tb-title-11: "Content strategy for YouTube growth";
+    --tb-title-12: "Canva PRO: tricks nobody tells you";
+    --tb-title-13: "Artificial intelligence for creators";
+    --tb-title-14: "Build your online store with Shopify";
+    --tb-title-15: "Adobe Premiere Pro: professional editing";
+    --tb-title-16: "Data analysis with Sheets and ChatGPT";
+    --tb-title-17: "How to use Claude for deep research";
+    --tb-title-18: "TikTok for business: organic strategy";
+    --tb-title-19: "Build a SaaS in 30 days with No-Code";
+  }
+  /* ═══════════════════════════════════════════════════════ */
+  /* ⛔ EFFECT CODE — do not edit below                      */
+  /* ═══════════════════════════════════════════════════════ */
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--tb-bg); }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-sidebar {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 240px;
+    background: var(--tb-bg); border-right: 1px solid var(--tb-border);
+    padding: 18px 14px; z-index: 2;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-logo {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 12px; margin-bottom: 24px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-logo-icon {
+    width: 36px; height: 26px; background: var(--tb-accent); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-logo-icon::after {
+    content: ''; width: 0; height: 0;
+    border-left: 9px solid #fff; border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+    margin-left: 2px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-logo-text {
+    font-family: var(--tb-font); font-size: 22px; font-weight: 700; color: var(--tb-text); letter-spacing: -0.5px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-nav-item {
+    font-family: var(--tb-font); font-size: 18px; color: var(--tb-text-muted);
+    padding: 12px 14px; border-radius: 10px; margin-bottom: 4px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-nav-item.active { background: var(--tb-border); color: var(--tb-text); }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-nav-icon {
+    width: 22px; height: 22px; border-radius: 4px; background: #555; opacity: 0.5;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-nav-item.active .yt-nav-icon { opacity: 1; background: var(--tb-text); }
+
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-main {
+    position: absolute; left: 240px; top: 0; right: 0; bottom: 0; overflow: hidden; background: var(--tb-bg);
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-topbar {
+    height: 56px; background: var(--tb-bg); border-bottom: 1px solid var(--tb-border);
+    display: flex; align-items: center; padding: 0 24px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-search {
+    width: 480px; height: 40px; background: var(--tb-surface); border: 1px solid #303030;
+    border-radius: 22px; margin: 0 auto;
+    display: flex; align-items: center; padding: 0 18px;
+    font-family: var(--tb-font); font-size: 16px; color: #888;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-content-area {
+    position: absolute; top: 56px; left: 0; right: 0; bottom: 0; overflow: hidden; background: var(--tb-bg);
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-scroll-container {
+    position: absolute; top: 0; left: 0; right: 0; padding: 20px 32px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-wl-header {
+    font-family: var(--tb-font); font-size: 38px; font-weight: 700; color: var(--tb-text); margin-bottom: 6px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-wl-count {
+    font-family: var(--tb-font); font-size: 19px; color: var(--tb-text-muted); margin-bottom: 24px;
+  }
+
+  /* 3-column grid — no PIP, full width */
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-card {
+    border-radius: 12px; overflow: hidden;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-thumb {
+    width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden;
+    background-size: cover; background-position: center; background-color: #1a1a1a;
+    border-radius: 10px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-thumb-dur {
+    position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.85); color: #fff;
+    font-family: var(--tb-font); font-size: 14px; font-weight: 500; padding: 3px 8px; border-radius: 4px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-card-info { padding: 12px 4px; }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-card-title {
+    font-family: var(--tb-font); font-size: 22px; font-weight: 500; color: var(--tb-text);
+    line-height: 1.3; margin-bottom: 6px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-card-channel {
+    font-family: var(--tb-font); font-size: 17px; color: var(--tb-text-muted);
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb"] .yt-card-meta {
+    font-family: var(--tb-font); font-size: 17px; color: var(--tb-text-muted);
+  }
+
+</style>
+
+<!-- Sidebar -->
+<div class="yt-sidebar">
+  <div class="yt-logo">
+    <div class="yt-logo-icon"></div>
+    <span class="yt-logo-text">YouTube</span>
+  </div>
+  <div class="yt-nav-item"><div class="yt-nav-icon"></div>Home</div>
+  <div class="yt-nav-item"><div class="yt-nav-icon"></div>Shorts</div>
+  <div class="yt-nav-item"><div class="yt-nav-icon"></div>Subscriptions</div>
+  <div style="height:16px"></div>
+  <div class="yt-nav-item"><div class="yt-nav-icon"></div>Your channel</div>
+  <div class="yt-nav-item"><div class="yt-nav-icon"></div>History</div>
+  <div class="yt-nav-item active"><div class="yt-nav-icon"></div>Watch later</div>
+  <div class="yt-nav-item"><div class="yt-nav-icon"></div>Liked videos</div>
+</div>
+
+<!-- Main area -->
+<div class="yt-main">
+  <div class="yt-topbar">
+    <div class="yt-search">Search</div>
+  </div>
+  <div class="yt-content-area">
+    <div class="yt-scroll-container" id="bn13h-ytScroll">
+      <div class="yt-wl-header" id="bn13h-header">Watch later</div>
+      <div class="yt-wl-count" id="bn13h-count">47 saved videos</div>
+      <div class="yt-grid" id="bn13h-grid"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+window.__timelines = window.__timelines || {};
+window.__timelines["layout-yt-watchlater-grid-13-tb"] = (function () {
+  const root = document.querySelector('[data-composition-id="layout-yt-watchlater-grid-13-tb"]');
+  const cs   = getComputedStyle(root);
+  const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+
+  const header = root.querySelector("#bn13h-header");
+  const count  = root.querySelector("#bn13h-count");
+  if (V.headerText) header.textContent = V.headerText;
+  if (V.countText)  count.textContent  = V.countText;
+  if (V.bg)     root.style.setProperty("--tb-bg", V.bg);
+  if (V.accent) root.style.setProperty("--tb-accent", V.accent);
+  const videoIds = [];
+  for (let i = 0; i < 60; i++) {
+    const k = "--tb-vid-" + String(i % 20).padStart(2, "0");
+    const v = cs.getPropertyValue(k).trim().replace(/^["']|["']$/g, "");
+    videoIds.push(v || "dQw4w9WgXcQ");
+  }
+  const titles = [];
+  for (let i = 0; i < 60; i++) {
+    const k = "--tb-title-" + String(i % 20).padStart(2, "0");
+    const v = cs.getPropertyValue(k).trim().replace(/^["']|["']$/g, "");
+    titles.push(v || "Video title " + (i + 1));
+  }
+
+  const channels = [
+    "Productivity Lab","Carlos Code","Marketing Lab","CreaTech",
+    "Design Pro","Business Master","Ana Growth","Video Academy",
+    "WebDev Hub","Python Pro","Podcast Pro","YT Strategy",
+    "Canva Tips","AI Hub","Commerce Lab","Adobe Guru",
+    "Data Master","AI Tools","Social Pro","NoCode Academy"
+  ];
+  const durations = [
+    "45:21","1:12:03","38:47","52:18","3:04:15","41:33","1:28:44","29:06",
+    "55:12","2:15:38","1:05:22","48:17","35:44","1:42:19","2:08:33",
+    "58:41","44:27","1:15:08","33:56","1:55:20"
+  ];
+  const views = [
+    "128K","45K","312K","89K","567K","23K","198K","412K",
+    "67K","234K","156K","78K","345K","890K","34K",
+    "123K","456K","67K","210K","43K"
+  ];
+
+  const grid = root.querySelector("#bn13h-grid");
+  for (let i = 0; i < 60; i++) {
+    var vi = i % 20;
+    const card = document.createElement("div");
+    card.className = "yt-card";
+    card.innerHTML =
+      '<div class="yt-thumb" style="background-image: url(\'https://i.ytimg.com/vi/' + videoIds[vi] + '/hqdefault.jpg\');">' +
+        '<div class="yt-thumb-dur">' + durations[vi] + '</div>' +
+      '</div>' +
+      '<div class="yt-card-info">' +
+        '<div class="yt-card-title">' + titles[vi] + '</div>' +
+        '<div class="yt-card-channel">' + channels[vi] + '</div>' +
+        '<div class="yt-card-meta">' + views[vi] + ' views · ' + Math.floor(1 + vi * 0.7) + ' weeks ago</div>' +
+      '</div>';
+    grid.appendChild(card);
+  }
+
+  const tl = gsap.timeline({ paused: true });
+  const scrollEl = root.querySelector("#bn13h-ytScroll");
+
+  // Scroll thumbnails up — no fade, no black, always showing cards
+  tl.to(scrollEl, { y: -2800, duration: 7.7, ease: "power1.inOut" }, 0.3);
+
+  tl.to({}, { duration: 8 }, 0);
+  return tl;
+})();
+</script>
+</div>
+</body>
+</html>

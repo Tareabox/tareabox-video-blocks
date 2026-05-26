@@ -1,0 +1,27 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "text-morph-06-tb",
+  "type": "hyperframes:block",
+  "title": "Text Morph",
+  "description": "Efecto Tareabox: Text Morph",
+  "tags": [
+    "text",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 3.5,
+  "files": [
+    {
+      "path": "text-morph-06-tb.html",
+      "target": "compositions/text-morph-06-tb.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-morph-06-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-morph-06-tb.png"
+  }
+}

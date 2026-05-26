@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "layout-video-caption-04-tb-v",
+  "type": "hyperframes:block",
+  "title": "Layout Video Caption (Vertical)",
+  "description": "Vertical 9:16 — talking head full-bleed con caption glass abajo (nombre, rol, quote)",
+  "tags": [
+    "layout",
+    "video",
+    "caption",
+    "vertical",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1080,
+    "height": 1920
+  },
+  "duration": 5.0,
+  "files": [
+    {
+      "path": "layout-video-caption-04-tb-v.html",
+      "target": "compositions/layout-video-caption-04-tb-v.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-video-caption-04-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-video-caption-04-tb-v.png"
+  }
+}

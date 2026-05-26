@@ -1,0 +1,17 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "text-typewriter-wide-19-tb-v",
+  "type": "hyperframes:block",
+  "title": "Text Typewriter Wide (Vertical)",
+  "description": "Typewriter all-caps con tracking amplio, cursor parpadeante y barra acento, en formato vertical 9:16",
+  "tags": ["text", "typewriter", "vertical", "tareabox"],
+  "dimensions": {"width": 1080, "height": 1920},
+  "duration": 3.0,
+  "files": [
+    {"path": "text-typewriter-wide-19-tb-v.html", "target": "compositions/text-typewriter-wide-19-tb-v.html", "type": "hyperframes:composition"}
+  ],
+  "preview": {
+    "video":  "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-typewriter-wide-19-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-typewriter-wide-19-tb-v.png"
+  }
+}

@@ -1,0 +1,234 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  visual-gif-burst-10-tb-v (vertical 1080x1920)
+  Talking head + 7 GIFs explotan desde el centro hacia los bordes con stagger + rotacion + scatter.
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"burstLabel","type":"string","label":"Burst label","default":"🔥 ICONIC 🔥"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#EA9F84"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#0a0a0a"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;800&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="visual-gif-burst-10-tb-v" data-composition-id="visual-gif-burst-10-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="6">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="visual-gif-burst-10-tb-v"] {
+      --tb-bg:           #0a0a0a;
+      --tb-accent:       var(--tb-brand-accent, #EA9F84);
+      --tb-text:         #ffffff;
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      /* GIF→MP4 — HyperFrames seeks deterministically; <img> GIFs freeze on frame 1, <video> seeks correctly */
+      --gif-1-src: url("../assets/tb-media/tb-react-omg.mp4");
+      --gif-2-src: url("../assets/tb-media/tb-react-mind-blown.mp4");
+      --gif-3-src: url("../assets/tb-media/tb-react-clap.mp4");
+      --gif-4-src: url("../assets/tb-media/tb-react-omg-2.mp4");
+      --gif-5-src: url("../assets/tb-media/tb-react-mind-blown-2.mp4");
+      --gif-6-src: url("../assets/tb-media/tb-react-clap-2.mp4");
+      --gif-7-src: url("../assets/tb-media/tb-react-omg-3.mp4");
+
+      --burst-label: "🔥 ICONIC 🔥";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                           */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="visual-gif-burst-10-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="visual-gif-burst-10-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="visual-gif-burst-10-tb-v"] .bg-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 25%;
+    }
+
+    /* GIF particles — empiezan en centro, vuelan hacia bordes */
+    [data-composition-id="visual-gif-burst-10-tb-v"] .gif-particle {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 22vmin; height: 22vmin;
+      margin: -11vmin 0 0 -11vmin;
+      border-radius: 1.8vmin;
+      overflow: hidden;
+      border: 0.4vmin solid white;
+      box-shadow: 0 1.2vmin 3vmin rgba(0,0,0,0.6);
+      background-color: #1a1a1a;
+      opacity: 0;
+      z-index: 5;
+    }
+    /* <video> dentro de cada particle reproduce el GIF→MP4 (seekable, anima en render) */
+    [data-composition-id="visual-gif-burst-10-tb-v"] .gif-particle video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* Burst label central */
+    [data-composition-id="visual-gif-burst-10-tb-v"] .burst-label {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(56px, 7.5vmin, 110px);
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.01em;
+      text-align: center;
+      text-shadow: 0 0.4vmin 1.6vmin rgba(0,0,0,0.8), 0 0 6vmin var(--tb-accent);
+      white-space: nowrap;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Flash overlay */
+    [data-composition-id="visual-gif-burst-10-tb-v"] .flash {
+      position: absolute; inset: 0;
+      background: white;
+      opacity: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+</style>
+
+
+    <!--
+      ASSET (vertical) — demo from Pexels (free license, attribution in README).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+                      (the `..` walks up from compositions/ to the project root)
+    -->
+    <video class="bg-video" id="n16v-bg"
+           data-start="0" data-duration="6" data-track-index="0"
+           src="https://videos.pexels.com/video-files/5940726/5940726-hd_1280_720_25fps.mp4" crossorigin="anonymous" data-tb-asset="vertical"
+           muted playsinline></video>
+
+    <div class="flash" id="n16v-flash"></div>
+
+    <div class="gif-particle" id="n16v-p1" data-gif="1"><video src="../assets/tb-media/tb-react-omg.mp4"        data-start="0" data-duration="6" data-track-index="11" muted playsinline loop></video></div>
+    <div class="gif-particle" id="n16v-p2" data-gif="2"><video src="../assets/tb-media/tb-react-mind-blown.mp4" data-start="0" data-duration="6" data-track-index="12" muted playsinline loop></video></div>
+    <div class="gif-particle" id="n16v-p3" data-gif="3"><video src="../assets/tb-media/tb-react-clap.mp4"        data-start="0" data-duration="6" data-track-index="13" muted playsinline loop></video></div>
+    <div class="gif-particle" id="n16v-p4" data-gif="4"><video src="../assets/tb-media/tb-react-omg-2.mp4"      data-start="0" data-duration="6" data-track-index="14" muted playsinline loop></video></div>
+    <div class="gif-particle" id="n16v-p5" data-gif="5"><video src="../assets/tb-media/tb-react-mind-blown-2.mp4" data-start="0" data-duration="6" data-track-index="15" muted playsinline loop></video></div>
+    <div class="gif-particle" id="n16v-p6" data-gif="6"><video src="../assets/tb-media/tb-react-clap-2.mp4"      data-start="0" data-duration="6" data-track-index="16" muted playsinline loop></video></div>
+    <div class="gif-particle" id="n16v-p7" data-gif="7"><video src="../assets/tb-media/tb-react-omg-3.mp4"      data-start="0" data-duration="6" data-track-index="17" muted playsinline loop></video></div>
+
+    <div class="burst-label" id="n16v-label"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["visual-gif-burst-10-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="visual-gif-burst-10-tb-v"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, '"' + String(val) + '"'); };
+      const setRaw = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, String(val)); };
+      setStr("--burst-label", V.burstLabel);
+      setRaw("--tb-accent",   V.accent);
+      setRaw("--tb-bg",       V.bg);
+
+      $("#n16v-label").textContent = G("--burst-label");
+
+      /* Setear src de los <img> de cada particle según data-gif. */
+      const stripUrl = (s) => s.trim().replace(/^url\(["']?|["']?\)$/g, "");
+      const gifs = {};
+      for (let i = 1; i <= 7; i++) {
+        gifs[String(i)] = stripUrl(cs.getPropertyValue("--gif-" + i + "-src"));
+      }
+      root.querySelectorAll(".gif-particle").forEach(p => {
+        const media = p.querySelector("video, img");
+        if (!media) return;
+        const customSrc = gifs[p.dataset.gif];
+        if (customSrc && customSrc.length > 3) media.src = customSrc;
+      });
+
+      const TOTAL = 6;
+      const tl = gsap.timeline({ paused: true });
+
+      const N = 7;
+      const targets = [];
+      for (let i = 0; i < N; i++) {
+        const angle = (i / N) * Math.PI * 2 + (i % 2 === 0 ? 0.3 : -0.3);
+        const dist = 38 + (i % 3) * 6;
+        targets.push({
+          tx: Math.cos(angle) * dist,
+          ty: Math.sin(angle) * dist,
+          rot: (i % 2 === 0 ? 1 : -1) * (15 + (i * 7) % 20)
+        });
+      }
+
+      const BURST = 0.8;
+
+      tl.to("#n16v-flash", { keyframes: [
+        { opacity: 0.9, duration: 0.08, ease: "power2.out" },
+        { opacity: 0,   duration: 0.4,  ease: "power2.in"  }
+      ]}, BURST);
+
+      tl.fromTo("#n16v-label",
+        { scale: 0.5, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2.5)" },
+        BURST
+      );
+      tl.to("#n16v-label", {
+        scale: 1.05,
+        duration: 0.4, yoyo: true, repeat: 3, ease: "sine.inOut"
+      }, BURST + 0.6);
+
+      targets.forEach((t, i) => {
+        const sel = "#n16v-p" + (i + 1);
+        tl.set(sel, { scale: 0, rotation: 0 }, 0);
+        tl.to(sel, {
+          opacity: 1,
+          scale: 1,
+          x: () => root.offsetWidth * t.tx / 100,
+          y: () => root.offsetHeight * t.ty / 100,
+          rotation: t.rot,
+          duration: 0.85,
+          ease: "power3.out"
+        }, BURST + 0.05 + (i * 0.04));
+
+        tl.to(sel, {
+          rotation: t.rot + (t.rot > 0 ? -8 : 8),
+          duration: 1.2,
+          yoyo: true, repeat: 1, ease: "sine.inOut"
+        }, BURST + 1.0);
+      });
+
+      tl.to("#n16v-label", { opacity: 0, scale: 0.85, duration: 0.4, ease: "power2.in" }, 4.6);
+      targets.forEach((t, i) => {
+        const sel = "#n16v-p" + (i + 1);
+        tl.to(sel, {
+          opacity: 0,
+          x: () => root.offsetWidth * t.tx / 100 * 1.6,
+          y: () => root.offsetHeight * t.ty / 100 * 1.6,
+          duration: 0.6,
+          ease: "power2.in"
+        }, 4.7 + (i * 0.03));
+      });
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "layout-video-pip-03-tb",
+  "type": "hyperframes:block",
+  "title": "Layout Video PIP (Horizontal)",
+  "description": "Horizontal 16:9 — bg-video con picture-in-picture chico esquina + headline",
+  "tags": ["layout", "video", "pip", "horizontal", "tareabox"],
+  "dimensions": {"width": 1920, "height": 1080},
+  "duration": 5.0,
+  "files": [
+    {"path": "layout-video-pip-03-tb.html", "target": "compositions/layout-video-pip-03-tb.html", "type": "hyperframes:composition"}
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-video-pip-03-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-video-pip-03-tb.png"
+  }
+}

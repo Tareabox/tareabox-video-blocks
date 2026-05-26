@@ -1,0 +1,174 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  conversationapp-tweet-quote-16-tb · Twitter quote-tweet card · 4 seconds
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700;800&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="conversationapp-tweet-quote-16-tb" data-composition-id="conversationapp-tweet-quote-16-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="4">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE ──────────────────────────────────── */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] {
+      --tb-bg: #0f1419; --tb-text: #e7e9ea; --tb-text-dim: #71767b;
+      --tb-accent: var(--tb-brand-accent, #1d9bf0);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --tq-name:    "Natalie Digital";
+      --tq-handle:  "@nataliedigital";
+      --tq-msg:     "this is the cleanest layout pack I've seen in 2026 →";
+
+      /* Avatar oficial nataliedigital.com (local, ship con el pack) */
+      --tq-avatar-img: url("../assets/tb-media/tb-natalie-digital-avatar.png");
+
+      --qt-name:    "Tareabox";
+      --qt-handle:  "@tareabox";
+      --qt-time:    "Aug 4";
+      --qt-msg:     "Just shipped 52 video layouts that turn topics into tutorials. One CONFIG block per scene. Render in 4 minutes.";
+
+      /* Avatar oficial tareabox.com (local, ship con el pack) */
+      --qt-avatar-img: url("../assets/tb-media/tb-tareabox-logo.png");
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE — No tocar a menos que sepas lo que hacés */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+      display: flex; align-items: center; justify-content: center;
+    }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .card {
+      width: 76%;
+      background: #0f1419;
+      border: 1px solid #2f3336;
+      border-radius: 22px;
+      padding: 4vmin 4.4vmin;
+      display: flex; flex-direction: column;
+      gap: 3vmin;
+      opacity: 0;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.55);
+    }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .head {
+      display: flex; gap: 2.2vmin;
+      align-items: center;
+    }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .avatar {
+      width: 8vmin; height: 8vmin; border-radius: 50%;
+      background-image: var(--tq-avatar-img);
+      background-size: cover;
+      background-position: center;
+      background-color: #fff;
+      flex-shrink: 0;
+    }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .who {
+      display: flex; flex-direction: column; gap: 0.4vmin;
+    }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .name {
+      font-size: clamp(28px, 3.4vmin, 48px);
+      font-weight: 800; color: var(--tb-text);
+      letter-spacing: -0.01em;
+    }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .handle {
+      font-size: clamp(20px, 2.4vmin, 32px);
+      color: var(--tb-text-dim);
+      font-weight: 500;
+    }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .body {
+      font-size: clamp(30px, 3.6vmin, 50px);
+      font-weight: 600;
+      color: var(--tb-text);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+    /* Embedded quote */
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .quote {
+      border: 1px solid #2f3336;
+      border-radius: 18px;
+      padding: 3vmin 3.4vmin;
+      display: flex; flex-direction: column;
+      gap: 1.6vmin;
+      opacity: 0;
+    }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .quote-head {
+      display: flex; align-items: center; gap: 1.6vmin;
+    }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .quote-avatar {
+      width: 5.2vmin; height: 5.2vmin; border-radius: 50%;
+      background-image: var(--qt-avatar-img);
+      background-size: cover;
+      background-position: center;
+      background-color: #fff;
+      flex-shrink: 0;
+    }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .quote-meta {
+      font-size: clamp(20px, 2.3vmin, 30px);
+      color: var(--tb-text);
+      font-weight: 500;
+    }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .quote-meta strong { font-weight: 800; }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .quote-meta span { color: var(--tb-text-dim); margin-left: 0.6vmin; font-weight: 400; }
+    [data-composition-id="conversationapp-tweet-quote-16-tb"] .quote-text {
+      font-size: clamp(22px, 2.6vmin, 36px);
+      color: var(--tb-text);
+      line-height: 1.4;
+      font-weight: 400;
+    }
+</style>
+
+    <div class="card" id="tq16-card">
+      <div class="head">
+        <div class="avatar"></div>
+        <div class="who">
+          <span class="name" id="tq16-name"></span>
+          <span class="handle" id="tq16-handle"></span>
+        </div>
+      </div>
+      <div class="body" id="tq16-msg"></div>
+      <div class="quote" id="tq16-quote">
+        <div class="quote-head">
+          <div class="quote-avatar"></div>
+          <div class="quote-meta"><strong id="tq16-qt-name"></strong><span><span id="tq16-qt-handle"></span> · <span id="tq16-qt-time"></span></span></div>
+        </div>
+        <div class="quote-text" id="tq16-qt-msg"></div>
+      </div>
+    </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["conversationapp-tweet-quote-16-tb"] = (function () {
+      const root = document.querySelector('[data-composition-id="conversationapp-tweet-quote-16-tb"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+      $("#tq16-name").textContent     = G("--tq-name");
+      $("#tq16-handle").textContent   = G("--tq-handle");
+      $("#tq16-msg").textContent      = G("--tq-msg");
+      $("#tq16-qt-name").textContent  = G("--qt-name");
+      $("#tq16-qt-handle").textContent= G("--qt-handle");
+      $("#tq16-qt-time").textContent  = G("--qt-time");
+      $("#tq16-qt-msg").textContent   = G("--qt-msg");
+
+      const tl = gsap.timeline({ paused: true });
+      const card = $("#tq16-card"), q = $("#tq16-quote");
+      gsap.set(card, { y: 30, scale: 0.94 });
+      tl.to(card, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.4)" }, 0.2);
+      gsap.set(q, { y: 12, scale: 0.97 });
+      tl.to(q, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 0.85);
+      tl.to({}, { duration: 4 }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "layout-yt-tier-list-08-tb-v",
+  "type": "hyperframes:block",
+  "title": "Layout Yt Tier List (Vertical)",
+  "description": "Tier list 2 columnas (label → value) con título y PiP face cam, en formato vertical 9:16",
+  "tags": [
+    "layout",
+    "yt",
+    "tier",
+    "vertical",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1080,
+    "height": 1920
+  },
+  "duration": 6.0,
+  "files": [
+    {
+      "path": "layout-yt-tier-list-08-tb-v.html",
+      "target": "compositions/layout-yt-tier-list-08-tb-v.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-yt-tier-list-08-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-yt-tier-list-08-tb-v.png"
+  }
+}

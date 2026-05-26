@@ -1,0 +1,198 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  layout-video-hook-05-tb-v (vertical 1080x1920)
+  Tareabox Hyperframes Effect
+  Description: Vertical 9:16 — B-roll full-screen with dramatic hook title — vignette overlay, large text slams in center, subtitle fades below.
+  Category: layout
+  Duration: 5 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"hookEyebrow","type":"string","label":"Eyebrow","default":"Wait for it"},
+  {"id":"hookTitle","type":"string","label":"Hook title","default":"Nobody talks about this"},
+  {"id":"hookSub","type":"string","label":"Subtitle","default":"And it''s costing you hours every week."},
+  {"id":"accent","type":"color","label":"Accent color","default":"#ec4899"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#000000"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="layout-video-hook-05-tb-v" data-composition-id="layout-video-hook-05-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="5">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-video-hook-05-tb-v"] {
+      --tb-bg:           #09090b;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #d4d4d8;
+      --tb-accent:       var(--tb-brand-accent, #ec4899);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --hook-eyebrow: "Wait for it";
+      --hook-title:   "Nobody talks about this";
+      --hook-sub:     "And it's costing you hours every week.";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-video-hook-05-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: #000;
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="layout-video-hook-05-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="layout-video-hook-05-tb-v"] .bg-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+    [data-composition-id="layout-video-hook-05-tb-v"] .vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(
+        ellipse at 50% 50%,
+        rgba(0,0,0,0.1) 0%,
+        rgba(0,0,0,0.65) 70%,
+        rgba(0,0,0,0.88) 100%
+      );
+      opacity: 0;
+    }
+    [data-composition-id="layout-video-hook-05-tb-v"] .center-block {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 0 8%;
+      gap: 3.5vmin;
+      text-align: center;
+    }
+    [data-composition-id="layout-video-hook-05-tb-v"] .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      padding: 1.2vmin 2.8vmin;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--tb-accent) 18%, rgba(0,0,0,0.5));
+      border: 1px solid color-mix(in srgb, var(--tb-accent) 55%, transparent);
+      font-size: clamp(26px, 3.2vmin, 42px);
+      font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--tb-accent);
+      opacity: 0;
+      text-shadow: 0 0.4vmin 1.6vmin rgba(0,0,0,0.85), 0 0.15vmin 0.4vmin rgba(0,0,0,0.95);
+    }
+    [data-composition-id="layout-video-hook-05-tb-v"] .hook-title {
+      font-size: clamp(60px, 9vmin, 120px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.04;
+      color: var(--tb-text);
+      text-shadow: 0 0.4vmin 1.6vmin rgba(0,0,0,0.85), 0 0.15vmin 0.4vmin rgba(0,0,0,0.95);
+      opacity: 0;
+    }
+    [data-composition-id="layout-video-hook-05-tb-v"] .accent-word {
+      color: var(--tb-accent);
+    }
+    [data-composition-id="layout-video-hook-05-tb-v"] .hook-sub {
+      font-size: clamp(28px, 3.6vmin, 46px);
+      font-weight: 500;
+      line-height: 1.35;
+      color: var(--tb-text-dim);
+      text-shadow: 0 0.4vmin 1.6vmin rgba(0,0,0,0.85), 0 0.15vmin 0.4vmin rgba(0,0,0,0.95);
+      opacity: 0;
+    }
+    [data-composition-id="layout-video-hook-05-tb-v"] .flash {
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.08);
+      opacity: 0;
+      pointer-events: none;
+    }
+</style>
+
+
+    <!--
+      ASSET (vertical) — demo from Pexels (free license, attribution in README).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+                      (the `..` walks up from compositions/ to the project root)
+    -->
+    <video id="vh05v-vid"
+           class="bg-video"
+           src="https://videos.pexels.com/video-files/17811907/17811907-hd_1920_1080_60fps.mp4" crossorigin="anonymous" data-tb-asset="vertical"
+           data-start="0" data-duration="5" data-track-index="0"
+           muted playsinline></video>
+
+    <div class="vignette"  id="vh05v-vig"></div>
+    <div class="flash"     id="vh05v-flash"></div>
+
+    <div class="center-block">
+      <div class="eyebrow"    id="vh05v-ew"></div>
+      <div class="hook-title" id="vh05v-title"></div>
+      <div class="hook-sub"   id="vh05v-sub"></div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["layout-video-hook-05-tb-v"] = (function () {
+      const root  = document.querySelector('[data-composition-id="layout-video-hook-05-tb-v"]');
+      const cs    = getComputedStyle(root);
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, '"' + String(val) + '"');
+      };
+      const setRaw = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, String(val));
+      };
+      setStr("--hook-eyebrow", V.hookEyebrow);
+      setStr("--hook-title",   V.hookTitle);
+      setStr("--hook-sub",     V.hookSub);
+      setRaw("--tb-accent",    V.accent);
+      setRaw("--tb-bg",        V.bg);
+
+      const vig   = root.querySelector("#vh05v-vig");
+      const flash = root.querySelector("#vh05v-flash");
+      const ew    = root.querySelector("#vh05v-ew");
+      const title = root.querySelector("#vh05v-title");
+      const sub   = root.querySelector("#vh05v-sub");
+
+      ew.textContent    = cs.getPropertyValue("--hook-eyebrow").trim().replace(/^["']|["']$/g,"");
+      title.textContent = cs.getPropertyValue("--hook-title").trim().replace(/^["']|["']$/g,"");
+      sub.textContent   = cs.getPropertyValue("--hook-sub").trim().replace(/^["']|["']$/g,"");
+
+      const TOTAL = 5;
+      const tl = gsap.timeline({ paused: true });
+
+      tl.to(vig, { opacity: 1, duration: 0.7, ease: "power2.out" }, 0.1);
+
+      tl.to(ew, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.35);
+      tl.from(ew, { y: 14, scale: 0.9, duration: 0.35, ease: "power2.out" }, 0.35);
+
+      tl.to(flash, { opacity: 1, duration: 0.07, ease: "none" }, 0.58);
+      tl.to(flash, { opacity: 0, duration: 0.18, ease: "power2.out" }, 0.65);
+
+      tl.to(title, { opacity: 1, duration: 0.4, ease: "expo.out" }, 0.6);
+      tl.from(title, { scale: 1.12, filter: "blur(8px)", duration: 0.4, ease: "expo.out" }, 0.6);
+
+      tl.to(sub, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.9);
+      tl.from(sub, { y: 18, duration: 0.4, ease: "power2.out" }, 0.9);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

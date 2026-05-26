@@ -1,0 +1,214 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  layout-video-pip-03-tb-v (vertical 1080x1920)
+  Tareabox Hyperframes Effect
+  Description: Vertical 9:16 — B-roll full-screen background with face cam PiP in the bottom-right corner — rounded border, accent glow, title at top.
+  Category: layout
+  Duration: 5 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"pipEyebrow","type":"string","label":"Eyebrow","default":"Live commentary"},
+  {"id":"pipTitle","type":"string","label":"Title","default":"Breaking this down step by step"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#f97316"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#000000"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="layout-video-pip-03-tb-v" data-composition-id="layout-video-pip-03-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="5">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-video-pip-03-tb-v"] {
+      --tb-bg:           #09090b;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #d4d4d8;
+      --tb-accent:       var(--tb-brand-accent, #f97316);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --pip-eyebrow: "Live commentary";
+      --pip-title:   "Breaking this down step by step";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-video-pip-03-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: #000;
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="layout-video-pip-03-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="layout-video-pip-03-tb-v"] .bg-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+    [data-composition-id="layout-video-pip-03-tb-v"] .overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.65) 0%,
+        rgba(0,0,0,0.1) 40%,
+        rgba(0,0,0,0.1) 60%,
+        rgba(0,0,0,0.72) 100%
+      );
+    }
+    /* TikTok/Reels safe area: top 14% reservado UI, bottom 22% caption+buttons, right 16% buttons */
+    [data-composition-id="layout-video-pip-03-tb-v"] .top-block {
+      position: absolute;
+      top: 14%; left: 0; right: 0;
+      padding: 0 7%;
+      display: flex; flex-direction: column; gap: 3vmin;
+    }
+    [data-composition-id="layout-video-pip-03-tb-v"] .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      padding: 1.2vmin 2.6vmin;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--tb-accent) 20%, rgba(0,0,0,0.5));
+      border: 1px solid color-mix(in srgb, var(--tb-accent) 55%, transparent);
+      font-size: clamp(24px, 3vmin, 38px);
+      font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--tb-accent);
+      opacity: 0;
+      text-shadow: 0 0.4vmin 1.6vmin rgba(0,0,0,0.85), 0 0.15vmin 0.4vmin rgba(0,0,0,0.95);
+    }
+    [data-composition-id="layout-video-pip-03-tb-v"] .pip-title {
+      font-size: clamp(56px, 7.4vmin, 100px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--tb-text);
+      text-shadow: 0 0.4vmin 1.6vmin rgba(0,0,0,0.85), 0 0.15vmin 0.4vmin rgba(0,0,0,0.95);
+      opacity: 0;
+    }
+    [data-composition-id="layout-video-pip-03-tb-v"] .pip-wrap {
+      position: absolute;
+      bottom: 7%;
+      right: 6%;
+      width: 42%;
+      aspect-ratio: 9/16;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid color-mix(in srgb, var(--tb-accent) 60%, rgba(255,255,255,0.2));
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.8),
+        0 0 30px color-mix(in srgb, var(--tb-accent) 40%, transparent),
+        0 20px 60px rgba(0,0,0,0.7);
+      opacity: 0;
+    }
+    [data-composition-id="layout-video-pip-03-tb-v"] .pip-video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+    }
+    [data-composition-id="layout-video-pip-03-tb-v"] .pip-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2vmin 2.5vmin;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      font-size: clamp(12px, 1.4vmin, 18px);
+      font-weight: 600;
+      color: var(--tb-accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+</style>
+
+
+    <!--
+      ASSET (vertical) — demo from Pexels (free license, attribution in README).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+                      (the `..` walks up from compositions/ to the project root)
+    -->
+    <video id="vp03v-bg"
+           class="bg-video"
+           src="https://videos.pexels.com/video-files/5895541/5895541-hd_1920_1080_25fps.mp4" crossorigin="anonymous" data-tb-asset="vertical"
+           data-start="0" data-duration="5" data-track-index="0"
+           muted playsinline></video>
+
+    <div class="overlay"></div>
+
+    <div class="top-block">
+      <div class="eyebrow"   id="vp03v-ew"></div>
+      <div class="pip-title" id="vp03v-title"></div>
+    </div>
+
+    <div class="pip-wrap" id="vp03v-pip">
+      <!--
+        ASSET (vertical) — demo from Pexels (free license, attribution in README).
+        To use your own footage, replace the `src` with one of these:
+          Public URL:   src="https://yourdomain.com/your-video.mp4"
+          Local path:   src="../assets/tb-media/your-video.mp4"
+                        (the `..` walks up from compositions/ to the project root)
+      -->
+      <video id="vp03v-face"
+             class="pip-video"
+             src="https://videos.pexels.com/video-files/4962731/4962731-hd_1920_1080_25fps.mp4" crossorigin="anonymous" data-tb-asset="vertical"
+             data-start="0" data-duration="5" data-track-index="2"
+             muted playsinline></video>
+      <div class="pip-label">Live</div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["layout-video-pip-03-tb-v"] = (function () {
+      const root  = document.querySelector('[data-composition-id="layout-video-pip-03-tb-v"]');
+      const cs    = getComputedStyle(root);
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, '"' + String(val) + '"');
+      };
+      const setRaw = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, String(val));
+      };
+      setStr("--pip-eyebrow", V.pipEyebrow);
+      setStr("--pip-title",   V.pipTitle);
+      setRaw("--tb-accent",   V.accent);
+      setRaw("--tb-bg",       V.bg);
+
+      const ew    = root.querySelector("#vp03v-ew");
+      const title = root.querySelector("#vp03v-title");
+      const pip   = root.querySelector("#vp03v-pip");
+
+      ew.textContent    = cs.getPropertyValue("--pip-eyebrow").trim().replace(/^["']|["']$/g,"");
+      title.textContent = cs.getPropertyValue("--pip-title").trim().replace(/^["']|["']$/g,"");
+
+      const TOTAL = 5;
+      const tl = gsap.timeline({ paused: true });
+
+      tl.to(ew, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.3);
+      tl.from(ew, { y: -16, duration: 0.4, ease: "power2.out" }, 0.3);
+
+      tl.to(title, { opacity: 1, duration: 0.5, ease: "expo.out" }, 0.5);
+      tl.from(title, { y: -20, duration: 0.5, ease: "expo.out" }, 0.5);
+
+      gsap.set(pip, { x: 60, y: 40 });
+      tl.to(pip, { opacity: 1, x: 0, y: 0, duration: 0.6, ease: "expo.out" }, 0.7);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

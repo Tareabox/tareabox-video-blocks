@@ -1,0 +1,304 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  conversationapp-imessage-pure-18-tb
+  Tareabox Hyperframes Effect
+  Description: iMessage bubbles cascade puro estilo Samuel Kraft blog post — solo bubbles flotando en fondo dark, sin phone frame. Tails con la técnica oficial pseudo-elements (samuelkraft.com/blog/ios-chat-bubbles-css).
+  Category: conversationapp
+  Duration: 5 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="conversationapp-imessage-pure-18-tb" data-composition-id="conversationapp-imessage-pure-18-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="5">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] {
+      --tb-accent: var(--tb-brand-accent, #007AFF);
+      --tb-text:         #ffffff;
+      /* Samuel Kraft EXACT vars */
+      --tb-bg:           #1a1a1c;          /* --bg · dark background (blog hero style) */
+      --tb-sent:         #0b93f6;          /* --sentColor · iMessage blue */
+      --tb-received:     #e5e5ea;          /* --receiveColor · light gray */
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      /* 6 messages — cascade alternating */
+      --m1: "Hey there! What's up";          --m1-side: "out";
+      --m2: "Checking out iOS7 you know..";  --m2-side: "in";
+      --m3: "Check out this bubble!";        --m3-side: "out";
+      --m4: "It's pretty cool!";             --m4-side: "in";
+      --m5: "And it's in css?";              --m5-side: "in";   /* stacked — no tail */
+      --m6: "Yeah it's pure CSS & HTML";     --m6-side: "out";
+
+      /* Avatares (imagenes reales) + nombres */
+      --av-out-name:    "Natalie";
+      --av-in-name:     "Sam";
+      --av-out-img: url("https://i.pravatar.cc/200?img=47");
+      --av-in-img:  url("https://i.pravatar.cc/200?img=12");
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE · Samuel Kraft technique exacta            */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+      display: flex; align-items: center; justify-content: center;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Subtle decorative bubble shapes (atrás, blog style) */
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.025);
+      pointer-events: none;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bg-shape.s1 {
+      width: 60vmin; height: 60vmin;
+      top: -20%; right: -10%;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bg-shape.s2 {
+      width: 80vmin; height: 80vmin;
+      bottom: -25%; left: -15%;
+    }
+
+    /* ────────────────────────────────────────────
+       LIST · Samuel Kraft canonical structure
+       ──────────────────────────────────────────── */
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .list {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      max-width: 1200px;
+      width: 76%;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+      z-index: 2;
+    }
+
+    /* SHARED bubble base (Samuel Kraft EXACT, vmin para multi-format) */
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble {
+      position: relative;
+      max-width: 80%;
+      width: max-content;
+      margin-bottom: 1.5vmin;
+      padding: 2vmin 3.4vmin;
+      line-height: 1.2;
+      word-wrap: break-word;
+      border-radius: 3vmin;
+      font-size: clamp(32px, 3.6vmin, 54px);
+      opacity: 0;
+    }
+
+    /* Tail shared sizes — Samuel Kraft proportions */
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble.tail::before,
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble.tail::after {
+      position: absolute;
+      bottom: 0;
+      height: 3vmin;
+      content: "";
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble.tail::before {
+      width: 2.4vmin;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble.tail::after {
+      width: 3.2vmin;
+      background-color: var(--tb-bg);
+    }
+
+    /* SENT (out · iMessage blue) */
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble.out {
+      align-self: flex-end;
+      color: white;
+      background: var(--tb-sent);
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble.out.tail::before {
+      right: -0.8vmin;
+      background-color: var(--tb-sent);
+      border-bottom-left-radius: 1.9vmin 1.7vmin;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble.out.tail::after {
+      right: -3.2vmin;
+      border-bottom-left-radius: 1.2vmin;
+    }
+
+    /* RECEIVED (in · light gray) */
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble.in {
+      align-self: flex-start;
+      color: black;
+      background: var(--tb-received);
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble.in.tail::before {
+      left: -0.8vmin;
+      background-color: var(--tb-received);
+      border-bottom-right-radius: 1.9vmin 1.7vmin;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble.in.tail::after {
+      left: -3.2vmin;
+      border-bottom-right-radius: 1.2vmin;
+    }
+
+    /* Row con avatar + bubble */
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .row {
+      display: flex;
+      align-items: flex-end;
+      gap: 1.8vmin;
+      margin-bottom: 1.2vmin;
+      opacity: 0;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .row.out {
+      flex-direction: row-reverse;
+      align-self: flex-end;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .row.in {
+      align-self: flex-start;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .row .bubble {
+      opacity: 1;
+      margin-bottom: 0;
+    }
+    /* Stacked = mismo usuario consecutivo · pegado al anterior */
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .row.stacked-row {
+      margin-bottom: 0.4vmin;
+    }
+
+    /* Avatar (imagen) + nombre */
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .who {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8vmin;
+      flex-shrink: 0;
+      width: 11vmin;
+      overflow: visible;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .avatar {
+      width: 7.2vmin;
+      height: 7.2vmin;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      background-color: #2a2a2c;
+      box-shadow: 0 0.4vmin 1.2vmin rgba(0,0,0,0.4);
+      border: 0.2vmin solid rgba(255,255,255,0.08);
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .avatar.out { background-image: var(--av-out-img); }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .avatar.in  { background-image: var(--av-in-img); }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .uname {
+      font-size: clamp(13px, 1.4vmin, 18px);
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      overflow: visible;
+    }
+    /* Spacer cuando es stacked (sin avatar) — mantiene alineación */
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .who.spacer {
+      visibility: hidden;
+    }
+
+    /* STACKED · Samuel Kraft .noTail */
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble.stacked {
+      margin-bottom: 2px;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble.stacked::before,
+    [data-composition-id="conversationapp-imessage-pure-18-tb"] .bubble.stacked::after {
+      opacity: 0;
+    }
+</style>
+
+
+    <!-- Decorative background shapes -->
+    <div class="bg-shape s1"></div>
+    <div class="bg-shape s2"></div>
+
+    <ul class="list">
+      <li class="row out" id="im18-r1">
+        <div class="who"><div class="avatar out" id="im18-av1"></div><div class="uname" id="im18-un1"></div></div>
+        <div class="bubble out tail" id="im18-m1"></div>
+      </li>
+      <li class="row in" id="im18-r2">
+        <div class="who"><div class="avatar in" id="im18-av2"></div><div class="uname" id="im18-un2"></div></div>
+        <div class="bubble in tail" id="im18-m2"></div>
+      </li>
+      <li class="row out" id="im18-r3">
+        <div class="who"><div class="avatar out" id="im18-av3"></div><div class="uname" id="im18-un3"></div></div>
+        <div class="bubble out tail" id="im18-m3"></div>
+      </li>
+      <li class="row in" id="im18-r4">
+        <div class="who"><div class="avatar in" id="im18-av4"></div><div class="uname" id="im18-un4"></div></div>
+        <div class="bubble in tail" id="im18-m4"></div>
+      </li>
+      <li class="row in" id="im18-r5">
+        <div class="who"><div class="avatar in" id="im18-av5"></div><div class="uname" id="im18-un5"></div></div>
+        <div class="bubble in tail" id="im18-m5"></div>
+      </li>
+      <li class="row out" id="im18-r6">
+        <div class="who"><div class="avatar out" id="im18-av6"></div><div class="uname" id="im18-un6"></div></div>
+        <div class="bubble out tail" id="im18-m6"></div>
+      </li>
+    </ul>
+  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["conversationapp-imessage-pure-18-tb"] = (function () {
+      const root = document.querySelector('[data-composition-id="conversationapp-imessage-pure-18-tb"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      [1,2,3,4,5,6].forEach(i => {
+        $("#im18-m" + i).textContent = G("--m" + i);
+      });
+
+      /* Nombres (avatares vienen por background-image en CSS) */
+      const outName = G("--av-out-name"), inName = G("--av-in-name");
+      [1,2,3,4,5,6].forEach(i => {
+        const av = $("#im18-av" + i);
+        const un = $("#im18-un" + i);
+        if (!un) return;
+        const isOut = av && av.classList.contains("out");
+        un.textContent = isOut ? outName : inName;
+      });
+
+      const TOTAL = 5;
+      const tl = gsap.timeline({ paused: true });
+
+      /* Rows cascade · stagger ~0.55s each */
+      [1,2,3,4,5,6].forEach((i, idx) => {
+        const r = $("#im18-r" + i);
+        const at = 0.3 + idx * 0.55;
+        const side = G("--m" + i + "-side");
+        const xStart = side === "out" ? 30 : -30;
+
+        gsap.set(r, { x: xStart, scale: 0.9 });
+        tl.to(r, {
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          duration: 0.45,
+          ease: "back.out(1.5)"
+        }, at);
+      });
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  layout-split-annotation-02-tb
+  Tareabox Hyperframes Effect
+  Description: Split-panel layout — left screen placeholder, right annotation card with glass border and text.
+  Category: layout
+  Duration: 3.5 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="layout-split-annotation-02-tb" data-composition-id="layout-split-annotation-02-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="3.5">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-split-annotation-02-tb"] {
+      --tb-bg:           #09090b;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #c4c4c8;
+      --tb-accent:       var(--tb-brand-accent, #10b981);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --note-tag:   "NOTE";
+      --note-title: "This is the key part";
+      --note-body:  "Pay attention to how the state updates before the render cycle completes.";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-split-annotation-02-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="layout-split-annotation-02-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="layout-split-annotation-02-tb"] .layout {
+      position: absolute; inset: 0;
+      display: flex; align-items: center;
+      padding: 7% 5%;
+      gap: 4%;
+    }
+    /* Left: screen placeholder */
+    [data-composition-id="layout-split-annotation-02-tb"] .screen-panel {
+      flex: 0 0 58%;
+      height: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.09);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    [data-composition-id="layout-split-annotation-02-tb"] .screen-bar {
+      height: 10%;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center;
+      padding: 0 3%;
+      gap: 1%;
+    }
+    [data-composition-id="layout-split-annotation-02-tb"] .screen-dot {
+      width: 2%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.26);
+    }
+    [data-composition-id="layout-split-annotation-02-tb"] .screen-content {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    [data-composition-id="layout-split-annotation-02-tb"] .screen-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+    /* Right: annotation card */
+    [data-composition-id="layout-split-annotation-02-tb"] .note-panel {
+      flex: 1;
+      height: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.20);
+      background: rgba(255,255,255,0.09);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 10% 9%;
+      gap: 4%;
+    }
+    [data-composition-id="layout-split-annotation-02-tb"] .note-tag {
+      display: inline-flex; align-items: center;
+      padding: 0.5vmin 1.2vmin;
+      border-radius: 6px;
+      border: 1px solid;
+      border-color: color-mix(in srgb, var(--tb-accent) 40%, transparent);
+      background: color-mix(in srgb, var(--tb-accent) 10%, transparent);
+      font-size: clamp(13px, 1.3vmin, 18px);
+      font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--tb-accent);
+      width: fit-content;
+      opacity: 0;
+    }
+    [data-composition-id="layout-split-annotation-02-tb"] .note-title {
+      font-size: clamp(21px, 4vmin, 46px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--tb-text);
+      opacity: 0;
+    }
+    [data-composition-id="layout-split-annotation-02-tb"] .note-divider {
+      width: 0; height: 1px;
+      background: rgba(255,255,255,0.24);
+    }
+    [data-composition-id="layout-split-annotation-02-tb"] .note-body {
+      font-size: clamp(21px, 4vmin, 40px);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--tb-text-dim);
+      opacity: 0;
+    }
+    [data-composition-id="layout-split-annotation-02-tb"] .accent-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      border-radius: 0 2px 2px 0;
+      background: var(--tb-accent);
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+</style>
+
+    <div class="layout">
+      <div class="screen-panel" id="sa02-screen">
+        <div class="screen-bar">
+          <div class="screen-dot"></div>
+          <div class="screen-dot"></div>
+          <div class="screen-dot"></div>
+        </div>
+        <div class="screen-content">
+          <!--
+            ASSET (horizontal) — demo from Pexels (free license, attribution in README).
+            To use your own footage, replace the `src` with one of these:
+              Public URL:   src="https://yourdomain.com/your-video.mp4"
+              Local path:   src="../assets/tb-media/your-video.mp4"
+                            (the `..` walks up from compositions/ to the project root)
+          -->
+          <video id="sa02-vid"
+                 class="screen-video"
+                 src="https://videos.pexels.com/video-files/8048324/8048324-hd_1280_720_50fps.mp4" crossorigin="anonymous" data-tb-asset="horizontal"
+                 data-start="0" data-duration="3.5" data-track-index="0"
+                 muted playsinline></video>
+        </div>
+      </div>
+      <div class="note-panel" id="sa02-note">
+        <div class="accent-bar" id="sa02-bar"></div>
+        <div class="note-tag"   id="sa02-tag"></div>
+        <div class="note-title" id="sa02-title"></div>
+        <div class="note-divider" id="sa02-div"></div>
+        <div class="note-body"  id="sa02-body"></div>
+      </div>
+    </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["layout-split-annotation-02-tb"] = (function () {
+      const root    = document.querySelector('[data-composition-id="layout-split-annotation-02-tb"]');
+      const cs      = getComputedStyle(root);
+      const screen  = root.querySelector("#sa02-screen");
+      const note    = root.querySelector("#sa02-note");
+      const bar     = root.querySelector("#sa02-bar");
+      const tagEl   = root.querySelector("#sa02-tag");
+      const titleEl = root.querySelector("#sa02-title");
+      const divEl   = root.querySelector("#sa02-div");
+      const bodyEl  = root.querySelector("#sa02-body");
+
+      tagEl.textContent   = cs.getPropertyValue("--note-tag").trim().replace(/^["']|["']$/g,"");
+      titleEl.textContent = cs.getPropertyValue("--note-title").trim().replace(/^["']|["']$/g,"");
+      bodyEl.textContent  = cs.getPropertyValue("--note-body").trim().replace(/^["']|["']$/g,"");
+
+      const TOTAL = 3.5;
+      const tl = gsap.timeline({ paused: true });
+
+      gsap.set([screen, note], { opacity: 0 });
+
+      tl.to(screen, { opacity: 1, x: 0, duration: 0.5, ease: "expo.out" }, 0.1);
+      tl.from(screen, { x: -30, duration: 0.5, ease: "expo.out" }, 0.1);
+
+      tl.to(note, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.35);
+      tl.from(note, { x: 30, duration: 0.45, ease: "expo.out" }, 0.35);
+
+      tl.to(bar,    { scaleY: 1, duration: 0.45, ease: "power3.out" }, 0.5);
+      tl.to(tagEl,  { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.6);
+      tl.to(titleEl,{ opacity: 1, duration: 0.35, ease: "power2.out" }, 0.75);
+      tl.to(divEl,  { width: "100%", duration: 0.4, ease: "power2.inOut" }, 0.9);
+      tl.to(bodyEl, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.05);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

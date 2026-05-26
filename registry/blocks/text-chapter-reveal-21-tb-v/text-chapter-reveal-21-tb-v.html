@@ -1,0 +1,213 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  text-chapter-reveal-21-tb-v (vertical 1080x1920)
+  Tareabox Hyperframes Effect
+  Description: Chapter number badge + large title reveal with a sliding accent line.
+  Category: text
+  Duration: 3 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"chapterNum","type":"string","label":"Chapter number","default":"07"},
+  {"id":"chapterEyebrow","type":"string","label":"Eyebrow","default":"Chapter"},
+  {"id":"chapterTitle","type":"string","label":"Title","default":"State Management"},
+  {"id":"chapterSubtitle","type":"string","label":"Subtitle","default":"Handling complex UI state without losing your mind"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#10b981"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#09090b"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="text-chapter-reveal-21-tb-v" data-composition-id="text-chapter-reveal-21-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="3">
+<style>
+    [data-composition-id="text-chapter-reveal-21-tb-v"] {
+      --tb-bg:           #09090b;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #c4c4c8;
+      --tb-accent:       var(--tb-brand-accent, #10b981);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --chapter-num:      "07";
+      --chapter-eyebrow:  "Chapter";
+      --chapter-title:    "State Management";
+      --chapter-subtitle: "Handling complex UI state without losing your mind";
+    }
+    [data-composition-id="text-chapter-reveal-21-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="text-chapter-reveal-21-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="text-chapter-reveal-21-tb-v"] .stage {
+      position: absolute; inset: 0;
+      display: flex; align-items: center;
+      padding: 0 8%;
+    }
+    [data-composition-id="text-chapter-reveal-21-tb-v"] .content {
+      display: flex; flex-direction: column; gap: 3.2vmin;
+      max-width: 100%;
+    }
+    [data-composition-id="text-chapter-reveal-21-tb-v"] .eyebrow-row {
+      display: flex; align-items: center; gap: 2vmin;
+      opacity: 0;
+    }
+    [data-composition-id="text-chapter-reveal-21-tb-v"] .eyebrow {
+      font-size: clamp(22px, 3.4vmin, 42px);
+      font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--tb-accent);
+    }
+    [data-composition-id="text-chapter-reveal-21-tb-v"] .chapter-num {
+      font-size: clamp(22px, 3.4vmin, 42px);
+      font-weight: 700; letter-spacing: 0.22em;
+      color: var(--tb-accent);
+      background: color-mix(in srgb, var(--tb-accent) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--tb-accent) 35%, transparent);
+      padding: 0.4vmin 1.4vmin; border-radius: 6px;
+    }
+    [data-composition-id="text-chapter-reveal-21-tb-v"] .accent-bar {
+      width: 6vmin; height: 2px;
+      background: var(--tb-accent);
+      border-radius: 2px;
+      transform-origin: left;
+    }
+    [data-composition-id="text-chapter-reveal-21-tb-v"] .title-wrap {
+      overflow: hidden;
+    }
+    [data-composition-id="text-chapter-reveal-21-tb-v"] .title {
+      font-size: clamp(72px, 13vmin, 160px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--tb-text);
+      line-height: 1.02;
+    }
+    [data-composition-id="text-chapter-reveal-21-tb-v"] .subtitle {
+      font-size: clamp(24px, 3.4vmin, 42px);
+      font-weight: 400;
+      color: var(--tb-text-dim);
+      line-height: 1.4;
+      max-width: 95%;
+      opacity: 0;
+    }
+    [data-composition-id="text-chapter-reveal-21-tb-v"] .num-bg {
+      position: absolute;
+      right: -2%;
+      bottom: 6%;
+      font-size: clamp(280px, 60vmin, 720px);
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      color: color-mix(in srgb, var(--tb-accent) 14%, transparent);
+      line-height: 0.85;
+      user-select: none;
+      opacity: 0;
+    }
+</style>
+
+    <div class="num-bg" id="cr21v-numbg"></div>
+    <div class="stage">
+      <div class="content">
+        <div class="eyebrow-row" id="cr21v-eyebrow">
+          <span class="eyebrow"     id="cr21v-ew"></span>
+          <div  class="accent-bar"  id="cr21v-bar"></div>
+          <span class="chapter-num" id="cr21v-num"></span>
+        </div>
+        <div class="title-wrap">
+          <div class="title" id="cr21v-title"></div>
+        </div>
+        <div class="subtitle" id="cr21v-sub"></div>
+      </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["text-chapter-reveal-21-tb-v"] = (function () {
+      const root  = document.querySelector('[data-composition-id="text-chapter-reveal-21-tb-v"]');
+      const cs    = getComputedStyle(root);
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, '"' + String(val) + '"');
+      };
+      const setRaw = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, String(val));
+      };
+      setStr("--chapter-num",      V.chapterNum);
+      setStr("--chapter-eyebrow",  V.chapterEyebrow);
+      setStr("--chapter-title",    V.chapterTitle);
+      setStr("--chapter-subtitle", V.chapterSubtitle);
+      setRaw("--tb-accent",        V.accent);
+      setRaw("--tb-bg",            V.bg);
+
+      const num = cs.getPropertyValue("--chapter-num").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#cr21v-ew").textContent    = cs.getPropertyValue("--chapter-eyebrow").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#cr21v-num").textContent   = num;
+      root.querySelector("#cr21v-title").textContent = cs.getPropertyValue("--chapter-title").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#cr21v-sub").textContent   = cs.getPropertyValue("--chapter-subtitle").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#cr21v-numbg").textContent = num;
+
+      /* Dynamic font fit per HyperFrames skill (SKILL.md:366) — shrink only */
+      if (window.__hyperframes && window.__hyperframes.fitTextFontSize) {
+        [
+          root.querySelector("#cr21v-ew"),
+          root.querySelector("#cr21v-num"),
+          root.querySelector("#cr21v-title"),
+          root.querySelector("#cr21v-sub"),
+          root.querySelector("#cr21v-numbg"),
+        ].forEach((__el) => {
+          try {
+            if (!__el || !__el.textContent || !__el.parentElement) return;
+            const __cs = getComputedStyle(__el);
+            const __cur = parseFloat(__cs.fontSize);
+            const __pw  = __el.parentElement.getBoundingClientRect().width || 0;
+            if (__pw < 40) return;
+            const __ff  = (__cs.fontFamily.split(",")[0] || "Geist").replace(/["']/g,"").trim();
+            const __fw  = parseInt(__cs.fontWeight) || 700;
+            const __fit = window.__hyperframes.fitTextFontSize(__el.textContent, {
+              maxWidth: __pw * 0.96, fontFamily: __ff, fontWeight: __fw,
+            });
+            if (__fit && __fit < __cur) __el.style.fontSize = __fit + "px";
+          } catch (e) {}
+        });
+      }
+
+      const eyebrow = root.querySelector("#cr21v-eyebrow");
+      const bar     = root.querySelector("#cr21v-bar");
+      const title   = root.querySelector("#cr21v-title");
+      const sub     = root.querySelector("#cr21v-sub");
+      const numbg   = root.querySelector("#cr21v-numbg");
+
+      const TOTAL = 3;
+      const tl = gsap.timeline({ paused: true });
+
+      gsap.set(bar, { scaleX: 0 });
+      tl.to(numbg, { opacity: 1, duration: 0.7, ease: "power2.out" }, 0.05);
+      tl.from(numbg, { scale: 1.15, duration: 0.7, ease: "power2.out" }, 0.05);
+
+      tl.to(eyebrow, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.2);
+      tl.from(eyebrow, { x: -16, duration: 0.35, ease: "power2.out" }, 0.2);
+      tl.to(bar, { scaleX: 1, duration: 0.4, ease: "expo.out" }, 0.3);
+
+      tl.from(title, { y: "100%", duration: 0.55, ease: "expo.out" }, 0.42);
+
+      tl.to(sub, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.75);
+      tl.from(sub, { y: 12, duration: 0.4, ease: "power2.out" }, 0.75);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

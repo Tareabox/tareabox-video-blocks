@@ -1,0 +1,17 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "layout-yt-watchlater-grid-13-tb",
+  "type": "hyperframes:block",
+  "title": "YouTube Watch Later Grid (Horizontal)",
+  "description": "YouTube Watch Later page mockup with 3-column grid of video cards, real thumbnails via YouTube CDN, scrolling animation. No PIP — full-screen mockup. Horizontal 16:9 format.",
+  "tags": ["layout", "youtube", "watchlater", "grid", "horizontal", "tareabox"],
+  "dimensions": {"width": 1920, "height": 1080},
+  "duration": 8.0,
+  "files": [
+    {"path": "layout-yt-watchlater-grid-13-tb.html", "target": "compositions/layout-yt-watchlater-grid-13-tb.html", "type": "hyperframes:composition"}
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-yt-watchlater-grid-13-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-yt-watchlater-grid-13-tb.png"
+  }
+}

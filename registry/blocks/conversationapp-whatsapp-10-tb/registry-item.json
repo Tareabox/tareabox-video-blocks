@@ -1,0 +1,42 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "conversationapp-whatsapp-10-tb",
+  "type": "hyperframes:block",
+  "title": "Conversationapp Whatsapp",
+  "description": "Efecto Tareabox: Conversationapp Whatsapp",
+  "tags": [
+    "conversationapp",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 6.0,
+  "files": [
+    {
+      "path": "conversationapp-whatsapp-10-tb.html",
+      "target": "compositions/conversationapp-whatsapp-10-tb.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "tb-media/tb-react-clap.gif",
+      "target": "assets/tb-media/tb-react-clap.gif",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "tb-media/tb-react-mind-blown.gif",
+      "target": "assets/tb-media/tb-react-mind-blown.gif",
+      "type": "hyperframes:asset"
+    },
+    {
+      "path": "tb-media/tb-tareabox-logo.png",
+      "target": "assets/tb-media/tb-tareabox-logo.png",
+      "type": "hyperframes:asset"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-conversationapp-whatsapp-10-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-conversationapp-whatsapp-10-tb.png"
+  }
+}

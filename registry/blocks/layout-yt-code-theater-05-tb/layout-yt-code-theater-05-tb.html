@@ -1,0 +1,286 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  layout-yt-code-theater-05-tb
+  Tareabox Hyperframes Effect
+  Description: Screen recording full-width with oversized step indicator and dominant command pill — Fireship/code tutorial theater style.
+  Category: layout
+  Duration: 5 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="layout-yt-code-theater-05-tb" data-composition-id="layout-yt-code-theater-05-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="5">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-yt-code-theater-05-tb"] {
+      --tb-bg:           #09090b;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #d4d4d8;
+      --tb-accent:       var(--tb-brand-accent, #06b6d4);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+      --tb-font-mono:    "JetBrains Mono", monospace;
+
+      --ct-step-num:   "02";
+      --ct-step-label: "Chapter";
+      --ct-title:      "Drop it into your project";
+      --ct-cmd:        "npx tareabox add yt-pip";
+      --ct-duration:   "~10 sec";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-yt-code-theater-05-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: #0a0a0a;
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="layout-yt-code-theater-05-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Screen recording full bleed */
+    [data-composition-id="layout-yt-code-theater-05-tb"] .screen-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+
+    /* Heavy darkening overlay — left half */
+    [data-composition-id="layout-yt-code-theater-05-tb"] .overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(0,0,0,0.88) 0%,
+        rgba(0,0,0,0.70) 28%,
+        rgba(0,0,0,0.30) 55%,
+        rgba(0,0,0,0) 80%
+      );
+    }
+
+    /* Top progress bar */
+    [data-composition-id="layout-yt-code-theater-05-tb"] .top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: rgba(255,255,255,0.07);
+      overflow: hidden;
+    }
+    [data-composition-id="layout-yt-code-theater-05-tb"] .top-bar-fill {
+      height: 100%;
+      background: var(--tb-accent);
+      box-shadow: 0 0 14px color-mix(in srgb, var(--tb-accent) 80%, transparent);
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+
+    /* Big step block — top left dominant */
+    [data-composition-id="layout-yt-code-theater-05-tb"] .step-wrap {
+      position: absolute;
+      top: 7%; left: 4%;
+      display: flex; align-items: stretch;
+      gap: 2.4vmin;
+      max-width: 55%;
+      opacity: 0;
+    }
+    [data-composition-id="layout-yt-code-theater-05-tb"] .step-num {
+      font-size: clamp(80px, 11vmin, 160px);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: var(--tb-accent);
+      line-height: 0.85;
+      font-family: var(--tb-font-mono);
+      text-shadow: 0 4px 28px color-mix(in srgb, var(--tb-accent) 30%, transparent);
+    }
+    [data-composition-id="layout-yt-code-theater-05-tb"] .step-meta {
+      display: flex; flex-direction: column;
+      justify-content: center;
+      gap: 1.2vmin;
+    }
+    [data-composition-id="layout-yt-code-theater-05-tb"] .step-label {
+      font-size: clamp(14px, 1.5vmin, 20px);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--tb-accent);
+      font-family: var(--tb-font-mono);
+    }
+    [data-composition-id="layout-yt-code-theater-05-tb"] .step-title {
+      font-size: clamp(28px, 3.6vmin, 50px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--tb-text);
+      line-height: 1.05;
+      max-width: 14ch;
+    }
+
+    /* Command pill — bottom dominant */
+    [data-composition-id="layout-yt-code-theater-05-tb"] .cmd-wrap {
+      position: absolute;
+      bottom: 8%; left: 4%;
+      display: flex; flex-direction: column;
+      align-items: flex-start;
+      gap: 1.4vmin;
+      opacity: 0;
+    }
+    [data-composition-id="layout-yt-code-theater-05-tb"] .cmd-pill {
+      display: flex; align-items: center; gap: 2vmin;
+      background: rgba(0,0,0,0.92);
+      border: 2px solid color-mix(in srgb, var(--tb-accent) 40%, transparent);
+      border-left: 6px solid var(--tb-accent);
+      border-radius: 14px;
+      padding: 2.2vmin 3.2vmin;
+      backdrop-filter: blur(18px);
+      box-shadow:
+        0 8px 50px rgba(0,0,0,0.7),
+        0 0 32px color-mix(in srgb, var(--tb-accent) 25%, transparent);
+    }
+    [data-composition-id="layout-yt-code-theater-05-tb"] .cmd-prompt {
+      font-size: clamp(28px, 3.6vmin, 48px);
+      font-weight: 800;
+      color: var(--tb-accent);
+      font-family: var(--tb-font-mono);
+      line-height: 1;
+    }
+    [data-composition-id="layout-yt-code-theater-05-tb"] .cmd-text {
+      font-size: clamp(28px, 3.6vmin, 48px);
+      font-weight: 800;
+      color: var(--tb-text);
+      font-family: var(--tb-font-mono);
+      letter-spacing: 0.01em;
+      line-height: 1;
+    }
+    [data-composition-id="layout-yt-code-theater-05-tb"] .cmd-cursor {
+      width: 4px;
+      height: clamp(28px, 3.6vmin, 48px);
+      background: var(--tb-accent);
+      border-radius: 2px;
+      box-shadow: 0 0 10px color-mix(in srgb, var(--tb-accent) 90%, transparent);
+    }
+
+    /* Duration meta below pill */
+    [data-composition-id="layout-yt-code-theater-05-tb"] .cmd-meta {
+      display: flex; align-items: center; gap: 1vmin;
+      padding-left: 1vmin;
+    }
+    [data-composition-id="layout-yt-code-theater-05-tb"] .cmd-meta-dot {
+      width: 1vmin; height: 1vmin;
+      border-radius: 50%;
+      background: var(--tb-accent);
+      box-shadow: 0 0 6px color-mix(in srgb, var(--tb-accent) 80%, transparent);
+    }
+    [data-composition-id="layout-yt-code-theater-05-tb"] .cmd-duration {
+      font-size: clamp(14px, 1.5vmin, 20px);
+      font-weight: 600;
+      color: var(--tb-text-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: var(--tb-font-mono);
+    }
+</style>
+
+
+    <!--
+      ASSET (horizontal) — demo from Pexels (free license, attribution in README).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+                      (the `..` walks up from compositions/ to the project root)
+    -->
+    <video id="yct05-screen"
+           class="screen-bg"
+           src="https://videos.pexels.com/video-files/5940726/5940726-hd_1280_720_25fps.mp4" crossorigin="anonymous" data-tb-asset="horizontal"
+           data-start="0" data-duration="5" data-track-index="0"
+           muted playsinline></video>
+
+    <div class="overlay"></div>
+
+    <div class="top-bar"><div class="top-bar-fill" id="yct05-fill"></div></div>
+
+    <div class="step-wrap" id="yct05-step">
+      <div class="step-num" id="yct05-num"></div>
+      <div class="step-meta">
+        <span class="step-label" id="yct05-label"></span>
+        <span class="step-title" id="yct05-title"></span>
+      </div>
+    </div>
+
+    <div class="cmd-wrap" id="yct05-cmd">
+      <div class="cmd-pill">
+        <span class="cmd-prompt">$</span>
+        <span class="cmd-text" id="yct05-cmd-text"></span>
+        <div class="cmd-cursor" id="yct05-cursor"></div>
+      </div>
+      <div class="cmd-meta">
+        <div class="cmd-meta-dot"></div>
+        <span class="cmd-duration" id="yct05-duration"></span>
+      </div>
+    </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["layout-yt-code-theater-05-tb"] = (function () {
+      const root = document.querySelector('[data-composition-id="layout-yt-code-theater-05-tb"]');
+      const cs   = getComputedStyle(root);
+      const fill = root.querySelector("#yct05-fill");
+      const step = root.querySelector("#yct05-step");
+      const cmd  = root.querySelector("#yct05-cmd");
+      const cur  = root.querySelector("#yct05-cursor");
+
+      root.querySelector("#yct05-num").textContent      = cs.getPropertyValue("--ct-step-num").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#yct05-label").textContent    = cs.getPropertyValue("--ct-step-label").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#yct05-title").textContent    = cs.getPropertyValue("--ct-title").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#yct05-cmd-text").textContent = cs.getPropertyValue("--ct-cmd").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#yct05-duration").textContent = cs.getPropertyValue("--ct-duration").trim().replace(/^["']|["']$/g,"");
+
+      const TOTAL = 5;
+      const tl = gsap.timeline({ paused: true });
+
+      /* Top progress bar fills across full duration */
+      tl.to(fill, { scaleX: 1, duration: TOTAL - 0.4, ease: "none" }, 0.2);
+
+      /* Step block slides in from left */
+      tl.to(step, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.25);
+      tl.from(step, { x: -40, duration: 0.55, ease: "expo.out" }, 0.25);
+
+      /* Stagger inside step block */
+      const num   = root.querySelector("#yct05-num");
+      const label = root.querySelector("#yct05-label");
+      const title = root.querySelector("#yct05-title");
+      gsap.set([num, label, title], { opacity: 0 });
+      tl.to(num,   { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.32);
+      tl.from(num, { scale: 0.7, duration: 0.55, ease: "back.out(1.6)" }, 0.32);
+      tl.to(label, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.55);
+      tl.from(label, { y: -8, duration: 0.35, ease: "power2.out" }, 0.55);
+      tl.to(title, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.7);
+      tl.from(title, { y: 14, duration: 0.4, ease: "power2.out" }, 0.7);
+
+      /* Command pill pops up from below */
+      gsap.set(cmd, { y: 30, scale: 0.94 });
+      tl.to(cmd, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.4)" }, 1.0);
+
+      /* Cursor blink — 3 cycles, finite */
+      [0, 0.9, 1.8].forEach((offset) => {
+        tl.to(cur, { opacity: 0, duration: 0.4, ease: "none" }, 1.7 + offset);
+        tl.to(cur, { opacity: 1, duration: 0.4, ease: "none" }, 1.7 + offset + 0.4);
+      });
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

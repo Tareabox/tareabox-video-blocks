@@ -1,0 +1,32 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "conversationapp-instagram-dm-11-tb",
+  "type": "hyperframes:block",
+  "title": "Conversationapp Instagram Dm",
+  "description": "Efecto Tareabox: Conversationapp Instagram Dm",
+  "tags": [
+    "conversationapp",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 4.0,
+  "files": [
+    {
+      "path": "conversationapp-instagram-dm-11-tb.html",
+      "target": "compositions/conversationapp-instagram-dm-11-tb.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "tb-media/tb-natalie-digital-avatar.png",
+      "target": "assets/tb-media/tb-natalie-digital-avatar.png",
+      "type": "hyperframes:asset"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-conversationapp-instagram-dm-11-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-conversationapp-instagram-dm-11-tb.png"
+  }
+}

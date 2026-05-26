@@ -1,0 +1,184 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  conversationapp-android-notif-17-tb-v (vertical 1080x1920)
+  Android-style stacked notifications · 4 seconds
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"an1App","type":"string","label":"Notif 1 app","default":"Gmail"},
+  {"id":"an1From","type":"string","label":"Notif 1 from","default":"Stripe"},
+  {"id":"an1Msg","type":"string","label":"Notif 1 message","default":"Payment of $897.00 from new customer"},
+  {"id":"an2App","type":"string","label":"Notif 2 app","default":"YouTube"},
+  {"id":"an2From","type":"string","label":"Notif 2 from","default":"TareaboxTV"},
+  {"id":"an2Msg","type":"string","label":"Notif 2 message","default":"🔥 You hit 10K subscribers"},
+  {"id":"an3App","type":"string","label":"Notif 3 app","default":"Notion"},
+  {"id":"an3From","type":"string","label":"Notif 3 from","default":"Daily review"},
+  {"id":"an3Msg","type":"string","label":"Notif 3 message","default":"3 tasks remain — check before EOD"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#4CAF50"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#1a202c"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="conversationapp-android-notif-17-tb-v" data-composition-id="conversationapp-android-notif-17-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="4">
+<style>
+    /* 🎨 CUSTOMIZE HERE */
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] {
+      --tb-accent: var(--tb-brand-accent, #4CAF50);
+      --tb-bg: #1a202c;
+      --tb-text: #1a1a1a;
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+      --an-1-app: "Gmail";   --an-1-from: "Stripe"; --an-1-msg: "Payment of $897.00 from new customer";
+      --an-2-app: "YouTube"; --an-2-from: "TareaboxTV"; --an-2-msg: "🔥 You hit 10K subscribers";
+      --an-3-app: "Notion";  --an-3-from: "Daily review"; --an-3-msg: "3 tasks remain — check before EOD";
+    }
+    /* ⛔ EFFECT CODE */
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: linear-gradient(160deg, #4a5568 0%, #1a202c 100%);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+      display: flex; align-items: center; justify-content: center;
+      padding: 6% 4%;
+    }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] .stack {
+      width: 92%;
+      display: flex; flex-direction: column;
+      gap: 2.4vmin;
+    }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] .notif {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      border-radius: 28px;
+      padding: 3.2vmin 3.4vmin;
+      display: flex; gap: 2.4vmin;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.45);
+      transform: translateY(-200%) scale(0.94);
+    }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] .icon {
+      width: 9vmin; height: 9vmin;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 800;
+      font-size: clamp(28px, 4vmin, 52px);
+      flex-shrink: 0;
+    }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] .notif:nth-child(1) .icon { background: linear-gradient(135deg, #ea4335, #fbbc04); }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] .notif:nth-child(2) .icon { background: #ff0000; }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] .notif:nth-child(3) .icon { background: #000; }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] .body {
+      flex: 1; min-width: 0;
+    }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] .meta {
+      display: flex; align-items: center; gap: 1.2vmin;
+      font-size: clamp(18px, 2.4vmin, 30px);
+      color: #5f6368;
+      margin-bottom: 0.6vmin;
+    }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] .app { font-weight: 700; }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] .dot {
+      width: 0.8vmin; height: 0.8vmin; border-radius: 50%; background: #5f6368;
+    }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] .from {
+      font-size: clamp(24px, 3.2vmin, 42px);
+      font-weight: 700;
+      color: #202124;
+      margin-bottom: 0.4vmin;
+    }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] .text {
+      font-size: clamp(22px, 2.9vmin, 38px);
+      color: #3c4043;
+      line-height: 1.35;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    [data-composition-id="conversationapp-android-notif-17-tb-v"] .bg-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.32) saturate(0.85);
+      z-index: 0;
+    }
+</style>
+
+    <!--
+      ASSET (vertical/horizontal) — blurred background video (Pexels free license).
+      Replace `src` with your own video. Filter blur is applied via CSS so any
+      footage works — even busy ones become abstract ambient color.
+    -->
+    <video class="bg-video"
+           src="https://videos.pexels.com/video-files/7986195/7986195-hd_1920_1080_25fps.mp4"
+           crossorigin="anonymous" data-tb-asset="background-blurred"
+           data-start="0" data-duration="4" data-track-index="0"
+           muted playsinline></video>
+
+    <div class="stack">
+      <div class="notif" id="an17v-n1">
+        <div class="icon">G</div>
+        <div class="body">
+          <div class="meta"><span class="app" id="an17v-1-app"></span><span class="dot"></span><span>now</span></div>
+          <div class="from" id="an17v-1-from"></div>
+          <div class="text" id="an17v-1-msg"></div>
+        </div>
+      </div>
+      <div class="notif" id="an17v-n2">
+        <div class="icon">▶</div>
+        <div class="body">
+          <div class="meta"><span class="app" id="an17v-2-app"></span><span class="dot"></span><span>2m</span></div>
+          <div class="from" id="an17v-2-from"></div>
+          <div class="text" id="an17v-2-msg"></div>
+        </div>
+      </div>
+      <div class="notif" id="an17v-n3">
+        <div class="icon">N</div>
+        <div class="body">
+          <div class="meta"><span class="app" id="an17v-3-app"></span><span class="dot"></span><span>5m</span></div>
+          <div class="from" id="an17v-3-from"></div>
+          <div class="text" id="an17v-3-msg"></div>
+        </div>
+      </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["conversationapp-android-notif-17-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="conversationapp-android-notif-17-tb-v"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, '"' + String(val) + '"'); };
+      const setRaw = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, String(val)); };
+      setStr("--an-1-app",  V.an1App);  setStr("--an-1-from", V.an1From); setStr("--an-1-msg",  V.an1Msg);
+      setStr("--an-2-app",  V.an2App);  setStr("--an-2-from", V.an2From); setStr("--an-2-msg",  V.an2Msg);
+      setStr("--an-3-app",  V.an3App);  setStr("--an-3-from", V.an3From); setStr("--an-3-msg",  V.an3Msg);
+      setRaw("--tb-accent", V.accent);
+      setRaw("--tb-bg",     V.bg);
+
+      [1,2,3].forEach(i => {
+        $("#an17v-"+i+"-app").textContent  = G("--an-"+i+"-app");
+        $("#an17v-"+i+"-from").textContent = G("--an-"+i+"-from");
+        $("#an17v-"+i+"-msg").textContent  = G("--an-"+i+"-msg");
+      });
+
+      const tl = gsap.timeline({ paused: true });
+      [1,2,3].forEach((i, idx) => {
+        tl.to($("#an17v-n"+i), {
+          y: "0%", scale: 1, duration: 0.55, ease: "back.out(1.4)"
+        }, 0.2 + idx * 0.25);
+      });
+      tl.to({}, { duration: 4 }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

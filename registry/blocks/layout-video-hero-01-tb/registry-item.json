@@ -1,0 +1,17 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "layout-video-hero-01-tb",
+  "type": "hyperframes:block",
+  "title": "Layout Video Hero (Horizontal)",
+  "description": "Hero layout con video de fondo + vignette + headline, en formato horizontal 16:9",
+  "tags": ["layout", "video", "hero", "horizontal", "tareabox"],
+  "dimensions": {"width": 1920, "height": 1080},
+  "duration": 5.0,
+  "files": [
+    {"path": "layout-video-hero-01-tb.html", "target": "compositions/layout-video-hero-01-tb.html", "type": "hyperframes:composition"}
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-video-hero-01-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-video-hero-01-tb.png"
+  }
+}

@@ -1,0 +1,372 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  layout-yt-concept-cards-07-tb-v (vertical 1080x1920)
+  Tareabox Hyperframes Effect
+  Description: Vertical 9:16 — Big title with accent word + 4 numbered concept cards stacked in 2x2 grid + face cam PiP top-right. Tutorial overview slide style.
+  Category: layout
+  Duration: 6 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"accent","type":"color","label":"Accent color","default":"#38bdf8"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#0b1220"},
+  {"id":"eyebrow","type":"string","label":"Eyebrow","default":"What&#39;s inside"},
+  {"id":"titlePre","type":"string","label":"Title (white part)","default":"The Four"},
+  {"id":"titleAccent","type":"string","label":"Title (accent part)","default":"C&#39;s."},
+  {"id":"lead","type":"string","label":"Lead / subtitle","default":"Four traits that turn a topic into a tutorial that converts."},
+  {"id":"card1Num","type":"string","label":"Card 1 number","default":"01"},
+  {"id":"card1Title","type":"string","label":"Card 1 title","default":"Cam"},
+  {"id":"card1Body","type":"string","label":"Card 1 body","default":"Face cam compositions that frame you, not crowd you."},
+  {"id":"card2Num","type":"string","label":"Card 2 number","default":"02"},
+  {"id":"card2Title","type":"string","label":"Card 2 title","default":"Cuts"},
+  {"id":"card2Body","type":"string","label":"Card 2 body","default":"Smooth scene transitions hide the cut, every time."},
+  {"id":"card3Num","type":"string","label":"Card 3 number","default":"03"},
+  {"id":"card3Title","type":"string","label":"Card 3 title","default":"Cards"},
+  {"id":"card3Body","type":"string","label":"Card 3 body","default":"Concept blocks that actually read on a 5-inch phone."},
+  {"id":"card4Num","type":"string","label":"Card 4 number","default":"04"},
+  {"id":"card4Title","type":"string","label":"Card 4 title","default":"Closure"},
+  {"id":"card4Body","type":"string","label":"Card 4 body","default":"Endings that drive the click on the next video."}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="layout-yt-concept-cards-07-tb-v" data-composition-id="layout-yt-concept-cards-07-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="6">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] {
+      --tb-bg:           #0b1220;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #a8b3c7;
+      --tb-accent:       var(--tb-brand-accent, #38bdf8);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --cc-eyebrow: "What's inside";
+      --cc-pre:     "The Four";
+      --cc-accent:  "C's.";
+      --cc-lead:    "Four traits that turn a topic into a tutorial that converts.";
+
+      --cc-1-num:    "01";
+      --cc-1-title:  "Cam";
+      --cc-1-body:   "Face cam compositions that frame you, not crowd you.";
+      --cc-2-num:    "02";
+      --cc-2-title:  "Cuts";
+      --cc-2-body:   "Smooth scene transitions hide the cut, every time.";
+      --cc-3-num:    "03";
+      --cc-3-title:  "Cards";
+      --cc-3-body:   "Concept blocks that actually read on a 5-inch phone.";
+      --cc-4-num:    "04";
+      --cc-4-title:  "Closure";
+      --cc-4-body:   "Endings that drive the click on the next video.";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: radial-gradient(ellipse at 30% 20%, #0f1a30 0%, #060912 75%);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Subtle radial accent glow */
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .glow {
+      position: absolute;
+      width: 80%; height: 50%;
+      top: -10%; left: -10%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--tb-accent) 18%, transparent) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* PiP top-right — vertical/portrait orientation */
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .pip-wrap {
+      position: absolute;
+      top: 4%; right: 5%;
+      width: 22%;
+      aspect-ratio: 9/13;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.22);
+      box-shadow:
+        0 12px 44px rgba(0,0,0,0.65),
+        0 0 28px color-mix(in srgb, var(--tb-accent) 28%, transparent);
+      opacity: 0;
+    }
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .pip-video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+    }
+
+    /* Eyebrow */
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .title-eyebrow {
+      position: absolute;
+      top: 5%; left: 6%;
+      display: inline-flex;
+      align-items: center;
+      gap: 1.2vmin;
+      padding: 1vmin 2.4vmin;
+      background: color-mix(in srgb, var(--tb-accent) 20%, transparent);
+      border: 1px solid color-mix(in srgb, var(--tb-accent) 50%, transparent);
+      border-radius: 999px;
+      font-size: clamp(18px, 2.2vmin, 28px);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--tb-accent);
+      opacity: 0;
+    }
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .title-eyebrow::before {
+      content: "";
+      width: 1.2vmin; height: 1.2vmin;
+      border-radius: 50%;
+      background: var(--tb-accent);
+      box-shadow: 0 0 8px color-mix(in srgb, var(--tb-accent) 80%, transparent);
+    }
+
+    /* Title — stacks vertically on its own line */
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .title-wrap {
+      position: absolute;
+      top: 11%; left: 6%; right: 6%;
+      display: flex;
+      flex-direction: column;
+      gap: 1vmin;
+    }
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .title-pre,
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .title-accent {
+      font-size: clamp(96px, 14vmin, 200px);
+      font-weight: 900;
+      letter-spacing: -0.045em;
+      line-height: 0.9;
+      overflow: hidden;
+      display: inline-block;
+    }
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .title-pre span,
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .title-accent span {
+      display: inline-block;
+    }
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .title-pre span {
+      color: #ffffff;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.55);
+    }
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .title-accent span {
+      color: var(--tb-accent);
+      text-shadow: 0 0 40px color-mix(in srgb, var(--tb-accent) 55%, transparent);
+    }
+
+    /* Title underline accent */
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .title-underline {
+      position: absolute;
+      top: 33%; left: 6%;
+      width: 14vmin; height: 7px;
+      background: var(--tb-accent);
+      border-radius: 4px;
+      box-shadow: 0 0 18px color-mix(in srgb, var(--tb-accent) 80%, transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    /* Lead / subtitle */
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .lead {
+      position: absolute;
+      top: 36%; left: 6%; right: 6%;
+      font-size: clamp(24px, 3.2vmin, 42px);
+      font-weight: 400;
+      color: var(--tb-text-dim);
+      line-height: 1.3;
+      letter-spacing: -0.005em;
+      opacity: 0;
+    }
+
+    /* Cards 2x2 grid */
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .cards-row {
+      position: absolute;
+      bottom: 5%;
+      left: 6%;
+      right: 6%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1fr;
+      gap: 2.4vmin;
+      height: 48%;
+    }
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .card {
+      position: relative;
+      background: linear-gradient(155deg,
+        color-mix(in srgb, var(--tb-accent) 14%, rgba(0,0,0,0.4)) 0%,
+        rgba(255,255,255,0.04) 60%);
+      border: 1px solid color-mix(in srgb, var(--tb-accent) 24%, rgba(255,255,255,0.10));
+      border-radius: 20px;
+      padding: 3.4vmin 3vmin 3.4vmin;
+      display: flex; flex-direction: column;
+      gap: 1.6vmin;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 8px 24px rgba(0,0,0,0.45);
+    }
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 3vmin;
+      width: 30%; height: 4px;
+      background: var(--tb-accent);
+      border-radius: 0 0 2px 2px;
+      box-shadow: 0 0 10px color-mix(in srgb, var(--tb-accent) 70%, transparent);
+    }
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .card-num {
+      font-size: clamp(22px, 2.6vmin, 36px);
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--tb-accent);
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .card-title {
+      font-size: clamp(34px, 4.8vmin, 64px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      line-height: 1.0;
+    }
+    [data-composition-id="layout-yt-concept-cards-07-tb-v"] .card-body {
+      font-size: clamp(18px, 2.2vmin, 30px);
+      font-weight: 400;
+      color: var(--tb-text-dim);
+      line-height: 1.4;
+    }
+</style>
+
+
+    <div class="glow"></div>
+
+    <div class="pip-wrap" id="cc07v-pip">
+      <!--
+        ASSET (vertical) — demo from Pexels (free license, attribution in README).
+        To use your own footage, replace the `src` with one of these:
+          Public URL:   src="https://yourdomain.com/your-video.mp4"
+          Local path:   src="../assets/tb-media/your-video.mp4"
+                        (the `..` walks up from compositions/ to the project root)
+      -->
+      <video id="cc07v-face"
+             class="pip-video"
+             src="https://videos.pexels.com/video-files/8048324/8048324-hd_1280_720_50fps.mp4" crossorigin="anonymous" data-tb-asset="vertical"
+             data-start="0" data-duration="6" data-track-index="0"
+             muted playsinline></video>
+    </div>
+
+    <div class="title-eyebrow" id="cc07v-eyebrow"></div>
+
+    <div class="title-wrap">
+      <h1 class="title-pre"><span id="cc07v-pre"></span></h1>
+      <h1 class="title-accent"><span id="cc07v-accent"></span></h1>
+    </div>
+    <div class="title-underline" id="cc07v-underline"></div>
+
+    <div class="lead" id="cc07v-lead"></div>
+
+    <div class="cards-row">
+      <div class="card" id="cc07v-c1">
+        <span class="card-num"  id="cc07v-c1-num"></span>
+        <span class="card-title" id="cc07v-c1-title"></span>
+        <span class="card-body"  id="cc07v-c1-body"></span>
+      </div>
+      <div class="card" id="cc07v-c2">
+        <span class="card-num"  id="cc07v-c2-num"></span>
+        <span class="card-title" id="cc07v-c2-title"></span>
+        <span class="card-body"  id="cc07v-c2-body"></span>
+      </div>
+      <div class="card" id="cc07v-c3">
+        <span class="card-num"  id="cc07v-c3-num"></span>
+        <span class="card-title" id="cc07v-c3-title"></span>
+        <span class="card-body"  id="cc07v-c3-body"></span>
+      </div>
+      <div class="card" id="cc07v-c4">
+        <span class="card-num"  id="cc07v-c4-num"></span>
+        <span class="card-title" id="cc07v-c4-title"></span>
+        <span class="card-body"  id="cc07v-c4-body"></span>
+      </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["layout-yt-concept-cards-07-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="layout-yt-concept-cards-07-tb-v"]');
+      const cs   = getComputedStyle(root);
+      const $    = (sel) => root.querySelector(sel);
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, '"' + String(val) + '"'); };
+      const setRaw = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, String(val)); };
+      setRaw("--tb-accent", V.accent);
+      setRaw("--tb-bg",     V.bg);
+      setStr("--cc-eyebrow", V.eyebrow);
+      setStr("--cc-pre", V.titlePre);
+      setStr("--cc-accent", V.titleAccent);
+      setStr("--cc-lead", V.lead);
+      setStr("--cc-1-num", V.card1Num); setStr("--cc-1-title", V.card1Title); setStr("--cc-1-body", V.card1Body);
+      setStr("--cc-2-num", V.card2Num); setStr("--cc-2-title", V.card2Title); setStr("--cc-2-body", V.card2Body);
+      setStr("--cc-3-num", V.card3Num); setStr("--cc-3-title", V.card3Title); setStr("--cc-3-body", V.card3Body);
+      setStr("--cc-4-num", V.card4Num); setStr("--cc-4-title", V.card4Title); setStr("--cc-4-body", V.card4Body);
+
+      $("#cc07v-eyebrow").textContent = cs.getPropertyValue("--cc-eyebrow").trim().replace(/^["']|["']$/g,"");
+      $("#cc07v-pre").textContent     = cs.getPropertyValue("--cc-pre").trim().replace(/^["']|["']$/g,"");
+      $("#cc07v-accent").textContent  = cs.getPropertyValue("--cc-accent").trim().replace(/^["']|["']$/g,"");
+      $("#cc07v-lead").textContent    = cs.getPropertyValue("--cc-lead").trim().replace(/^["']|["']$/g,"");
+
+      [1,2,3,4].forEach((i) => {
+        $("#cc07v-c"+i+"-num").textContent   = cs.getPropertyValue("--cc-"+i+"-num").trim().replace(/^["']|["']$/g,"");
+        $("#cc07v-c"+i+"-title").textContent = cs.getPropertyValue("--cc-"+i+"-title").trim().replace(/^["']|["']$/g,"");
+        $("#cc07v-c"+i+"-body").textContent  = cs.getPropertyValue("--cc-"+i+"-body").trim().replace(/^["']|["']$/g,"");
+      });
+
+      const TOTAL = 6;
+      const tl = gsap.timeline({ paused: true });
+
+      const pip  = $("#cc07v-pip");
+      const eye  = $("#cc07v-eyebrow");
+      const pre  = $("#cc07v-pre");
+      const acc  = $("#cc07v-accent");
+      const ul   = $("#cc07v-underline");
+      const lead = $("#cc07v-lead");
+      const cards = [$("#cc07v-c1"), $("#cc07v-c2"), $("#cc07v-c3"), $("#cc07v-c4")];
+
+      gsap.set(pip, { scale: 0.85, y: -10 });
+      tl.to(pip, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }, 0.2);
+
+      tl.to(eye, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.3);
+      tl.from(eye, { y: -8, duration: 0.35, ease: "power2.out" }, 0.3);
+
+      tl.from(pre, { y: "100%", duration: 0.6, ease: "expo.out" }, 0.5);
+      tl.from(acc, { y: "100%", duration: 0.6, ease: "expo.out" }, 0.65);
+
+      tl.to(ul, { scaleX: 1, duration: 0.5, ease: "expo.out" }, 1.0);
+
+      tl.to(lead, { opacity: 1, duration: 0.45, ease: "power2.out" }, 1.15);
+      tl.from(lead, { y: 12, duration: 0.45, ease: "power2.out" }, 1.15);
+
+      gsap.set(cards, { y: 36 });
+      tl.to(cards, {
+        opacity: 1, y: 0,
+        duration: 0.6,
+        ease: "power3.out",
+        stagger: 0.14
+      }, 1.45);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

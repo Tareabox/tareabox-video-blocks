@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "layout-video-hook-05-tb-v",
+  "type": "hyperframes:block",
+  "title": "Layout Video Hook (Vertical)",
+  "description": "Vertical 9:16 — b-roll full-screen con hook dramatico al centro",
+  "tags": [
+    "layout",
+    "video",
+    "hook",
+    "vertical",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1080,
+    "height": 1920
+  },
+  "duration": 5.0,
+  "files": [
+    {
+      "path": "layout-video-hook-05-tb-v.html",
+      "target": "compositions/layout-video-hook-05-tb-v.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-video-hook-05-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-video-hook-05-tb-v.png"
+  }
+}

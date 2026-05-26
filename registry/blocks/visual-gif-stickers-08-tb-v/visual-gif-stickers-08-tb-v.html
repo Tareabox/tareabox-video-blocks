@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en" data-composition-variables='[
+  {"id":"label1","type":"string","label":"Sticker 1 label","default":"OMG"},
+  {"id":"label2","type":"string","label":"Sticker 2 label","default":"CLAP"},
+  {"id":"label3","type":"string","label":"Sticker 3 label","default":"MIND BLOWN"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#EA9F84"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#0a0a0a"}
+]'>
+<head>
+  <!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  visual-gif-stickers-08-tb-v (vertical 1080x1920)
+  Talking head + 3 stickers tipo polaroid con SVG animado inline (NO GIFs externos).
+  Diseño Creativa Studio: coral / sage / cream con tilt intencional + shadow.
+  REQUIRES: gsap (CDN)
+-->
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;700;800;900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="visual-gif-stickers-08-tb-v" data-composition-id="visual-gif-stickers-08-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="6">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="visual-gif-stickers-08-tb-v"] {
+      --tb-bg:           #0a0a0a;
+      --tb-text:         #ffffff;
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      /* Paleta Creativa Studio (override-able) */
+      --tb-accent:       var(--tb-brand-accent, #EA9F84); /* coral */
+      --c-coral:         #EA9F84;
+      --c-sage:          #5D9493;
+      --c-cream:         #FFEDE5;
+
+      --label-1: "OMG";
+      --label-2: "CLAP";
+      --label-3: "MIND BLOWN";
+
+      /* GIFs reales locales (ship con el pack — honest demo) */
+      --gif-1-src: url("../assets/tb-media/tb-react-omg.mp4");
+      --gif-2-src: url("../assets/tb-media/tb-react-clap.mp4");
+      --gif-3-src: url("../assets/tb-media/tb-react-mind-blown.mp4");
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                           */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="visual-gif-stickers-08-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="visual-gif-stickers-08-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .bg-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 25%;
+    }
+
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .vig {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ═══ STICKER · polaroid style (todo vmin para multi-format) ═══ */
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .sticker {
+      position: absolute;
+      width: 32vmin; height: 38vmin;
+      border-radius: 1.6vmin;
+      background: white;
+      padding: 1.5vmin 1.5vmin 4.6vmin 1.5vmin;
+      box-shadow:
+        0 2vmin 5vmin rgba(0,0,0,0.55),
+        0 0.4vmin 1.2vmin rgba(0,0,0,0.35);
+      opacity: 0;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+    }
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .sticker.s1 { top: 6%;   right: 4%; }
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .sticker.s2 { top: 36%;  left: 3%;  }
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .sticker.s3 { bottom: 14%; right: 6%; }
+
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .frame {
+      flex: 1;
+      border-radius: 1vmin;
+      position: relative;
+      overflow: hidden;
+      background-color: #1a1a1a;
+    }
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .sticker .label {
+      position: absolute;
+      bottom: 1.2vmin; left: 0; right: 0;
+      text-align: center;
+      font-weight: 900;
+      font-size: clamp(22px, 2.6vmin, 36px);
+      color: #1a1a1a;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .sticker.s1 .label { color: #c2543a; }
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .sticker.s2 .label { color: #2d6361; }
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .sticker.s3 .label { color: #c44a14; }
+
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .pin {
+      position: absolute;
+      top: -0.8vmin; left: 50%;
+      transform: translateX(-50%);
+      width: 2.2vmin; height: 2.2vmin;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ff5e5e 0%, #d63333 70%, #8a1f1f 100%);
+      box-shadow: 0 0.4vmin 0.8vmin rgba(0,0,0,0.4);
+      z-index: 2;
+    }
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .sticker.s2 .pin { background: radial-gradient(circle at 35% 35%, #5fb8b6 0%, #2d6361 70%, #1a3e3c 100%); }
+    [data-composition-id="visual-gif-stickers-08-tb-v"] .sticker.s3 .pin { background: radial-gradient(circle at 35% 35%, #ffb074 0%, #c44a14 70%, #6b2607 100%); }
+</style>
+
+
+    <!--
+      ASSET (vertical) — demo from Pexels (free license, attribution in README).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+                      (the `..` walks up from compositions/ to the project root)
+    -->
+    <video class="bg-video" id="n13v-bg"
+           data-start="0" data-duration="6" data-track-index="0"
+           src="https://videos.pexels.com/video-files/5940726/5940726-hd_1280_720_25fps.mp4" crossorigin="anonymous" data-tb-asset="vertical"
+           muted playsinline></video>
+
+    <div class="vig"></div>
+
+    <!-- Sticker 1 · OMG (GIF real) -->
+    <div class="sticker s1" id="n13v-s1">
+      <div class="pin"></div>
+      <div class="frame"><video id="n13v-g1" src="../assets/tb-media/tb-react-omg.mp4" data-start="0" data-duration="6" data-track-index="11" muted playsinline loop></video></div>
+      <span class="label" id="n13v-l1"></span>
+    </div>
+
+    <!-- Sticker 2 · CLAP (GIF real) -->
+    <div class="sticker s2" id="n13v-s2">
+      <div class="pin"></div>
+      <div class="frame"><video id="n13v-g2" src="../assets/tb-media/tb-react-clap.mp4" data-start="0" data-duration="6" data-track-index="12" muted playsinline loop></video></div>
+      <span class="label" id="n13v-l2"></span>
+    </div>
+
+    <!-- Sticker 3 · MIND BLOWN (GIF real) -->
+    <div class="sticker s3" id="n13v-s3">
+      <div class="pin"></div>
+      <div class="frame"><video id="n13v-g3" src="../assets/tb-media/tb-react-mind-blown.mp4" data-start="0" data-duration="6" data-track-index="13" muted playsinline loop></video></div>
+      <span class="label" id="n13v-l3"></span>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["visual-gif-stickers-08-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="visual-gif-stickers-08-tb-v"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      /* Native HyperFrames variables → override CSS custom properties */
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, '"' + String(val) + '"');
+      };
+      const setRaw = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, String(val));
+      };
+      setStr("--label-1", V.label1);
+      setStr("--label-2", V.label2);
+      setStr("--label-3", V.label3);
+      setRaw("--tb-accent", V.accent);
+      setRaw("--tb-bg",     V.bg);
+
+      $("#n13v-l1").textContent = G("--label-1");
+      $("#n13v-l2").textContent = G("--label-2");
+      $("#n13v-l3").textContent = G("--label-3");
+
+      /* Override src from CSS vars (if customized) */
+      const stripUrl = (s) => s.trim().replace(/^url\(["']?|["']?\)$/g, "");
+      [["#n13v-g1","--gif-1-src"],["#n13v-g2","--gif-2-src"],["#n13v-g3","--gif-3-src"]].forEach(([sel, v]) => {
+        const p = stripUrl(cs.getPropertyValue(v));
+        if (p && p.length > 3) $(sel).src = p;
+      });
+
+      const TOTAL = 6;
+      const tl = gsap.timeline({ paused: true });
+
+      const stickers = [
+        { sel: "#n13v-s1", at: 0.5, rot: -8,  fromX:  60, fromY: -40 },
+        { sel: "#n13v-s2", at: 1.6, rot:  6,  fromX: -60, fromY:  20 },
+        { sel: "#n13v-s3", at: 2.7, rot: -5,  fromX:  40, fromY:  60 }
+      ];
+
+      stickers.forEach(({ sel, at, rot, fromX, fromY }) => {
+        const el = $(sel);
+        gsap.set(el, {
+          scale: 0.4, rotation: rot * 1.8,
+          x: fromX, y: fromY,
+          transformOrigin: "center center"
+        });
+        tl.to(el, {
+          opacity: 1,
+          scale: 1,
+          rotation: rot,
+          x: 0, y: 0,
+          duration: 0.55,
+          ease: "back.out(2.4)"
+        }, at);
+        tl.to(el, {
+          rotation: rot - 4,
+          duration: 1.6,
+          yoyo: true, repeat: 1, ease: "sine.inOut"
+        }, at + 0.6);
+        tl.to(el, {
+          opacity: 0,
+          scale: 0.85,
+          rotation: rot * 2.2,
+          y: -30,
+          duration: 0.4,
+          ease: "back.in(1.5)"
+        }, at + 2.5);
+      });
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

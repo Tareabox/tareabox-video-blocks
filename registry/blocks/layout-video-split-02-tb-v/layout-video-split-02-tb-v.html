@@ -1,0 +1,224 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  layout-video-split-02-tb-v (vertical 1080x1920)
+  Tareabox Hyperframes Effect
+  Description: Vertical 9:16 — Vertical split — B-roll video on the top 50%, dark content card on the bottom 55% with title and body.
+  Category: layout
+  Duration: 5 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"splitTag","type":"string","label":"Tag","default":"Behind the scenes"},
+  {"id":"splitTitle","type":"string","label":"Title","default":"How we built this in a weekend"},
+  {"id":"splitBody","type":"string","label":"Body","default":"A walkthrough of the tools, decisions, and shortcuts that made it possible."},
+  {"id":"splitCta","type":"string","label":"CTA","default":"Watch full video"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#10b981"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#09090b"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="layout-video-split-02-tb-v" data-composition-id="layout-video-split-02-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="5">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-video-split-02-tb-v"] {
+      --tb-bg:           #09090b;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #d4d4d8;
+      --tb-accent:       var(--tb-brand-accent, #10b981);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --split-tag:   "Behind the scenes";
+      --split-title: "How we built this in a weekend";
+      --split-body:  "A walkthrough of the tools, decisions, and shortcuts that made it possible.";
+      --split-cta:   "Watch full video";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-video-split-02-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="layout-video-split-02-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="layout-video-split-02-tb-v"] .video-section {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      overflow: hidden;
+    }
+    [data-composition-id="layout-video-split-02-tb-v"] .bg-video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+    [data-composition-id="layout-video-split-02-tb-v"] .video-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 45%;
+      background: linear-gradient(to bottom, transparent, var(--tb-bg));
+    }
+    [data-composition-id="layout-video-split-02-tb-v"] .content-section {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 55%;
+      padding: 4% 7% 9%;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      gap: 4vmin;
+    }
+    [data-composition-id="layout-video-split-02-tb-v"] .tag {
+      display: inline-flex;
+      width: fit-content;
+      padding: 1.2vmin 2.6vmin;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--tb-accent) 15%, transparent);
+      border: 1px solid color-mix(in srgb, var(--tb-accent) 45%, transparent);
+      font-size: clamp(24px, 2.8vmin, 36px);
+      font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--tb-accent);
+      opacity: 0;
+    }
+    [data-composition-id="layout-video-split-02-tb-v"] .split-title {
+      font-size: clamp(54px, 7.4vmin, 100px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--tb-text);
+      opacity: 0;
+    }
+    [data-composition-id="layout-video-split-02-tb-v"] .split-body {
+      font-size: clamp(28px, 3.4vmin, 44px);
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--tb-text-dim);
+      opacity: 0;
+    }
+    [data-composition-id="layout-video-split-02-tb-v"] .cta-row {
+      display: flex; align-items: center; gap: 2.4vmin;
+      opacity: 0;
+      margin-top: 1vmin;
+    }
+    [data-composition-id="layout-video-split-02-tb-v"] .cta-text {
+      font-size: clamp(26px, 3vmin, 40px);
+      font-weight: 700;
+      color: var(--tb-accent);
+      letter-spacing: 0.02em;
+    }
+    [data-composition-id="layout-video-split-02-tb-v"] .cta-arrow {
+      color: var(--tb-accent);
+      width: 3.6vmin; height: 3.6vmin;
+      flex-shrink: 0;
+    }
+    [data-composition-id="layout-video-split-02-tb-v"] .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.14);
+      transform-origin: left;
+      opacity: 0;
+    }
+</style>
+
+
+    <div class="video-section">
+      <!--
+        ASSET (vertical) — demo from Pexels (free license, attribution in README).
+        To use your own footage, replace the `src` with one of these:
+          Public URL:   src="https://yourdomain.com/your-video.mp4"
+          Local path:   src="../assets/tb-media/your-video.mp4"
+                        (the `..` walks up from compositions/ to the project root)
+      -->
+      <video id="vs02v-vid"
+             class="bg-video"
+             src="https://videos.pexels.com/video-files/8048324/8048324-hd_1280_720_50fps.mp4" crossorigin="anonymous" data-tb-asset="vertical"
+             data-start="0" data-duration="5" data-track-index="0"
+             muted playsinline></video>
+      <div class="video-fade"></div>
+    </div>
+
+    <div class="content-section">
+      <div class="tag"         id="vs02v-tag"></div>
+      <div class="split-title" id="vs02v-title"></div>
+      <div class="divider"     id="vs02v-div"></div>
+      <div class="split-body"  id="vs02v-body"></div>
+      <div class="cta-row"     id="vs02v-cta">
+        <span class="cta-text" id="vs02v-cta-text"></span>
+        <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["layout-video-split-02-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="layout-video-split-02-tb-v"]');
+      const cs   = getComputedStyle(root);
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, '"' + String(val) + '"');
+      };
+      const setRaw = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, String(val));
+      };
+      setStr("--split-tag",   V.splitTag);
+      setStr("--split-title", V.splitTitle);
+      setStr("--split-body",  V.splitBody);
+      setStr("--split-cta",   V.splitCta);
+      setRaw("--tb-accent",   V.accent);
+      setRaw("--tb-bg",       V.bg);
+
+      root.querySelector("#vs02v-tag").textContent      = cs.getPropertyValue("--split-tag").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#vs02v-title").textContent    = cs.getPropertyValue("--split-title").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#vs02v-body").textContent     = cs.getPropertyValue("--split-body").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#vs02v-cta-text").textContent = cs.getPropertyValue("--split-cta").trim().replace(/^["']|["']$/g,"");
+
+      const tag   = root.querySelector("#vs02v-tag");
+      const title = root.querySelector("#vs02v-title");
+      const div   = root.querySelector("#vs02v-div");
+      const body  = root.querySelector("#vs02v-body");
+      const cta   = root.querySelector("#vs02v-cta");
+
+      const TOTAL = 5;
+      const tl = gsap.timeline({ paused: true });
+
+      gsap.set(div, { scaleX: 0 });
+
+      tl.to(tag, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.4);
+      tl.from(tag, { y: 16, duration: 0.35, ease: "power2.out" }, 0.4);
+
+      tl.to(title, { opacity: 1, duration: 0.5, ease: "expo.out" }, 0.62);
+      tl.from(title, { y: 24, duration: 0.5, ease: "expo.out" }, 0.62);
+
+      tl.to(div, { opacity: 1, scaleX: 1, duration: 0.45, ease: "expo.out" }, 0.9);
+
+      tl.to(body, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.05);
+      tl.from(body, { y: 16, duration: 0.4, ease: "power2.out" }, 1.05);
+
+      tl.to(cta, { opacity: 1, duration: 0.35, ease: "power2.out" }, 1.3);
+      tl.from(cta, { y: 12, duration: 0.35, ease: "power2.out" }, 1.3);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

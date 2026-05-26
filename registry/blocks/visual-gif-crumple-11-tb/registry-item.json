@@ -1,0 +1,18 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "visual-gif-crumple-11-tb",
+  "type": "hyperframes:block",
+  "title": "Visual Gif Crumple (Horizontal)",
+  "description": "Talking head con GIF protagonista que aparece y sale arrugandose tipo papel, en formato horizontal 16:9",
+  "tags": ["visual", "gif", "horizontal", "tareabox"],
+  "dimensions": {"width": 1920, "height": 1080},
+  "duration": 5.0,
+  "files": [
+    {"path": "visual-gif-crumple-11-tb.html", "target": "compositions/visual-gif-crumple-11-tb.html", "type": "hyperframes:composition"},
+    {"path": "tb-media/tb-react-mind-blown.mp4", "target": "assets/tb-media/tb-react-mind-blown.mp4", "type": "hyperframes:asset"}
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-visual-gif-crumple-11-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-visual-gif-crumple-11-tb.png"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "conversationapp-imessage-09-tb-v",
+  "type": "hyperframes:block",
+  "title": "Conversationapp iMessage (Vertical)",
+  "description": "Vertical 9:16 — Chat de iMessage con iPhone frame, tails iOS, typing indicator y delivered, en formato vertical 9:16",
+  "tags": ["conversationapp", "imessage", "iphone", "vertical", "tareabox"],
+  "dimensions": {"width": 1080, "height": 1920},
+  "duration": 6.0,
+  "files": [
+    {"path": "conversationapp-imessage-09-tb-v.html", "target": "compositions/conversationapp-imessage-09-tb-v.html", "type": "hyperframes:composition"}
+  ],
+  "preview": {
+    "video":  "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-conversationapp-imessage-09-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-conversationapp-imessage-09-tb-v.png"
+  }
+}

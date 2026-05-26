@@ -1,0 +1,27 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "layout-split-annotation-02-tb",
+  "type": "hyperframes:block",
+  "title": "Layout Split Annotation",
+  "description": "Efecto Tareabox: Layout Split Annotation",
+  "tags": [
+    "layout",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 3.5,
+  "files": [
+    {
+      "path": "layout-split-annotation-02-tb.html",
+      "target": "compositions/layout-split-annotation-02-tb.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-split-annotation-02-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-split-annotation-02-tb.png"
+  }
+}

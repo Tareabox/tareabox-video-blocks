@@ -1,0 +1,258 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  layout-yt-watchlater-grid-13-tb-v (vertical 1080x1920)
+  Description: YouTube Watch Later page mockup (mobile view) with scrolling video list,
+               real thumbnails via YouTube CDN. No PIP — full-screen mockup.
+  Category: layout
+  Duration: 8 seconds
+  REQUIRES: gsap (CDN), Google Fonts (Roboto)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"headerText","type":"string","label":"Page header","default":"Watch later"},
+  {"id":"countText","type":"string","label":"Video count","default":"47 saved videos"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#ff0000"},
+  {"id":"bg","type":"color","label":"Background color","default":"#0f0f0f"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=block" rel="stylesheet" />
+</head>
+<body style="margin:0;background:#0f0f0f;">
+<div id="layout-yt-watchlater-grid-13-tb-v" data-composition-id="layout-yt-watchlater-grid-13-tb-v"
+     data-width="1080" data-height="1920"
+     data-start="0" data-duration="8">
+<style>
+  /* ═══════════════════════════════════════════════════════ */
+  /* 🎨 CUSTOMIZE HERE                                       */
+  /* ═══════════════════════════════════════════════════════ */
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] {
+    --tb-bg:           var(--tb-brand-bg, #0f0f0f);
+    --tb-text:         #ffffff;
+    --tb-text-muted:   #aaaaaa;
+    --tb-accent:       var(--tb-brand-accent, #ff0000);
+    --tb-border:       #272727;
+    --tb-surface:      #121212;
+    --tb-font:         var(--tb-brand-font-display, "Roboto", sans-serif);
+
+    /* Video IDs for thumbnails */
+    --tb-vid-00: "fb_SQe51UCk";  --tb-vid-01: "M1gu9MDucMA";
+    --tb-vid-02: "t5SieIcMMjo";  --tb-vid-03: "myzs0mcpmFI";
+    --tb-vid-04: "7iJrn8iwCtI";  --tb-vid-05: "ar9gkUGGfcE";
+    --tb-vid-06: "Ir7xFCQP1pQ";  --tb-vid-07: "IyYC-hSFEFQ";
+    --tb-vid-08: "Gc4Xh8u19NU";  --tb-vid-09: "6sJFI8LbhpY";
+    --tb-vid-10: "oxneJ4czNSw";  --tb-vid-11: "BtiQvhQF8IA";
+    --tb-vid-12: "2v4_95OJ7k4";  --tb-vid-13: "rf60MejMz3E";
+    --tb-vid-14: "ZFeByEwsjME";  --tb-vid-15: "UB1O30fR-EE";
+    --tb-vid-16: "dQw4w9WgXcQ";  --tb-vid-17: "kJQP7kiw5Fk";
+    --tb-vid-18: "jNQXAC9IVRw";  --tb-vid-19: "9bZkp7q19f0";
+
+    /* Video titles */
+    --tb-title-00: "Build your landing page with AI";
+    --tb-title-01: "COMPLETE Notion tutorial 2025";
+    --tb-title-02: "Automate your business with Make";
+    --tb-title-03: "SEO for beginners: full guide";
+    --tb-title-04: "Figma: intensive tutorial";
+    --tb-title-05: "Email marketing that WORKS";
+    --tb-title-06: "Google Ads: campaigns that convert";
+    --tb-title-07: "Edit videos like a PRO";
+    --tb-title-08: "WordPress vs Webflow vs Framer";
+    --tb-title-09: "Python for automation";
+    --tb-title-10: "Start a podcast from scratch";
+    --tb-title-11: "YouTube content strategy";
+    --tb-title-12: "Canva PRO: hidden tricks";
+    --tb-title-13: "AI for creators";
+    --tb-title-14: "Shopify store from scratch";
+    --tb-title-15: "Premiere Pro: pro editing";
+    --tb-title-16: "React in 60 minutes";
+    --tb-title-17: "Color theory for video";
+    --tb-title-18: "First YouTube upload ever";
+    --tb-title-19: "Gangnam Style breakdown";
+  }
+  /* ═══════════════════════════════════════════════════════ */
+  /* ⛔ EFFECT CODE — do not edit below                      */
+  /* ═══════════════════════════════════════════════════════ */
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--tb-bg); }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* Mobile YouTube layout — matches real YT dark mode */
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-topbar {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 2;
+    height: 150px; background: var(--tb-bg);
+    display: flex; align-items: center; padding: 0 44px; gap: 24px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-logo {
+    display: flex; align-items: center; gap: 6px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-logo-icon {
+    width: 86px; height: 60px; background: var(--tb-accent); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-logo-icon::after {
+    content: ''; width: 0; height: 0;
+    border-left: 19px solid #fff; border-top: 12px solid transparent; border-bottom: 12px solid transparent;
+    margin-left: 4px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-logo-text {
+    font-family: var(--tb-font); font-size: 50px; font-weight: 700; color: var(--tb-text); letter-spacing: -1px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-topbar-actions {
+    margin-left: auto; display: flex; align-items: center; gap: 20px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-topbar-btn {
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; color: var(--tb-text);
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-avatar {
+    width: 52px; height: 52px; border-radius: 50%; background: #6644aa;
+  }
+
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-content-area {
+    position: absolute; top: 150px; left: 0; right: 0; bottom: 0; overflow: hidden;
+    background: var(--tb-bg);
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-scroll-container {
+    position: absolute; top: 0; left: 0; right: 0; padding: 24px 64px;
+    background: var(--tb-bg);
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-wl-header {
+    font-family: var(--tb-font); font-size: 46px; font-weight: 700; color: var(--tb-text); margin-bottom: 6px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-wl-count {
+    font-family: var(--tb-font); font-size: 22px; color: var(--tb-text-muted); margin-bottom: 24px;
+  }
+  /* Vertical: full-width stacked cards like real YT mobile */
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-video-row {
+    margin-bottom: 42px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-thumb {
+    width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden; border-radius: 14px;
+    background-size: cover; background-position: center; background-color: #1a1a1a;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-thumb-dur {
+    position: absolute; bottom: 12px; right: 12px; background: rgba(0,0,0,0.8); color: #fff;
+    font-family: var(--tb-font); font-size: 22px; font-weight: 500; padding: 4px 10px; border-radius: 6px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-video-info {
+    display: flex; gap: 16px; padding: 14px 4px 0;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-channel-avatar {
+    width: 52px; height: 52px; border-radius: 50%; background: #333; flex-shrink: 0; margin-top: 2px;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-video-text { flex: 1; }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-video-title {
+    font-family: var(--tb-font); font-size: 26px; font-weight: 500; color: var(--tb-text);
+    line-height: 1.3; margin-bottom: 6px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-video-channel {
+    font-family: var(--tb-font); font-size: 20px; color: var(--tb-text-muted);
+  }
+  [data-composition-id="layout-yt-watchlater-grid-13-tb-v"] .yt-video-meta {
+    font-family: var(--tb-font); font-size: 20px; color: var(--tb-text-muted);
+  }
+</style>
+
+<!-- Top bar (mobile YouTube) -->
+<div class="yt-topbar">
+  <div class="yt-logo">
+    <div class="yt-logo-icon"></div>
+    <span class="yt-logo-text">YouTube</span>
+  </div>
+  <div class="yt-topbar-actions">
+    <div class="yt-topbar-btn">&#x1F514;</div>
+    <div class="yt-topbar-btn">&#x1F50D;</div>
+    <div class="yt-avatar"></div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="yt-content-area">
+  <div class="yt-scroll-container" id="bn13v-ytScroll">
+    <div class="yt-wl-header" id="bn13v-header">Watch later</div>
+    <div class="yt-wl-count" id="bn13v-count">47 saved videos</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+window.__timelines = window.__timelines || {};
+window.__timelines["layout-yt-watchlater-grid-13-tb-v"] = (function () {
+  const root = document.querySelector('[data-composition-id="layout-yt-watchlater-grid-13-tb-v"]');
+  const cs   = getComputedStyle(root);
+  const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+
+  const header = root.querySelector("#bn13v-header");
+  const count  = root.querySelector("#bn13v-count");
+  if (V.headerText) header.textContent = V.headerText;
+  if (V.countText)  count.textContent  = V.countText;
+  if (V.bg)     root.style.setProperty("--tb-bg", V.bg);
+  if (V.accent) root.style.setProperty("--tb-accent", V.accent);
+
+  var videoIds = [];
+  for (var i = 0; i < 20; i++) {
+    var k = "--tb-vid-" + String(i).padStart(2, "0");
+    var v = cs.getPropertyValue(k).trim().replace(/^["']|["']$/g, "");
+    videoIds.push(v || "dQw4w9WgXcQ");
+  }
+  var titles = [];
+  for (var i = 0; i < 20; i++) {
+    var k = "--tb-title-" + String(i).padStart(2, "0");
+    var v = cs.getPropertyValue(k).trim().replace(/^["']|["']$/g, "");
+    titles.push(v || "Video title " + (i + 1));
+  }
+
+  var channels = [
+    "Productivity Lab","Carlos Code","Marketing Lab","CreaTech",
+    "Design Pro","Business Master","Ana Growth","Video Academy",
+    "WebDev Hub","Python Pro","Podcast Pro","YT Strategy",
+    "Canva Tips","AI Hub","Commerce Lab","Adobe Guru",
+    "React Masters","Color Theory","History Hub","K-Pop Studio"
+  ];
+  var durations = [
+    "45:21","1:12:03","38:47","52:18","3:04:15","41:33","1:28:44","29:06",
+    "55:12","2:15:38","1:05:22","48:17","35:44","1:42:19","2:08:33","58:41",
+    "1:00:12","22:45","10:08","4:13:00"
+  ];
+  var views = [
+    "128K","45K","312K","89K","567K","23K","198K","412K",
+    "67K","234K","156K","78K","345K","890K","34K","123K",
+    "1.2M","56K","290M","4.8B"
+  ];
+
+  var container = root.querySelector("#bn13v-ytScroll");
+  /* Generate 60 cards (repeating mod 20) so scroll never runs out */
+  for (var i = 0; i < 60; i++) {
+    var idx = i % 20;
+    var row = document.createElement("div");
+    row.className = "yt-video-row";
+    var hue = (i * 47 + 120) % 360;
+    row.innerHTML =
+      '<div class="yt-thumb" style="background-image: url(\'https://i.ytimg.com/vi/' + videoIds[idx] + '/hqdefault.jpg\');">' +
+        '<div class="yt-thumb-dur">' + durations[idx] + '</div>' +
+      '</div>' +
+      '<div class="yt-video-info">' +
+        '<div class="yt-channel-avatar" style="background: hsl(' + hue + ',30%,35%);"></div>' +
+        '<div class="yt-video-text">' +
+          '<div class="yt-video-title">' + titles[idx] + '</div>' +
+          '<div class="yt-video-channel">' + channels[idx] + '</div>' +
+          '<div class="yt-video-meta">' + views[idx] + ' views · ' + Math.floor(1 + i * 0.7) + ' weeks ago</div>' +
+        '</div>' +
+      '</div>';
+    container.appendChild(row);
+  }
+
+  var tl = gsap.timeline({ paused: true });
+  var scrollEl = root.querySelector("#bn13v-ytScroll");
+
+  /* Continuous scroll — no fade, no black screen */
+  tl.to(scrollEl, { y: -4800, duration: 7.7, ease: "power1.inOut" }, 0.3);
+  tl.to({}, { duration: 8 }, 0);
+
+  return tl;
+})();
+</script>
+</div>
+</body>
+</html>

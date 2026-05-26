@@ -1,0 +1,196 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  layout-video-hero-01-tb (horizontal 1920x1080)
+  Tareabox Hyperframes Effect
+  Description: Vertical 16:9 — Full-bleed talking head — rule-of-thirds crop, gradient vignette, animated title + subtitle overlay at bottom.
+  Category: layout
+  Duration: 5 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"heroEyebrow","type":"string","label":"Eyebrow","default":"New video"},
+  {"id":"heroTitle","type":"string","label":"Title","default":"Your compelling title goes here"},
+  {"id":"heroSub","type":"string","label":"Subtitle","default":"A short supporting line that adds context"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#2563eb"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#000000"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="layout-video-hero-01-tb" data-composition-id="layout-video-hero-01-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="5">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-video-hero-01-tb"] {
+      --tb-bg:           #09090b;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #d4d4d8;
+      --tb-accent:       var(--tb-brand-accent, #2563eb);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --hero-eyebrow: "New video";
+      --hero-title:   "Your compelling title goes here";
+      --hero-sub:     "A short supporting line that adds context";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-video-hero-01-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: #000;
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="layout-video-hero-01-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="layout-video-hero-01-tb"] .bg-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+    }
+    [data-composition-id="layout-video-hero-01-tb"] .vignette {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 30%,
+        rgba(0,0,0,0.55) 65%,
+        rgba(0,0,0,0.92) 100%
+      );
+    }
+    [data-composition-id="layout-video-hero-01-tb"] .text-block {
+      position: absolute;
+      bottom: 14%; left: 0; right: 0;
+      padding: 0 7%;
+      display: flex; flex-direction: column; gap: 3vmin;
+    }
+    [data-composition-id="layout-video-hero-01-tb"] .eyebrow {
+      display: inline-flex; align-items: center;
+      width: fit-content;
+      padding: 1vmin 2.4vmin;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--tb-accent) 20%, transparent);
+      border: 1px solid color-mix(in srgb, var(--tb-accent) 50%, transparent);
+      font-size: clamp(22px, 2.6vmin, 34px);
+      font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--tb-accent);
+      opacity: 0;
+      text-shadow: 0 0.4vmin 1.6vmin rgba(0,0,0,0.85), 0 0.15vmin 0.4vmin rgba(0,0,0,0.95);
+    }
+    [data-composition-id="layout-video-hero-01-tb"] .title {
+      font-size: clamp(56px, 7.8vmin, 110px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--tb-text);
+      opacity: 0;
+      text-shadow: 0 0.4vmin 1.6vmin rgba(0,0,0,0.85), 0 0.15vmin 0.4vmin rgba(0,0,0,0.95);
+    }
+    [data-composition-id="layout-video-hero-01-tb"] .sub {
+      font-size: clamp(28px, 3.4vmin, 44px);
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--tb-text-dim);
+      opacity: 0;
+      text-shadow: 0 0.4vmin 1.6vmin rgba(0,0,0,0.85), 0 0.15vmin 0.4vmin rgba(0,0,0,0.95);
+    }
+    [data-composition-id="layout-video-hero-01-tb"] .accent-bar {
+      width: 11vmin; height: 5px;
+      border-radius: 2px;
+      background: var(--tb-accent);
+      transform-origin: left;
+      box-shadow: 0 0 16px color-mix(in srgb, var(--tb-accent) 70%, transparent);
+      opacity: 0;
+    }
+</style>
+
+
+    <!--
+      ASSET (vertical) — demo from Pexels (free license, attribution in README).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+                      (the `..` walks up from compositions/ to the project root)
+    -->
+    <video id="vh01h-vid"
+           class="bg-video"
+           src="https://videos.pexels.com/video-files/7514462/7514462-hd_1920_1080_25fps.mp4" crossorigin="anonymous" data-tb-asset="horizontal"
+           data-start="0" data-duration="5" data-track-index="0"
+           muted playsinline></video>
+
+    <div class="vignette" id="vh01h-vig"></div>
+
+    <div class="text-block">
+      <div class="accent-bar" id="vh01h-bar"></div>
+      <div class="eyebrow"    id="vh01h-ew"></div>
+      <div class="title"      id="vh01h-title"></div>
+      <div class="sub"        id="vh01h-sub"></div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["layout-video-hero-01-tb"] = (function () {
+      const root = document.querySelector('[data-composition-id="layout-video-hero-01-tb"]');
+      const cs   = getComputedStyle(root);
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, '"' + String(val) + '"');
+      };
+      const setRaw = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, String(val));
+      };
+      setStr("--hero-eyebrow", V.heroEyebrow);
+      setStr("--hero-title",   V.heroTitle);
+      setStr("--hero-sub",     V.heroSub);
+      setRaw("--tb-accent",    V.accent);
+      setRaw("--tb-bg",        V.bg);
+
+      root.querySelector("#vh01h-ew").textContent    = cs.getPropertyValue("--hero-eyebrow").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#vh01h-title").textContent = cs.getPropertyValue("--hero-title").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#vh01h-sub").textContent   = cs.getPropertyValue("--hero-sub").trim().replace(/^["']|["']$/g,"");
+
+      const vig   = root.querySelector("#vh01h-vig");
+      const bar   = root.querySelector("#vh01h-bar");
+      const ew    = root.querySelector("#vh01h-ew");
+      const title = root.querySelector("#vh01h-title");
+      const sub   = root.querySelector("#vh01h-sub");
+
+      const TOTAL = 5;
+      const tl = gsap.timeline({ paused: true });
+
+      gsap.set(vig, { opacity: 0 });
+      gsap.set(bar, { scaleX: 0 });
+
+      tl.to(vig, { opacity: 1, duration: 0.6, ease: "power2.out" }, 0.2);
+
+      tl.to(bar, { opacity: 1, scaleX: 1, duration: 0.5, ease: "expo.out" }, 0.5);
+
+      tl.to(ew, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.75);
+      tl.from(ew, { y: 20, duration: 0.4, ease: "power2.out" }, 0.75);
+
+      tl.to(title, { opacity: 1, duration: 0.5, ease: "expo.out" }, 0.9);
+      tl.from(title, { y: 28, duration: 0.5, ease: "expo.out" }, 0.9);
+
+      tl.to(sub, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.15);
+      tl.from(sub, { y: 18, duration: 0.4, ease: "power2.out" }, 1.15);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

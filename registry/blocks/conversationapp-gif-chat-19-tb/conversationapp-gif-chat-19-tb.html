@@ -1,0 +1,200 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  conversationapp-gif-chat-19-tb (horizontal 1920x1080)
+  Horizontal 16:9 — Talking head + iMessage-style bubble flotante con GIF reaccion en lower-left.
+  La cara va a la right side del frame; la conversación queda en la esquina inferior izquierda.
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"senderName","type":"string","label":"Sender name","default":"Sam"},
+  {"id":"replyText","type":"string","label":"Reply text","default":"lol same energy"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#EA9F84"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#0a0a0a"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="conversationapp-gif-chat-19-tb" data-composition-id="conversationapp-gif-chat-19-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="6">
+<style>
+    [data-composition-id="conversationapp-gif-chat-19-tb"] {
+      --tb-bg:           #0a0a0a;
+      --tb-accent:       var(--tb-brand-accent, #EA9F84);
+      --tb-text:         #ffffff;
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --gif-src: url("../assets/tb-media/tb-react-clap.mp4");
+
+      --sender-name:    "Sam";
+      --sender-avatar:  url("https://i.pravatar.cc/200?img=12");
+      --reply-text:     "lol same energy";
+    }
+    [data-composition-id="conversationapp-gif-chat-19-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="conversationapp-gif-chat-19-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Bg video — cara empujada a la derecha (object-position 72% horizontal) para no chocar con la burbuja */
+    [data-composition-id="conversationapp-gif-chat-19-tb"] .bg-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: 72% center;
+    }
+
+    /* Bubble row anclada a lower-left, ocupa ~35% del ancho horizontal */
+    [data-composition-id="conversationapp-gif-chat-19-tb"] .bubble-row {
+      position: absolute;
+      bottom: 9%;
+      left: 4%;
+      display: flex;
+      align-items: flex-end;
+      gap: 14px;
+      z-index: 10;
+      opacity: 0;
+    }
+    [data-composition-id="conversationapp-gif-chat-19-tb"] .avatar {
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      background-image: var(--sender-avatar);
+      background-size: cover;
+      background-position: center;
+      background-color: #2a2a2c;
+      border: 3px solid white;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      flex-shrink: 0;
+    }
+    [data-composition-id="conversationapp-gif-chat-19-tb"] .bubble-stack {
+      display: flex; flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    [data-composition-id="conversationapp-gif-chat-19-tb"] .sender {
+      font-size: 22px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      margin-left: 14px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+    [data-composition-id="conversationapp-gif-chat-19-tb"] .gif-bubble {
+      position: relative;
+      width: 340px; height: 340px;
+      background: #e5e5ea;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.55);
+      padding: 10px;
+    }
+    [data-composition-id="conversationapp-gif-chat-19-tb"] .gif-bubble::before {
+      content: "";
+      position: absolute;
+      bottom: 0; left: -8px;
+      width: 22px; height: 28px;
+      background-color: #e5e5ea;
+      border-bottom-right-radius: 18px 16px;
+    }
+    [data-composition-id="conversationapp-gif-chat-19-tb"] .gif-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: 0; left: -28px;
+      width: 28px; height: 28px;
+      background-color: transparent;
+      border-bottom-right-radius: 12px;
+    }
+    [data-composition-id="conversationapp-gif-chat-19-tb"] .gif-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      background-color: #1a1a1a;
+      border-radius: 16px;
+      display: block;
+    }
+    [data-composition-id="conversationapp-gif-chat-19-tb"] .text-bubble {
+      background: #e5e5ea;
+      color: #000;
+      padding: 14px 24px;
+      border-radius: 22px;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1.3;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+      opacity: 0;
+      max-width: 340px;
+    }
+</style>
+
+    <!--
+      ASSET (horizontal) — demo from Pexels (free license).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+    -->
+    <video class="bg-video" id="n15-bg"
+           data-start="0" data-duration="6" data-track-index="0"
+           src="https://videos.pexels.com/video-files/5940726/5940726-hd_1280_720_25fps.mp4"
+           crossorigin="anonymous" data-tb-asset="horizontal"
+           muted playsinline></video>
+
+    <div class="bubble-row" id="n15-row">
+      <div class="avatar"></div>
+      <div class="bubble-stack">
+        <span class="sender" id="n15-sender"></span>
+        <div class="gif-bubble" id="n15-gif">
+          <video class="gif-img" id="n15-gif-img" src="../assets/tb-media/tb-react-clap.mp4"
+                 data-start="0" data-duration="6" data-track-index="11"
+                 muted playsinline loop></video>
+        </div>
+        <div class="text-bubble" id="n15-text"></div>
+      </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["conversationapp-gif-chat-19-tb"] = (function () {
+      const root = document.querySelector('[data-composition-id="conversationapp-gif-chat-19-tb"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+      const setStr = (k, v) => { if (v !== undefined && v !== null && v !== "") root.style.setProperty(k, '"' + String(v) + '"'); };
+      const setRaw = (k, v) => { if (v !== undefined && v !== null && v !== "") root.style.setProperty(k, String(v)); };
+      setStr("--sender-name", V.senderName);
+      setStr("--reply-text",  V.replyText);
+      setRaw("--tb-accent",   V.accent);
+      setRaw("--tb-bg",       V.bg);
+
+      $("#n15-sender").textContent = G("--sender-name");
+      $("#n15-text").textContent   = G("--reply-text");
+
+      const gifSrc = cs.getPropertyValue("--gif-src").trim().replace(/^url\(["']?|["']?\)$/g, "");
+      if (gifSrc && gifSrc.length > 3) $("#n15-gif-img").src = gifSrc;
+
+      const TOTAL = 6;
+      const tl = gsap.timeline({ paused: true });
+
+      gsap.set("#n15-row", { y: 60 });
+      tl.to("#n15-row", { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.6);
+
+      gsap.set("#n15-gif", { scale: 0.7, transformOrigin: "left bottom" });
+      tl.to("#n15-gif", { scale: 1, duration: 0.5, ease: "back.out(2)" }, 0.8);
+
+      tl.to("#n15-text", { opacity: 1, duration: 0.4, ease: "power3.out" }, 1.8);
+
+      tl.to("#n15-row", { opacity: 0, y: 60, duration: 0.4, ease: "power2.in" }, 5.3);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+</script>
+</div>
+</body>
+</html>

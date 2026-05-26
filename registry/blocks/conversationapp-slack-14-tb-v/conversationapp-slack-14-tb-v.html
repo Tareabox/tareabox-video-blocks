@@ -1,0 +1,207 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  conversationapp-slack-14-tb-v (vertical 1080x1920)
+  Vertical 9:16 — Slack message with thread reply count · 4 seconds
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"slChannel","type":"string","label":"Channel","default":"# launches"},
+  {"id":"slName","type":"string","label":"User name","default":"Natalie Digital"},
+  {"id":"slTime","type":"string","label":"Time","default":"2:14 PM"},
+  {"id":"slMsg","type":"string","label":"Message","default":"Pack Natalie is live — 52 layouts, 23 text effects, all bundled. Render times shaved from 40min to 4min."},
+  {"id":"slReplies","type":"string","label":"Replies","default":"8 replies"},
+  {"id":"slLast","type":"string","label":"Last reply","default":"Last reply 2 minutes ago"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#4A154B"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#1a1d21"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="conversationapp-slack-14-tb-v" data-composition-id="conversationapp-slack-14-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="4">
+<style>
+    /* 🎨 CUSTOMIZE HERE */
+    [data-composition-id="conversationapp-slack-14-tb-v"] {
+      --tb-accent: var(--tb-brand-accent, #4A154B);
+      --tb-bg: #1a1d21; --tb-text: #e8e8e8; --tb-text-dim: #abadb1;
+      --tb-link: #1d9bd1; --tb-purple: #4a154b;
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --sl-channel: "# launches";
+      --sl-name:    "Natalie Digital";
+      --sl-time:    "2:14 PM";
+      --sl-msg:     "Pack Natalie is live — 52 layouts, 23 text effects, all bundled. Render times shaved from 40min to 4min.";
+      --sl-replies: "8 replies";
+      --sl-last:    "Last reply 2 minutes ago";
+    }
+    /* ⛔ EFFECT CODE */
+    [data-composition-id="conversationapp-slack-14-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: #0a0a0c;
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 4%;
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .bg-photo {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(0.3) saturate(0.85);
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .panel { position: relative; z-index: 1; }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .panel {
+      width: 92%;
+      background: #1a1d21;
+      border: 1px solid #36373a;
+      border-radius: 12px;
+      overflow: hidden;
+      opacity: 0;
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .channel-bar {
+      background: #1f2127;
+      padding: 2vmin 3vmin;
+      border-bottom: 1px solid #36373a;
+      font-size: clamp(28px, 3.4vmin, 44px);
+      font-weight: 700;
+      color: var(--tb-text);
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .msg {
+      display: flex; gap: 2.4vmin;
+      padding: 3vmin 3vmin 3.4vmin;
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .avatar {
+      width: 12vmin; height: 12vmin; border-radius: 8px;
+      background: linear-gradient(135deg, var(--tb-purple), #ec407a);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 800;
+      font-size: clamp(28px, 3.8vmin, 48px);
+      flex-shrink: 0;
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .body {
+      flex: 1;
+      min-width: 0;
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .head {
+      display: flex; align-items: center; gap: 1.4vmin;
+      margin-bottom: 1vmin;
+      flex-wrap: wrap;
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .name {
+      font-size: clamp(32px, 4vmin, 54px);
+      font-weight: 800;
+      color: var(--tb-text);
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .time {
+      font-size: clamp(18px, 2.2vmin, 28px);
+      color: var(--tb-text-dim);
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .text {
+      font-size: clamp(30px, 4vmin, 52px);
+      color: var(--tb-text);
+      line-height: 1.45;
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .thread {
+      display: flex; align-items: center; gap: 1.6vmin;
+      margin-top: 2vmin;
+      padding: 1.4vmin 2vmin;
+      background: rgba(29,155,209,0.08);
+      border: 1px solid rgba(29,155,209,0.2);
+      border-radius: 10px;
+      width: fit-content;
+      cursor: pointer;
+      opacity: 0;
+      flex-wrap: wrap;
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .thread-avatars {
+      display: flex;
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .ta-dot {
+      width: 3.2vmin; height: 3.2vmin; border-radius: 6px;
+      border: 2px solid var(--tb-bg);
+      margin-left: -0.8vmin;
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .ta-dot:first-child { margin-left: 0; background: #ec407a; }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .ta-dot:nth-child(2) { background: #1d9bd1; }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .ta-dot:nth-child(3) { background: #2eb886; }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .reply-count {
+      font-size: clamp(24px, 3vmin, 38px);
+      font-weight: 700;
+      color: var(--tb-link);
+    }
+    [data-composition-id="conversationapp-slack-14-tb-v"] .last {
+      font-size: clamp(16px, 1.9vmin, 24px);
+      color: var(--tb-text-dim);
+    }
+</style>
+
+    <img class="bg-photo" src="https://images.pexels.com/photos/27940302/pexels-photo-27940302.jpeg?auto=compress&cs=tinysrgb&w=1920" crossorigin="anonymous" alt="" />
+    <div class="panel" id="sl14v-panel">
+      <div class="channel-bar" id="sl14v-channel"></div>
+      <div class="msg">
+        <div class="avatar">N</div>
+        <div class="body">
+          <div class="head">
+            <span class="name" id="sl14v-name"></span>
+            <span class="time" id="sl14v-time"></span>
+          </div>
+          <div class="text" id="sl14v-msg"></div>
+          <div class="thread" id="sl14v-thread">
+            <div class="thread-avatars">
+              <div class="ta-dot"></div>
+              <div class="ta-dot"></div>
+              <div class="ta-dot"></div>
+            </div>
+            <span class="reply-count" id="sl14v-replies"></span>
+            <span class="last" id="sl14v-last"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["conversationapp-slack-14-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="conversationapp-slack-14-tb-v"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, '"' + String(val) + '"'); };
+      const setRaw = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, String(val)); };
+      setStr("--sl-channel", V.slChannel);
+      setStr("--sl-name",    V.slName);
+      setStr("--sl-time",    V.slTime);
+      setStr("--sl-msg",     V.slMsg);
+      setStr("--sl-replies", V.slReplies);
+      setStr("--sl-last",    V.slLast);
+      setRaw("--tb-accent",  V.accent);
+      setRaw("--tb-bg",      V.bg);
+
+      $("#sl14v-channel").textContent = G("--sl-channel");
+      $("#sl14v-name").textContent    = G("--sl-name");
+      $("#sl14v-time").textContent    = G("--sl-time");
+      $("#sl14v-msg").textContent     = G("--sl-msg");
+      $("#sl14v-replies").textContent = G("--sl-replies");
+      $("#sl14v-last").textContent    = G("--sl-last");
+
+      const tl = gsap.timeline({ paused: true });
+      const panel = $("#sl14v-panel"), thread = $("#sl14v-thread");
+      gsap.set(panel, { y: 22, scale: 0.96 });
+      tl.to(panel, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.4)" }, 0.2);
+      gsap.set(thread, { x: -10 });
+      tl.to(thread, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 0.95);
+      tl.to({}, { duration: 4 }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

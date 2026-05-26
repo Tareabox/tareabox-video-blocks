@@ -1,0 +1,27 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "text-chapter-reveal-21-tb",
+  "type": "hyperframes:block",
+  "title": "Text Chapter Reveal",
+  "description": "Efecto Tareabox: Text Chapter Reveal",
+  "tags": [
+    "text",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 3.0,
+  "files": [
+    {
+      "path": "text-chapter-reveal-21-tb.html",
+      "target": "compositions/text-chapter-reveal-21-tb.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-chapter-reveal-21-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-chapter-reveal-21-tb.png"
+  }
+}

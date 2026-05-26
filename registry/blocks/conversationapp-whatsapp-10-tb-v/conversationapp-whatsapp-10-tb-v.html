@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en" data-composition-variables='[
+  {"id":"name","type":"string","label":"Contact name","default":"Tareabox Studio"},
+  {"id":"status","type":"string","label":"Contact status","default":"online"},
+  {"id":"msg1","type":"string","label":"Message 1 (incoming)","default":"Did you finish the demo?"},
+  {"id":"msg2","type":"string","label":"Message 2 (outgoing)","default":"Yes! 60 seconds, 11 layouts ✨"},
+  {"id":"msg3","type":"string","label":"Message 3 (incoming)","default":"Send link when you upload"},
+  {"id":"msg4","type":"string","label":"Message 4 (incoming)","default":"I will share it on stories"},
+  {"id":"msg5","type":"string","label":"Message 5 (outgoing)","default":"Rendering now 🚀"},
+  {"id":"oldMsg1","type":"string","label":"Old message 1","default":"ok perfecto te paso brief"},
+  {"id":"oldMsg2","type":"string","label":"Old message 2","default":"dale"},
+  {"id":"oldMsg3","type":"string","label":"Old message 3","default":"demo lista mañana?"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#25D366"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#0c1e2b"}
+]'>
+<head>
+  <!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  conversationapp-whatsapp-10-tb-v (vertical 1080x1920) · WhatsApp chat with proper tails · 6 seconds
+  Tail technique: Samuel Kraft (pseudo-element overlay)
+  -->
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="conversationapp-whatsapp-10-tb-v" data-composition-id="conversationapp-whatsapp-10-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="6">
+<style>
+    /* 🎨 CUSTOMIZE HERE */
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] {
+      --tb-accent: var(--tb-brand-accent, #25D366);
+      --tb-bg: #0c1e2b;
+      --tb-chat-bg:    #efeae2;
+      --tb-bubble-out: #d9fdd3;
+      --tb-bubble-in:  #ffffff;
+      --tb-text:       #111b21;
+      --tb-text-dim:   #667781;
+      --tb-green:      #25d366;
+      --tb-teal-dark:  #008069;
+      --tb-teal-statusbar: #004e45;
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --wa-name:    "Tareabox Studio";
+      --wa-status:  "online";
+
+      --wa-avatar-img: url("../assets/tb-media/tb-tareabox-logo.png");
+
+      --wa-old-1: "ok perfecto te paso brief";  --wa-old-1-side: "in";
+      --wa-old-2: "dale";                        --wa-old-2-side: "out";
+      --wa-old-3: "demo lista mañana?";          --wa-old-3-side: "in";
+
+      --wa-time-1:  "12:42";
+      --wa-time-2:  "12:42";
+      --wa-time-3:  "12:43";
+      --wa-time-4:  "12:43";
+      --wa-time-5:  "12:43";
+
+      --wa-1: "Did you finish the demo?";          --wa-1-side: "in";
+      --wa-2: "Yes! 60 seconds, 11 layouts ✨";    --wa-2-side: "out";
+      --wa-3: "Send link when you upload";         --wa-3-side: "in";
+      --wa-4: "I'll share it on stories";          --wa-4-side: "in";
+      --wa-5: "Rendering now 🚀";                   --wa-5-side: "out";
+
+      --wa-sticker-1: url("../assets/tb-media/tb-react-clap.gif");
+      --wa-sticker-2: url("../assets/tb-media/tb-react-mind-blown.gif");
+    }
+    /* ⛔ EFFECT CODE */
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: linear-gradient(135deg, #1f3a4d 0%, #0c1e2b 100%);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+      display: flex; align-items: center; justify-content: center;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* iPhone frame — vertical: width-anchored, fills ~94% width */
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .phone {
+      position: relative;
+      width: 94%;
+      aspect-ratio: 9/19.5;
+      max-height: 96%;
+      background: #1a1a1c;
+      border-radius: 5.5vmin;
+      padding: 0.9vmin;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 30px 90px rgba(0,0,0,0.7),
+        0 12px 30px rgba(0,0,0,0.5);
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .btn-side {
+      position: absolute; background: #0e0e10; border-radius: 2px;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .btn-mute   { left: -0.5vmin; top: 12%; width: 0.5vmin; height: 4%; }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .btn-vol-up { left: -0.5vmin; top: 19%; width: 0.5vmin; height: 7%; }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .btn-vol-dn { left: -0.5vmin; top: 28%; width: 0.5vmin; height: 7%; }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .btn-power  { right: -0.5vmin; top: 22%; width: 0.5vmin; height: 11%; }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .screen {
+      width: 100%; height: 100%;
+      border-radius: 4.6vmin;
+      overflow: hidden;
+      background: var(--tb-chat-bg);
+      display: flex; flex-direction: column;
+      position: relative;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .island {
+      position: absolute;
+      top: 1.4vmin; left: 50%;
+      transform: translateX(-50%);
+      width: 30%; height: 3vmin;
+      background: #000;
+      border-radius: 2vmin;
+      z-index: 10;
+    }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .status-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4vmin 3vmin 0.8vmin;
+      font-size: clamp(14px, 1.7vmin, 22px);
+      font-weight: 700;
+      background: var(--tb-teal-statusbar);
+      color: #fff;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .status-icons { display: flex; gap: 0.5vmin; align-items: center; }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .status-icons svg {
+      width: clamp(14px, 1.8vmin, 22px); height: clamp(14px, 1.8vmin, 22px);
+      fill: #fff;
+    }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .wa-header {
+      background: var(--tb-teal-dark);
+      padding: 1vmin 2vmin 1.4vmin;
+      display: flex; align-items: center; gap: 1.6vmin;
+      color: #fff;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .back svg {
+      width: clamp(18px, 2.6vmin, 32px); height: clamp(18px, 2.6vmin, 32px);
+      stroke: #fff; stroke-width: 2.5; fill: none;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .avatar-wrap {
+      position: relative;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .avatar {
+      width: 6.4vmin; height: 6.4vmin; border-radius: 50%;
+      background-image: var(--wa-avatar-img);
+      background-size: cover;
+      background-position: center;
+      background-color: #fff;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .online-dot {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 1.6vmin; height: 1.6vmin;
+      border-radius: 50%;
+      background: var(--tb-green);
+      border: 2px solid var(--tb-teal-dark);
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .who-info {
+      flex: 1;
+      display: flex; flex-direction: column;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .name {
+      font-size: clamp(18px, 2.4vmin, 32px);
+      font-weight: 600;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .status {
+      font-size: clamp(14px, 1.7vmin, 22px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .header-actions {
+      display: flex; gap: 1.8vmin;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .header-actions svg {
+      width: clamp(18px, 2.4vmin, 30px); height: clamp(18px, 2.4vmin, 30px);
+      stroke: #fff; stroke-width: 2; fill: none;
+    }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .chat {
+      flex: 1;
+      background-color: var(--tb-chat-bg);
+      background-image:
+        radial-gradient(rgba(0,0,0,0.04) 1.5px, transparent 1.5px),
+        radial-gradient(rgba(0,0,0,0.025) 1px, transparent 1px);
+      background-size: 28px 28px, 18px 18px;
+      background-position: 0 0, 14px 14px;
+      padding: 1.8vmin 1.6vmin 2.2vmin;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      gap: 0.4vmin;
+      overflow: hidden;
+    }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .date-pill {
+      align-self: center;
+      background: rgba(225,245,254,0.95);
+      color: #54656f;
+      font-size: clamp(13px, 1.5vmin, 18px);
+      font-weight: 600;
+      padding: 0.6vmin 1.6vmin;
+      border-radius: 1.2vmin;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0 0 1.4vmin;
+      opacity: 0;
+    }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .bubble {
+      position: relative;
+      max-width: 78%;
+      padding: 1.2vmin 1.8vmin 1.4vmin;
+      border-radius: 1.2vmin;
+      font-size: clamp(17px, 2.2vmin, 28px);
+      color: var(--tb-text);
+      line-height: 1.35;
+      opacity: 0;
+      box-shadow: 0 1px 0.8px rgba(0,0,0,0.13);
+      display: flex;
+      align-items: flex-end;
+      gap: 0.8vmin;
+      flex-wrap: wrap;
+      margin-bottom: 0.4vmin;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .bubble.tail::before,
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .bubble.tail::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      height: 1.5vmin;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .bubble.tail::before {
+      width: 1.6vmin;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .bubble.tail::after {
+      width: 1.6vmin;
+      background-color: var(--tb-chat-bg);
+    }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .bubble.in {
+      align-self: flex-start;
+      background: var(--tb-bubble-in);
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .bubble.in.tail::before {
+      left: -0.6vmin;
+      background-color: var(--tb-bubble-in);
+      border-top-right-radius: 1.4vmin 1.2vmin;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .bubble.in.tail::after {
+      left: -1.6vmin;
+      border-top-right-radius: 1vmin;
+    }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .bubble.out {
+      align-self: flex-end;
+      background: var(--tb-bubble-out);
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .bubble.out.tail::before {
+      right: -0.6vmin;
+      background-color: var(--tb-bubble-out);
+      border-top-left-radius: 1.4vmin 1.2vmin;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .bubble.out.tail::after {
+      right: -1.6vmin;
+      border-top-left-radius: 1vmin;
+    }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .bubble.stacked {
+      margin-bottom: 0.2vmin;
+    }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .bubble.old {
+      opacity: 0.45 !important;
+      filter: blur(0.6px);
+    }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .sticker {
+      position: relative;
+      width: 22vmin;
+      height: 22vmin;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      margin: 0.6vmin 0.6vmin 1.4vmin;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .sticker.in  { align-self: flex-start; }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .sticker.out { align-self: flex-end; }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .sticker.s1  { background-image: var(--wa-sticker-1); }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .sticker.s2  { background-image: var(--wa-sticker-2); }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .sticker::after {
+      content: attr(data-time);
+      position: absolute;
+      bottom: -2vmin;
+      font-size: clamp(12px, 1.4vmin, 18px);
+      color: var(--tb-text-dim);
+      white-space: nowrap;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .sticker.in::after  { left: 0.4vmin; }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .sticker.out::after { right: 0.4vmin; }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .meta {
+      display: inline-flex; align-items: center; gap: 0.4vmin;
+      color: var(--tb-text-dim);
+      font-size: clamp(12px, 1.4vmin, 18px);
+      margin-left: auto;
+      white-space: nowrap;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .check svg {
+      width: clamp(14px, 1.7vmin, 22px); height: clamp(14px, 1.7vmin, 22px);
+      stroke: #53bdeb; stroke-width: 2.5; fill: none;
+    }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .typing {
+      align-self: flex-start;
+      position: relative;
+      background: var(--tb-bubble-in);
+      padding: 1.4vmin 1.8vmin;
+      border-radius: 1.2vmin;
+      display: flex; gap: 0.6vmin; align-items: center;
+      box-shadow: 0 1px 0.8px rgba(0,0,0,0.13);
+      opacity: 0;
+      margin-bottom: 0.4vmin;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .typing::before,
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .typing::after {
+      content: "";
+      position: absolute;
+      top: 0; height: 1.5vmin;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .typing::before {
+      left: -0.6vmin; width: 1.6vmin;
+      background: var(--tb-bubble-in);
+      border-top-right-radius: 1.4vmin 1.2vmin;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .typing::after {
+      left: -1.6vmin; width: 1.6vmin;
+      background: var(--tb-chat-bg);
+      border-top-right-radius: 1vmin;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .typing-dot {
+      width: 1.1vmin; height: 1.1vmin;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.35);
+    }
+
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .input-bar {
+      padding: 1.2vmin 1.6vmin 1.8vmin;
+      background: var(--tb-chat-bg);
+      display: flex; align-items: center; gap: 1vmin;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .input-pill {
+      flex: 1;
+      background: #fff;
+      border-radius: 999px;
+      padding: 1.2vmin 1.8vmin;
+      display: flex; align-items: center; gap: 1.2vmin;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+      font-size: clamp(14px, 1.8vmin, 24px);
+      color: var(--tb-text-dim);
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .input-pill svg {
+      width: clamp(16px, 2vmin, 26px); height: clamp(16px, 2vmin, 26px);
+      stroke: var(--tb-text-dim); stroke-width: 2; fill: none;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .send-btn {
+      width: 5.4vmin; height: 5.4vmin;
+      border-radius: 50%;
+      background: var(--tb-teal-dark);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    [data-composition-id="conversationapp-whatsapp-10-tb-v"] .send-btn svg {
+      width: clamp(18px, 2.2vmin, 28px); height: clamp(18px, 2.2vmin, 28px);
+      fill: #fff;
+    }
+</style>
+
+    <div class="phone">
+      <div class="btn-side btn-mute"></div>
+      <div class="btn-side btn-vol-up"></div>
+      <div class="btn-side btn-vol-dn"></div>
+      <div class="btn-side btn-power"></div>
+
+      <div class="screen">
+        <div class="island"></div>
+
+        <div class="status-bar">
+          <span>9:41</span>
+          <span class="status-icons">
+            <svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="0.5"/><rect x="5" y="5" width="3" height="7" rx="0.5"/><rect x="10" y="2" width="3" height="10" rx="0.5"/><rect x="15" y="0" width="3" height="12" rx="0.5"/></svg>
+            <svg viewBox="0 0 16 12"><path d="M8 3.5c2.4 0 4.6 0.9 6.3 2.4l1.2-1.2C13.4 2.7 10.8 1.5 8 1.5S2.6 2.7 0.5 4.7l1.2 1.2C3.4 4.4 5.6 3.5 8 3.5zm0 2.5c1.6 0 3.1 0.6 4.2 1.6l1.2-1.2C12 4.9 10 4 8 4S4 4.9 2.6 6.4l1.2 1.2C4.9 6.6 6.4 6 8 6zm0 3a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>
+            <svg viewBox="0 0 24 12"><rect x="0" y="0" width="22" height="12" rx="2.5" fill="none" stroke="#fff" stroke-width="1"/><rect x="22.5" y="3.5" width="1.5" height="5" rx="0.6"/><rect x="2" y="2" width="18" height="8" rx="1.2"/></svg>
+          </span>
+        </div>
+
+        <div class="wa-header">
+          <div class="back"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></div>
+          <div class="avatar-wrap">
+            <div class="avatar"></div>
+            <div class="online-dot"></div>
+          </div>
+          <div class="who-info">
+            <span class="name" id="wa10v-name"></span>
+            <span class="status" id="wa10v-status"></span>
+          </div>
+          <div class="header-actions">
+            <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0122 16.92z"/></svg>
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+          </div>
+        </div>
+
+        <div class="chat">
+          <div class="date-pill old" id="wa10v-date-old">YESTERDAY</div>
+          <div class="bubble in tail old" id="wa10v-old-b1">
+            <span id="wa10v-old-1-text"></span>
+            <span class="meta"><span>11:14</span></span>
+          </div>
+          <div class="bubble out tail old" id="wa10v-old-b2">
+            <span id="wa10v-old-2-text"></span>
+            <span class="meta"><span>11:15</span><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/><polyline points="22 11 14 19"/></svg></span></span>
+          </div>
+          <div class="bubble in tail old" id="wa10v-old-b3">
+            <span id="wa10v-old-3-text"></span>
+            <span class="meta"><span>11:32</span></span>
+          </div>
+
+          <div class="date-pill" id="wa10v-date">TODAY</div>
+
+          <div class="bubble in tail" id="wa10v-b1">
+            <span id="wa10v-b1-text"></span>
+            <span class="meta"><span id="wa10v-t1"></span></span>
+          </div>
+          <div class="bubble out tail" id="wa10v-b2">
+            <span id="wa10v-b2-text"></span>
+            <span class="meta"><span id="wa10v-t2"></span><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/><polyline points="22 11 14 19"/></svg></span></span>
+          </div>
+
+          <div class="sticker out s1" id="wa10v-st1" data-time="12:42 ✓✓"></div>
+
+          <div class="bubble in stacked" id="wa10v-b3">
+            <span id="wa10v-b3-text"></span>
+            <span class="meta"><span id="wa10v-t3"></span></span>
+          </div>
+          <div class="bubble in tail" id="wa10v-b4">
+            <span id="wa10v-b4-text"></span>
+            <span class="meta"><span id="wa10v-t4"></span></span>
+          </div>
+
+          <div class="sticker in s2" id="wa10v-st2" data-time="12:43"></div>
+
+          <div class="typing" id="wa10v-typing">
+            <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
+          </div>
+          <div class="bubble out tail" id="wa10v-b5">
+            <span id="wa10v-b5-text"></span>
+            <span class="meta"><span id="wa10v-t5"></span><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/><polyline points="22 11 14 19"/></svg></span></span>
+          </div>
+        </div>
+
+        <div class="input-bar">
+          <div class="input-pill">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+            <span>Message</span>
+          </div>
+          <div class="send-btn">
+            <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["conversationapp-whatsapp-10-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="conversationapp-whatsapp-10-tb-v"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, '"' + String(val) + '"'); };
+      const setRaw = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, String(val)); };
+      setStr("--wa-name",   V.name);
+      setStr("--wa-status", V.status);
+      setStr("--wa-1", V.msg1); setStr("--wa-2", V.msg2); setStr("--wa-3", V.msg3);
+      setStr("--wa-4", V.msg4); setStr("--wa-5", V.msg5);
+      setStr("--wa-old-1", V.oldMsg1); setStr("--wa-old-2", V.oldMsg2); setStr("--wa-old-3", V.oldMsg3);
+      setRaw("--tb-accent", V.accent);
+      setRaw("--tb-bg",     V.bg);
+
+      $("#wa10v-name").textContent     = G("--wa-name");
+      $("#wa10v-status").textContent   = G("--wa-status");
+      $("#wa10v-b1-text").textContent  = G("--wa-1");
+      $("#wa10v-b2-text").textContent  = G("--wa-2");
+      $("#wa10v-b3-text").textContent  = G("--wa-3");
+      $("#wa10v-b4-text").textContent  = G("--wa-4");
+      $("#wa10v-b5-text").textContent  = G("--wa-5");
+      $("#wa10v-old-1-text").textContent = G("--wa-old-1");
+      $("#wa10v-old-2-text").textContent = G("--wa-old-2");
+      $("#wa10v-old-3-text").textContent = G("--wa-old-3");
+      [1,2,3,4,5].forEach(i => $("#wa10v-t"+i).textContent = G("--wa-time-"+i));
+
+      const tl = gsap.timeline({ paused: true });
+
+      ["#wa10v-date-old", "#wa10v-old-b1", "#wa10v-old-b2", "#wa10v-old-b3"].forEach((sel, i) => {
+        gsap.set(sel, { opacity: 0.45, y: 0, scale: 1 });
+      });
+
+      const dp = $("#wa10v-date");
+      gsap.set(dp, { y: -8, scale: 0.9 });
+      tl.to(dp, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2)" }, 0.15);
+
+      const bubbleTimes = [0.5, 1.15, 1.85, 2.35, 3.9];
+      [1,2,3,4,5].forEach((i, idx) => {
+        const b = $("#wa10v-b"+i);
+        const at = bubbleTimes[idx];
+        gsap.set(b, { y: 30, scale: 0.85 });
+        tl.to(b, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, at);
+      });
+
+      const st1 = $("#wa10v-st1");
+      gsap.set(st1, { y: 24, scale: 0.6, rotation: -6 });
+      tl.to(st1, { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.4)" }, 1.55);
+      tl.to(st1, { rotation: 4, duration: 0.6, yoyo: true, repeat: 1, ease: "sine.inOut" }, 2.05);
+
+      const st2 = $("#wa10v-st2");
+      gsap.set(st2, { y: 24, scale: 0.6, rotation: 5 });
+      tl.to(st2, { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.4)" }, 2.7);
+      tl.to(st2, { rotation: -4, duration: 0.6, yoyo: true, repeat: 1, ease: "sine.inOut" }, 3.2);
+
+      const tt = $("#wa10v-typing");
+      gsap.set(tt, { y: 18, scale: 0.9 });
+      tl.to(tt, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 2.95);
+      const dots = tt.querySelectorAll(".typing-dot");
+      dots.forEach((d, i) => {
+        tl.to(d, { y: -3, duration: 0.18, ease: "power2.out", yoyo: true, repeat: 4 }, 3.15 + i * 0.06);
+      });
+      tl.to(tt, { opacity: 0, y: 10, scale: 0.85, duration: 0.25, ease: "power2.in" }, 3.7);
+
+      tl.to({}, { duration: 6 }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

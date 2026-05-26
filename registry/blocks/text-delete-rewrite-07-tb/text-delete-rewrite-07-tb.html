@@ -1,0 +1,144 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  text-delete-rewrite-07-tb
+  Tareabox Hyperframes Effect
+  Description: First phrase types out, gets deleted character by character, then a new phrase appears.
+  Category: text
+  Duration: 4 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="text-delete-rewrite-07-tb" data-composition-id="text-delete-rewrite-07-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="4">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-delete-rewrite-07-tb"] {
+      --tb-bg:           #0a0a0a;
+      --tb-text:         #ffffff;
+      --tb-text-dim:     #6b7280;
+      --tb-accent:       var(--tb-brand-accent, #ef4444);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --phrase-a: "Manual process";
+      --phrase-b: "AUTOMATED";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-delete-rewrite-07-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="text-delete-rewrite-07-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="text-delete-rewrite-07-tb"] .stage {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 10%;
+    }
+    [data-composition-id="text-delete-rewrite-07-tb"] .headline {
+      font-size: clamp(36px, 7.5vmin, 90px);
+      font-weight: 700;
+      color: var(--tb-text);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      min-height: 1.2em;
+      overflow: hidden;
+    }
+    [data-composition-id="text-delete-rewrite-07-tb"] .headline.phase-b {
+      color: var(--tb-accent);
+      font-weight: 900;
+      font-size: clamp(44px, 9vmin, 110px);
+    }
+    [data-composition-id="text-delete-rewrite-07-tb"] .cursor {
+      display: inline-block;
+      width: 0.055em; height: 0.88em;
+      background: var(--tb-accent);
+      margin-left: 0.05em;
+      vertical-align: text-bottom;
+      transform: translateY(0.05em);
+    }
+    [data-composition-id="text-delete-rewrite-07-tb"] .cursor.blink {
+      animation: dr07-blink 0.5s steps(2, end) infinite;
+    }
+    @keyframes dr07-blink { 50% { opacity: 0; } }
+    [data-composition-id="text-delete-rewrite-07-tb"] .strikethrough {
+      position: absolute; top: 50%; left: 10%;
+      height: 3px; width: 0;
+      background: var(--tb-accent);
+      transform: translateY(-50%);
+    }
+</style>
+
+    <div class="stage">
+      <h1 class="headline"><span class="typed"></span><span class="cursor"></span></h1>
+    </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["text-delete-rewrite-07-tb"] = (function () {
+      const root    = document.querySelector('[data-composition-id="text-delete-rewrite-07-tb"]');
+      const cs      = getComputedStyle(root);
+      const typedEl = root.querySelector(".typed");
+      const cursor  = root.querySelector(".cursor");
+      const headEl  = root.querySelector(".headline");
+      const phraseA = cs.getPropertyValue("--phrase-a").trim().replace(/^["']|["']$/g, "");
+      const phraseB = cs.getPropertyValue("--phrase-b").trim().replace(/^["']|["']$/g, "");
+      const TOTAL = 4;
+
+      const TYPE_A  = 0.9;
+      const HOLD_A  = 0.5;
+      const DEL_A   = 0.7;
+      const TYPE_B  = 0.8;
+
+      typedEl.textContent = "";
+      const cA = { v: 0 };
+      const cB = { v: 0 };
+
+      const tl = gsap.timeline({ paused: true });
+
+      // Type phrase A
+      tl.to(cA, {
+        v: phraseA.length, duration: TYPE_A, ease: "none", snap: { v: 1 },
+        onUpdate: () => { typedEl.textContent = phraseA.slice(0, Math.floor(cA.v)); }
+      }, 0.1);
+
+      // Hold A then delete
+      tl.call(() => cursor.classList.add("blink"), [], 0.1 + TYPE_A);
+      const startDel = 0.1 + TYPE_A + HOLD_A;
+      tl.call(() => cursor.classList.remove("blink"), [], startDel);
+      tl.to(cA, {
+        v: 0, duration: DEL_A, ease: "none", snap: { v: 1 },
+        onUpdate: () => { typedEl.textContent = phraseA.slice(0, Math.floor(cA.v)); }
+      }, startDel);
+
+      // Switch to phrase B style, type it
+      const startB = startDel + DEL_A + 0.1;
+      tl.call(() => headEl.classList.add("phase-b"), [], startB);
+      tl.to(cB, {
+        v: phraseB.length, duration: TYPE_B, ease: "none", snap: { v: 1 },
+        onUpdate: () => { typedEl.textContent = phraseB.slice(0, Math.floor(cB.v)); }
+      }, startB);
+      tl.call(() => cursor.classList.add("blink"), [], startB + TYPE_B);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

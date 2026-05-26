@@ -1,0 +1,24 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "visual-gif-burst-10-tb-v",
+  "type": "hyperframes:block",
+  "title": "Visual Gif Burst (Vertical)",
+  "description": "Talking head con 7 GIFs que explotan desde el centro con stagger y rotacion, en formato vertical 9:16",
+  "tags": ["visual", "gif", "vertical", "tareabox"],
+  "dimensions": {"width": 1080, "height": 1920},
+  "duration": 6.0,
+  "files": [
+    {"path": "visual-gif-burst-10-tb-v.html", "target": "compositions/visual-gif-burst-10-tb-v.html", "type": "hyperframes:composition"},
+    {"path": "tb-media/tb-react-omg.mp4",          "target": "assets/tb-media/tb-react-omg.mp4",          "type": "hyperframes:asset"},
+    {"path": "tb-media/tb-react-omg-2.mp4",        "target": "assets/tb-media/tb-react-omg-2.mp4",        "type": "hyperframes:asset"},
+    {"path": "tb-media/tb-react-omg-3.mp4",        "target": "assets/tb-media/tb-react-omg-3.mp4",        "type": "hyperframes:asset"},
+    {"path": "tb-media/tb-react-mind-blown.mp4",   "target": "assets/tb-media/tb-react-mind-blown.mp4",   "type": "hyperframes:asset"},
+    {"path": "tb-media/tb-react-mind-blown-2.mp4", "target": "assets/tb-media/tb-react-mind-blown-2.mp4", "type": "hyperframes:asset"},
+    {"path": "tb-media/tb-react-clap.mp4",         "target": "assets/tb-media/tb-react-clap.mp4",         "type": "hyperframes:asset"},
+    {"path": "tb-media/tb-react-clap-2.mp4",       "target": "assets/tb-media/tb-react-clap-2.mp4",       "type": "hyperframes:asset"}
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-visual-gif-burst-10-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-visual-gif-burst-10-tb-v.png"
+  }
+}

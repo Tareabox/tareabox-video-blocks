@@ -1,0 +1,242 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  layout-yt-reaction-title-06-tb
+  Tareabox Hyperframes Effect
+  Description: Face cam 45% right, large content/opinion card on the left — reaction and commentary format popular with tech and opinion creators.
+  Category: layout
+  Duration: 5 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="layout-yt-reaction-title-06-tb" data-composition-id="layout-yt-reaction-title-06-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="5">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-yt-reaction-title-06-tb"] {
+      --tb-bg:           #09090b;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #d4d4d8;
+      --tb-accent:       var(--tb-brand-accent, #ec4899);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --rt-eyebrow:  "Why I built this";
+      --rt-title:    "Tutorial layouts that don't suck";
+      --rt-body:     "After 200+ videos, I packaged what worked.";
+      --rt-rating:   "v1.0";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="layout-yt-reaction-title-06-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: #09090b;
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="layout-yt-reaction-title-06-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Right panel — face cam */
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .face-panel {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 45%;
+      overflow: hidden;
+    }
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .face-video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .face-grad {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to left,
+        transparent 50%,
+        rgba(9,9,11,0.85) 100%
+      );
+    }
+
+    /* Left content panel */
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .content-panel {
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 58%;
+      display: flex;
+      align-items: center;
+      padding: 0 5% 0 6%;
+    }
+
+    /* Glass card */
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .card {
+      width: 100%;
+      background: rgba(9,9,11,0.78);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-left: 4px solid var(--tb-accent);
+      border-radius: 18px;
+      padding: 5% 5.5%;
+      backdrop-filter: blur(16px);
+      display: flex; flex-direction: column;
+      gap: 3vmin;
+      opacity: 0;
+    }
+
+    /* Eyebrow row */
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .card-eyebrow {
+      display: flex; align-items: center;
+      gap: 1.6vmin;
+    }
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .eyebrow-dot {
+      width: 1.8vmin; height: 1.8vmin;
+      border-radius: 50%;
+      background: var(--tb-accent);
+      box-shadow: 0 0 12px color-mix(in srgb, var(--tb-accent) 80%, transparent);
+      flex-shrink: 0;
+    }
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .eyebrow-text {
+      font-size: clamp(20px, 2.2vmin, 30px);
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--tb-accent);
+    }
+
+    /* Main title */
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .card-title {
+      font-size: clamp(40px, 5.4vmin, 76px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--tb-text);
+    }
+
+    /* Body text */
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .card-body {
+      font-size: clamp(22px, 2.6vmin, 36px);
+      font-weight: 400;
+      color: var(--tb-text-dim);
+      line-height: 1.45;
+    }
+
+    /* Rating badge */
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .card-rating {
+      display: flex; align-items: center; gap: 2vmin;
+      margin-top: 0.8vmin;
+    }
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .rating-label {
+      font-size: clamp(18px, 2vmin, 28px);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--tb-text-dim);
+    }
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .rating-value {
+      font-size: clamp(30px, 3.6vmin, 50px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--tb-accent);
+    }
+
+    /* Stars row — inline SVG repeated */
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .stars {
+      display: flex; gap: 0.6vmin; align-items: center;
+    }
+    [data-composition-id="layout-yt-reaction-title-06-tb"] .stars svg {
+      width: clamp(20px, 2.4vmin, 32px);
+      height: clamp(20px, 2.4vmin, 32px);
+    }
+</style>
+
+
+    <!-- Face cam right -->
+    <div class="face-panel">
+      <!--
+        ASSET (horizontal) — demo from Pexels (free license, attribution in README).
+        To use your own footage, replace the `src` with one of these:
+          Public URL:   src="https://yourdomain.com/your-video.mp4"
+          Local path:   src="../assets/tb-media/your-video.mp4"
+                        (the `..` walks up from compositions/ to the project root)
+      -->
+      <video id="yr06-face"
+             class="face-video"
+             src="https://videos.pexels.com/video-files/8048324/8048324-hd_1280_720_50fps.mp4" crossorigin="anonymous" data-tb-asset="horizontal"
+             data-start="0" data-duration="5" data-track-index="0"
+             muted playsinline></video>
+      <div class="face-grad"></div>
+    </div>
+
+    <!-- Content card left -->
+    <div class="content-panel">
+      <div class="card" id="yr06-card">
+        <div class="card-eyebrow">
+          <div class="eyebrow-dot"></div>
+          <span class="eyebrow-text" id="yr06-eyebrow"></span>
+        </div>
+        <div class="card-title" id="yr06-title"></div>
+        <div class="card-body" id="yr06-body"></div>
+        <div class="card-rating">
+          <span class="rating-label">Rating</span>
+          <span class="rating-value" id="yr06-rating"></span>
+          <div class="stars">
+            <!-- 5 filled stars (Phosphor Star icon inline) -->
+            <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M128 20.2l26.8 54.3 59.9 8.7-43.4 42.3 10.2 59.7L128 157.6l-53.5 28.1 10.2-59.7L41.3 83.2l59.9-8.7L128 20.2z" fill="currentColor" style="color: var(--tb-accent)"/>
+            </svg>
+            <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M128 20.2l26.8 54.3 59.9 8.7-43.4 42.3 10.2 59.7L128 157.6l-53.5 28.1 10.2-59.7L41.3 83.2l59.9-8.7L128 20.2z" fill="currentColor" style="color: var(--tb-accent)"/>
+            </svg>
+            <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M128 20.2l26.8 54.3 59.9 8.7-43.4 42.3 10.2 59.7L128 157.6l-53.5 28.1 10.2-59.7L41.3 83.2l59.9-8.7L128 20.2z" fill="currentColor" style="color: var(--tb-accent)"/>
+            </svg>
+            <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M128 20.2l26.8 54.3 59.9 8.7-43.4 42.3 10.2 59.7L128 157.6l-53.5 28.1 10.2-59.7L41.3 83.2l59.9-8.7L128 20.2z" fill="currentColor" style="color: var(--tb-accent)"/>
+            </svg>
+            <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M128 20.2l26.8 54.3 59.9 8.7-43.4 42.3 10.2 59.7L128 157.6l-53.5 28.1 10.2-59.7L41.3 83.2l59.9-8.7L128 20.2z" fill="currentColor" style="color: color-mix(in srgb, var(--tb-accent) 30%, transparent)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["layout-yt-reaction-title-06-tb"] = (function () {
+      const root = document.querySelector('[data-composition-id="layout-yt-reaction-title-06-tb"]');
+      const cs   = getComputedStyle(root);
+      const card = root.querySelector("#yr06-card");
+
+      root.querySelector("#yr06-eyebrow").textContent = cs.getPropertyValue("--rt-eyebrow").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#yr06-title").textContent   = cs.getPropertyValue("--rt-title").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#yr06-body").textContent    = cs.getPropertyValue("--rt-body").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#yr06-rating").textContent  = cs.getPropertyValue("--rt-rating").trim().replace(/^["']|["']$/g,"");
+
+      const TOTAL = 5;
+      const tl = gsap.timeline({ paused: true });
+
+      gsap.set(card, { x: -30, scale: 0.97 });
+      tl.to(card, { opacity: 1, x: 0, scale: 1, duration: 0.55, ease: "expo.out" }, 0.25);
+
+      /* Stagger children after card arrives */
+      const kids = card.children;
+      gsap.set(kids, { opacity: 0, y: 12 });
+      tl.to(kids, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out", stagger: 0.1 }, 0.45);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

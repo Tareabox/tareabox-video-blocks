@@ -1,0 +1,20 @@
+{
+  "name": "layout-perspective-scroll-14-tb",
+  "description": "Phone mockup floating in 3D perspective with scrolling content feed. Tilted device with cards, real thumbnails via YouTube CDN, gentle floating animation. Trendy 2026 app showcase style.",
+  "category": "layout",
+  "dimensions": { "width": 1920, "height": 1080 },
+  "duration": 8,
+  "tags": ["phone", "mockup", "perspective", "3d", "scroll", "app", "cards"],
+  "variables": [
+    { "id": "headerText", "type": "string", "label": "Feed header", "default": "Trending" },
+    { "id": "accent", "type": "color", "label": "Accent color", "default": "#3b82f6" },
+    { "id": "bg", "type": "color", "label": "Background color", "default": "#0a0a0a" }
+  ],
+  "files": [
+    "layout-perspective-scroll-14-tb.html"
+  ],
+  "dependencies": {
+    "fonts": ["Inter"],
+    "cdn": ["gsap@3.14.2"]
+  }
+}

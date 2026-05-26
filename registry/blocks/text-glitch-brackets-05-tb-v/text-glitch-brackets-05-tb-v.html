@@ -1,0 +1,284 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  text-glitch-brackets-05-tb-v (vertical 1080x1920)
+  Description: Text reveals through real glitch — RGB split, slice tearing, scanlines, sustained flicker. Framed by animated corner brackets.
+  Category: text
+  Duration: 3 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"headline","type":"string","label":"Headline","default":"SYSTEM ERROR"},
+  {"id":"label","type":"string","label":"Label","default":"[ OVERRIDE ]"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#f97316"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#0a0a0a"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@500;700&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="text-glitch-brackets-05-tb-v" data-composition-id="text-glitch-brackets-05-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="3">
+<style>
+    [data-composition-id="text-glitch-brackets-05-tb-v"] {
+      --tb-bg:           #0a0a0a;
+      --tb-text:         #ffffff;
+      --tb-text-dim:     #6b7280;
+      --tb-accent:       var(--tb-brand-accent, #f97316);
+      --tb-glitch-cyan:  #00fff0;
+      --tb-glitch-magenta: #ff00aa;
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --headline: "SYSTEM ERROR";
+      --label:    "[ OVERRIDE ]";
+    }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .scanlines {
+      position: absolute; inset: 0;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0px,
+          transparent 2px,
+          rgba(255,255,255,0.03) 2px,
+          rgba(255,255,255,0.03) 3px
+        );
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0.6;
+    }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .stage {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 26px;
+      padding: 0 6%;
+    }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .label {
+      font-family: "Geist Mono", monospace;
+      font-size: clamp(20px, 2.4vmin, 34px);
+      font-weight: 700; letter-spacing: 0.25em;
+      color: var(--tb-accent);
+      opacity: 0;
+    }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .head-stack {
+      position: relative;
+      width: 100%;                    /* take full stage width so fitText has a real maxWidth */
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;               /* clip RGB glitch offset bleed */
+      padding-block: 8px;             /* breathing room for the slice clip-path */
+    }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .headline,
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .head-cyan,
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .head-magenta {
+      font-size: clamp(44px, 7vmin, 82px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-align: center;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .head-cyan,
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .head-magenta {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+      opacity: 0;
+    }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .head-cyan    { color: var(--tb-glitch-cyan); }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .head-magenta { color: var(--tb-glitch-magenta); }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .headline    {
+      color: var(--tb-text);
+      opacity: 0;
+      position: relative;
+      z-index: 2;
+    }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .head-slice {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      font-size: clamp(44px, 7vmin, 82px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--tb-text);
+      white-space: nowrap;
+      clip-path: inset(38% 0 48% 0);
+      pointer-events: none;
+      opacity: 0;
+      z-index: 3;
+    }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .bracket-frame {
+      position: absolute;
+      width: 88%; height: 38%;
+      top: 31%; left: 6%;
+    }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .corner {
+      position: absolute;
+      width: 56px; height: 56px;
+      border-color: var(--tb-accent);
+      border-style: solid;
+      opacity: 0;
+    }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .tl { top: 0; left: 0;   border-width: 5px 0 0 5px; }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .tr { top: 0; right: 0;  border-width: 5px 5px 0 0; }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .bl { bottom: 0; left: 0;  border-width: 0 0 5px 5px; }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .br { bottom: 0; right: 0; border-width: 0 5px 5px 0; }
+    [data-composition-id="text-glitch-brackets-05-tb-v"] .flash {
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.06);
+      mix-blend-mode: screen;
+      opacity: 0;
+      z-index: 6;
+      pointer-events: none;
+    }
+</style>
+
+    <div class="bracket-frame">
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+    </div>
+
+    <div class="stage">
+      <div class="label" id="gb05v-label"></div>
+      <div class="head-stack">
+        <span class="head-cyan"    id="gb05v-cyan"></span>
+        <span class="head-magenta" id="gb05v-magenta"></span>
+        <h1 class="headline"       id="gb05v-head"></h1>
+        <span class="head-slice"   id="gb05v-slice"></span>
+      </div>
+    </div>
+
+    <div class="scanlines"></div>
+    <div class="flash" id="gb05v-flash"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["text-glitch-brackets-05-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="text-glitch-brackets-05-tb-v"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g, "");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, '"' + String(val) + '"');
+      };
+      const setRaw = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, String(val));
+      };
+      setStr("--headline", V.headline);
+      setStr("--label",    V.label);
+      setRaw("--tb-accent", V.accent);
+      setRaw("--tb-bg",     V.bg);
+
+      const headline = G("--headline");
+      const label    = G("--label");
+      $("#gb05v-head").textContent    = headline;
+      $("#gb05v-cyan").textContent    = headline;
+      $("#gb05v-magenta").textContent = headline;
+      $("#gb05v-slice").textContent   = headline;
+      $("#gb05v-label").textContent   = label;
+
+      /* Dynamic font fit per HyperFrames skill (SKILL.md:366) — shrink only */
+      if (window.__hyperframes && window.__hyperframes.fitTextFontSize) {
+        [
+              document.getElementById("gb05v-head"),
+              document.getElementById("gb05v-cyan"),
+              document.getElementById("gb05v-magenta"),
+              document.getElementById("gb05v-slice"),
+              document.getElementById("gb05v-label")
+        ].forEach((__el) => {
+          try {
+            if (!__el || !__el.textContent || !__el.parentElement) return;
+            const __cs = getComputedStyle(__el);
+            const __cur = parseFloat(__cs.fontSize);
+            const __pw  = __el.parentElement.getBoundingClientRect().width || 0;
+            if (__pw < 40) return;
+            const __ff  = (__cs.fontFamily.split(",")[0] || "Geist").replace(/["\']/g,"").trim();
+            const __fw  = parseInt(__cs.fontWeight) || 700;
+            const __fit = window.__hyperframes.fitTextFontSize(__el.textContent, {
+              maxWidth: __pw * 0.96, fontFamily: __ff, fontWeight: __fw,
+            });
+            if (__fit && __fit < __cur) __el.style.fontSize = __fit + "px";
+          } catch (e) {}
+        });
+      }
+
+      const TOTAL = 3;
+      const tl = gsap.timeline({ paused: true });
+
+      const corners = root.querySelectorAll(".corner");
+      const head    = $("#gb05v-head");
+      const cyan    = $("#gb05v-cyan");
+      const magenta = $("#gb05v-magenta");
+      const slice   = $("#gb05v-slice");
+      const flash   = $("#gb05v-flash");
+      const labelEl = $("#gb05v-label");
+
+      tl.to(corners, { opacity: 1, duration: 0.2, stagger: 0.06, ease: "power2.out" }, 0.1);
+      tl.to(corners[0], { x: -10, y: -10, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.to(corners[1], { x:  10, y: -10, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.to(corners[2], { x: -10, y:  10, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.to(corners[3], { x:  10, y:  10, duration: 0.35, ease: "power2.out" }, 0.1);
+
+      tl.to(flash, { opacity: 0.5, duration: 0.04 }, 0.42);
+      tl.to(flash, { opacity: 0,   duration: 0.06 }, 0.46);
+
+      tl.to(cyan,    { opacity: 0.85, x: -22, duration: 0.05 }, 0.45);
+      tl.to(magenta, { opacity: 0.85, x:  22, duration: 0.05 }, 0.45);
+      tl.to(head,    { opacity: 1, duration: 0.05 }, 0.48);
+
+      tl.to(cyan,    { x: -3, opacity: 0.4, duration: 0.08 }, 0.55);
+      tl.to(magenta, { x:  3, opacity: 0.4, duration: 0.08 }, 0.55);
+
+      function glitchHit(at, intensity) {
+        const offset = 10 * intensity;
+        const sliceShift = 6 * intensity;
+        tl.to(head,    { x:  offset * 0.4, skewX:  3 * intensity, duration: 0.04, ease: "none" }, at);
+        tl.to(cyan,    { x: -offset, opacity: 0.85, duration: 0.04, ease: "none" }, at);
+        tl.to(magenta, { x:  offset, opacity: 0.85, duration: 0.04, ease: "none" }, at);
+        tl.to(slice,   { x:  sliceShift, opacity: 1, duration: 0.04, ease: "none" }, at);
+        tl.to(flash,   { opacity: 0.25 * intensity, duration: 0.03 }, at);
+        tl.to(head,    { x: 0, skewX: 0, duration: 0.07, ease: "none" }, at + 0.05);
+        tl.to(cyan,    { x: -3, opacity: 0.4, duration: 0.07, ease: "none" }, at + 0.05);
+        tl.to(magenta, { x:  3, opacity: 0.4, duration: 0.07, ease: "none" }, at + 0.05);
+        tl.to(slice,   { x: 0, opacity: 0, duration: 0.07, ease: "none" }, at + 0.05);
+        tl.to(flash,   { opacity: 0, duration: 0.07 }, at + 0.05);
+      }
+      glitchHit(0.95, 0.6);
+      glitchHit(1.30, 1.2);
+      glitchHit(1.65, 0.4);
+      glitchHit(1.95, 0.9);
+      glitchHit(2.40, 1.4);
+      glitchHit(2.75, 0.5);
+
+      tl.to(labelEl, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.85);
+      tl.to(labelEl, { opacity: 0.3, duration: 0.04, yoyo: true, repeat: 1 }, 1.30);
+      tl.to(labelEl, { opacity: 0.3, duration: 0.04, yoyo: true, repeat: 1 }, 2.40);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

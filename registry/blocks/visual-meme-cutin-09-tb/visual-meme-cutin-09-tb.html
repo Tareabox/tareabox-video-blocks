@@ -1,0 +1,203 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  visual-meme-cutin-09-tb (horizontal 1920x1080)
+  Video shrinks to corner PIP, GIF takes over fullscreen with "MOOD:" label, then video back.
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"labelPrefix","type":"string","label":"Label prefix","default":"MOOD:"},
+  {"id":"labelText","type":"string","label":"Label text","default":"ABSOLUTE CHAOS"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#EA9F84"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#000000"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;800;900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="visual-meme-cutin-09-tb" data-composition-id="visual-meme-cutin-09-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="6">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="visual-meme-cutin-09-tb"] {
+      --tb-bg:           #000000;
+      --tb-accent:       var(--tb-brand-accent, #EA9F84);
+      --tb-text:         #ffffff;
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --gif-src: url("../assets/tb-media/tb-react-mind-blown.mp4");
+
+      --label-prefix: "MOOD:";
+      --label-text:   "ABSOLUTE CHAOS";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                           */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="visual-meme-cutin-09-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="visual-meme-cutin-09-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Video bg (transforma a PIP en el cut-in) */
+    [data-composition-id="visual-meme-cutin-09-tb"] .bg-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: 25% center;
+      transform-origin: top right;
+      z-index: 1;
+    }
+    /* Borde blanco para PIP cuando se achica */
+    [data-composition-id="visual-meme-cutin-09-tb"] .pip-frame {
+      position: absolute;
+      top: 4%; right: 4%;
+      width: 30%; height: 25%;
+      border: 0.4vmin solid white;
+      border-radius: 1.8vmin;
+      box-shadow: 0 1.2vmin 3vmin rgba(0,0,0,0.6);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* GIF fullscreen overlay (img tag para que el GIF anime) */
+    [data-composition-id="visual-meme-cutin-09-tb"] .gif-fullscreen {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      background-color: #111;
+      opacity: 0;
+      z-index: 3;
+      display: block;
+    }
+
+    [data-composition-id="visual-meme-cutin-09-tb"] .vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.7) 100%);
+      opacity: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    [data-composition-id="visual-meme-cutin-09-tb"] .label-block {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 5;
+      opacity: 0;
+    }
+    [data-composition-id="visual-meme-cutin-09-tb"] .label-prefix {
+      display: block;
+      font-size: clamp(28px, 4vmin, 56px);
+      font-weight: 800;
+      color: var(--tb-accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1.2vmin;
+    }
+    [data-composition-id="visual-meme-cutin-09-tb"] .label-text {
+      display: block;
+      font-size: clamp(60px, 8vmin, 120px);
+      font-weight: 900;
+      color: white;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      text-transform: uppercase;
+      text-shadow: 0 0.8vmin 2.4vmin rgba(0,0,0,0.8);
+    }
+</style>
+
+
+    <!--
+      ASSET (vertical) — demo from Pexels (free license, attribution in README).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+                      (the `..` walks up from compositions/ to the project root)
+    -->
+    <video class="bg-video" id="n14h-bg"
+           data-start="0" data-duration="6" data-track-index="0"
+           src="https://videos.pexels.com/video-files/8048324/8048324-hd_1920_1080_25fps.mp4" crossorigin="anonymous" data-tb-asset="horizontal"
+           muted playsinline></video>
+
+    <div class="pip-frame" id="n14h-pip"></div>
+    <video class="gif-fullscreen" id="n14h-gif" src="../assets/tb-media/tb-react-mind-blown.mp4"
+           data-start="0" data-duration="6" data-track-index="11" muted playsinline loop></video>
+    <div class="vignette" id="n14h-vig"></div>
+
+    <div class="label-block" id="n14h-label">
+      <span class="label-prefix" id="n14h-prefix"></span>
+      <span class="label-text"   id="n14h-text"></span>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["visual-meme-cutin-09-tb"] = (function () {
+      const root = document.querySelector('[data-composition-id="visual-meme-cutin-09-tb"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, '"' + String(val) + '"'); };
+      const setRaw = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, String(val)); };
+      setStr("--label-prefix", V.labelPrefix);
+      setStr("--label-text",   V.labelText);
+      setRaw("--tb-accent",    V.accent);
+      setRaw("--tb-bg",        V.bg);
+
+      $("#n14h-prefix").textContent = G("--label-prefix");
+      $("#n14h-text").textContent   = G("--label-text");
+
+      const gifSrc = cs.getPropertyValue("--gif-src").trim().replace(/^url\(["']?|["']?\)$/g, "");
+      if (gifSrc && gifSrc.length > 3) $("#n14h-gif").src = gifSrc;
+
+      const TOTAL = 6;
+      const tl = gsap.timeline({ paused: true });
+      const bg = $("#n14h-bg");
+
+      // Cut-in
+      tl.to(bg, {
+        scale: 0.3,
+        x: () => root.offsetWidth * 0.34,
+        y: () => -root.offsetHeight * 0.36,
+        borderRadius: 18,
+        duration: 0.4,
+        ease: "back.out(1.6)"
+      }, 1.5);
+
+      tl.to("#n14h-pip", { opacity: 1, duration: 0.3 }, 1.5);
+      tl.to("#n14h-gif", { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.5);
+      tl.to("#n14h-vig", { opacity: 1, duration: 0.5 }, 1.7);
+
+      gsap.set("#n14h-label", { scale: 0.6, y: 40 });
+      tl.to("#n14h-label", {
+        opacity: 1, scale: 1, y: 0,
+        duration: 0.5, ease: "back.out(2)"
+      }, 1.9);
+
+      tl.to("#n14h-label", { opacity: 0, scale: 0.85, duration: 0.3, ease: "power2.in" }, 4.3);
+      tl.to("#n14h-vig",   { opacity: 0, duration: 0.35 }, 4.3);
+      tl.to("#n14h-gif",   { opacity: 0, duration: 0.4, ease: "power2.in" }, 4.4);
+      tl.to("#n14h-pip",   { opacity: 0, duration: 0.3 }, 4.4);
+      tl.to(bg, {
+        scale: 1, x: 0, y: 0, borderRadius: 0,
+        duration: 0.5, ease: "back.out(1.4)"
+      }, 4.4);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

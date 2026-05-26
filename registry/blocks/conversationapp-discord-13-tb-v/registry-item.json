@@ -1,0 +1,17 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "conversationapp-discord-13-tb-v",
+  "type": "hyperframes:block",
+  "title": "Conversationapp Discord (Vertical)",
+  "description": "Vertical 9:16 — Mensaje de Discord con avatar, MOD tag, timestamp y reacciones en formato vertical 9:16",
+  "tags": ["conversationapp", "discord", "vertical", "tareabox"],
+  "dimensions": {"width": 1080, "height": 1920},
+  "duration": 4.0,
+  "files": [
+    {"path": "conversationapp-discord-13-tb-v.html", "target": "compositions/conversationapp-discord-13-tb-v.html", "type": "hyperframes:composition"}
+  ],
+  "preview": {
+    "video":  "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-conversationapp-discord-13-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-conversationapp-discord-13-tb-v.png"
+  }
+}

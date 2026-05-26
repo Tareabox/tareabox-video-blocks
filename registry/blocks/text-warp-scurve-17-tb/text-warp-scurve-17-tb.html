@@ -1,0 +1,114 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  text-warp-scurve-17-tb
+  Tareabox Hyperframes Effect
+  Description: Text flows along a diagonal S-curve SVG path, sliding smoothly from start to finish.
+  Category: text
+  Duration: 3 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="text-warp-scurve-17-tb" data-composition-id="text-warp-scurve-17-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="6">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-warp-scurve-17-tb"] {
+      --tb-bg:           #0e0e10;
+      --tb-text:         #ffffff;
+      --tb-text-dim:     #6b7280;
+      --tb-accent:       var(--tb-brand-accent, #ec4899);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --headline: "FLOW WITH IT";
+      --label:    "";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-warp-scurve-17-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="text-warp-scurve-17-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="text-warp-scurve-17-tb"] .label {
+      position: absolute;
+      top: 7%; left: 0; right: 0;
+      text-align: center;
+      font-size: clamp(10px, 1.1vmin, 13px);
+      font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--tb-accent);
+      opacity: 0;
+    }
+    [data-composition-id="text-warp-scurve-17-tb"] .svg-stage {
+      position: absolute; inset: 0;
+    }
+</style>
+    <div class="label" id="sc17-label"></div>
+    <svg class="svg-stage" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+      <defs>
+        <!-- Path = entrada lineal off-screen + S-curve ORIGINAL EXACTA + salida lineal off-screen.
+             La S-curve del medio (control points 1440,200 y 480,880) es idéntica a la original. -->
+        <path id="sc17-path" d="M -250,200 L 480,200 C 1440,200 480,880 1440,880 L 2170,880" />
+      </defs>
+      <!-- Guide visible solo de la S-curve interior (idéntico al original) -->
+      <path id="sc17-guide" fill="none" stroke="white" stroke-width="1.5" opacity="0.06"
+            d="M 480,200 C 1440,200 480,880 1440,880" />
+      <text id="sc17-text" font-weight="800" font-size="82" opacity="0">
+        <textPath href="#sc17-path" id="sc17-tp" startOffset="0%"></textPath>
+      </text>
+    </svg>
+  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["text-warp-scurve-17-tb"] = (function () {
+      const root    = document.querySelector('[data-composition-id="text-warp-scurve-17-tb"]');
+      const cs      = getComputedStyle(root);
+      const labelEl = root.querySelector("#sc17-label");
+      const textEl  = root.querySelector("#sc17-text");
+      const tpEl    = root.querySelector("#sc17-tp");
+
+      const headline = cs.getPropertyValue("--headline").trim().replace(/^["']|["']$/g, "");
+      const label    = cs.getPropertyValue("--label").trim().replace(/^["']|["']$/g, "");
+      const accent   = cs.getPropertyValue("--tb-accent").trim();
+
+      labelEl.textContent = label;
+      tpEl.textContent    = headline;
+      textEl.setAttribute("fill", accent);
+
+      const TOTAL = 6;
+      const tl = gsap.timeline({ paused: true });
+      const state = { offset: 8 };
+      tl.to(labelEl, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.to(textEl,  { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.2);
+
+      /* Path nuevo es ~1.7x más largo que el original (linear ext + S-curve + linear ext)
+         → para mantener MISMA velocidad visual, duración escala proporcional: 2.4s × 1.7 = 4.1s */
+      tl.to(state, {
+        offset: 92,
+        duration: 5.0,
+        ease: "power3.inOut",
+        onUpdate: () => tpEl.setAttribute("startOffset", state.offset + "%")
+      }, 0.3);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

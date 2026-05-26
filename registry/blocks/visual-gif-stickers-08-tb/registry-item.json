@@ -1,0 +1,20 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "visual-gif-stickers-08-tb",
+  "type": "hyperframes:block",
+  "title": "Visual Gif Stickers (Horizontal)",
+  "description": "Talking head con 3 GIFs como stickers que aparecen y se anclan en distintas posiciones, en formato horizontal 16:9",
+  "tags": ["visual", "gif", "horizontal", "tareabox"],
+  "dimensions": {"width": 1920, "height": 1080},
+  "duration": 6.0,
+  "files": [
+    {"path": "visual-gif-stickers-08-tb.html", "target": "compositions/visual-gif-stickers-08-tb.html", "type": "hyperframes:composition"},
+    {"path": "tb-media/tb-react-omg.mp4", "target": "assets/tb-media/tb-react-omg.mp4", "type": "hyperframes:asset"},
+    {"path": "tb-media/tb-react-clap.mp4", "target": "assets/tb-media/tb-react-clap.mp4", "type": "hyperframes:asset"},
+    {"path": "tb-media/tb-react-mind-blown.mp4", "target": "assets/tb-media/tb-react-mind-blown.mp4", "type": "hyperframes:asset"}
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-visual-gif-stickers-08-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-visual-gif-stickers-08-tb.png"
+  }
+}

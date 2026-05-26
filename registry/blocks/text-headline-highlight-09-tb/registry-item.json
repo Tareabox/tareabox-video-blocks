@@ -1,0 +1,27 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "text-headline-highlight-09-tb",
+  "type": "hyperframes:block",
+  "title": "Text Headline Highlight",
+  "description": "Efecto Tareabox: Text Headline Highlight",
+  "tags": [
+    "text",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 3.5,
+  "files": [
+    {
+      "path": "text-headline-highlight-09-tb.html",
+      "target": "compositions/text-headline-highlight-09-tb.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-headline-highlight-09-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-headline-highlight-09-tb.png"
+  }
+}

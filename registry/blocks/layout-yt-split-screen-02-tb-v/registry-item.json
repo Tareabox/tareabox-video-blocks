@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "layout-yt-split-screen-02-tb-v",
+  "type": "hyperframes:block",
+  "title": "Layout Yt Split Screen (Vertical)",
+  "description": "Split screen top/bottom: face cam arriba y screen abajo, en formato vertical 9:16",
+  "tags": [
+    "layout",
+    "yt",
+    "split",
+    "vertical",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1080,
+    "height": 1920
+  },
+  "duration": 5.0,
+  "files": [
+    {
+      "path": "layout-yt-split-screen-02-tb-v.html",
+      "target": "compositions/layout-yt-split-screen-02-tb-v.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-yt-split-screen-02-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-yt-split-screen-02-tb-v.png"
+  }
+}

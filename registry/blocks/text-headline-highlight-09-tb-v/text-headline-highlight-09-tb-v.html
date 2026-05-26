@@ -1,0 +1,179 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  text-headline-highlight-09-tb-v (vertical 1080x1920)
+  Tareabox Hyperframes Effect
+  Description: Headline fades in, then a marker highlight sweeps under the key word.
+  Category: text
+  Duration: 3.5 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"text","type":"string","label":"Headline (mark highlights with {*word*}, line breaks with \\n)","default":"The only tool you\n{*actually*} {*need*}\nto grow {*faster*}"},
+  {"id":"accent","type":"color","label":"Highlight color","default":"#39e4e4"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#0a0a0a"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="text-headline-highlight-09-tb-v" data-composition-id="text-headline-highlight-09-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="3.5">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-headline-highlight-09-tb-v"] {
+      --tb-bg:           #0a0a0a;
+      --tb-text:         #ffffff;
+      --tb-text-dim:     #6b7280;
+      --tb-accent:       var(--tb-brand-accent, #39e4e4);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --pre-text:  "The only tool you";
+      --highlight: "actually need";
+      --post-text: "to grow faster";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-headline-highlight-09-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="text-headline-highlight-09-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="text-headline-highlight-09-tb-v"] .bg-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    [data-composition-id="text-headline-highlight-09-tb-v"] .stage {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 12% 7%; gap: 1.4vmin;
+      z-index: 2;
+    }
+    /* Vertical: bigger lines */
+    [data-composition-id="text-headline-highlight-09-tb-v"] .line {
+      font-size: clamp(36px, 8vmin, 110px);
+      font-weight: 600;
+      color: var(--tb-text);
+      line-height: 1.12;
+      text-align: center;
+      overflow: hidden;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.7);
+    }
+    [data-composition-id="text-headline-highlight-09-tb-v"] .highlight-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    [data-composition-id="text-headline-highlight-09-tb-v"] .highlight-wrap .hl-text {
+      position: relative;
+      z-index: 2;
+      font-weight: 900;
+      color: var(--tb-text);
+    }
+    [data-composition-id="text-headline-highlight-09-tb-v"] .hl-bar {
+      position: absolute;
+      left: -10px; right: -10px;
+      bottom: -8px;
+      height: 10px;
+      background: var(--tb-accent);
+      opacity: 1;
+      border-radius: 3px;
+      transform-origin: left;
+      transform: scaleX(0) rotate(-1deg);
+      z-index: 1;
+      box-shadow: 0 0 28px var(--accent-glow, rgba(57, 228, 228, 0.45));
+    }
+    [data-composition-id="text-headline-highlight-09-tb-v"] .vignette {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.55) 100%);
+      z-index: 1;
+    }
+</style>
+
+    <!--
+      ASSET (vertical) — demo from Pexels (free license).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+                      (the `..` walks up from compositions/ to the project root)
+    -->
+    <video class="bg-video"
+           src="https://videos.pexels.com/video-files/4320717/4320717-hd_1920_1080_30fps.mp4"
+           crossorigin="anonymous" data-tb-asset="vertical"
+           data-start="0" data-duration="3.5" data-track-index="0"
+           muted playsinline></video>
+    <div class="vignette"></div>
+    <div class="stage" id="hh09v-stage"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["text-headline-highlight-09-tb-v"] = (function () {
+      const root  = document.querySelector('[data-composition-id="text-headline-highlight-09-tb-v"]');
+      const stage = root.querySelector("#hh09v-stage");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      if (V.accent) root.style.setProperty("--tb-accent", V.accent);
+      if (V.bg)     root.style.setProperty("--tb-bg", V.bg);
+
+      const accentHex = getComputedStyle(root).getPropertyValue("--tb-accent").trim() || "#39e4e4";
+      const hexToRgba = (hex, a) => {
+        const m = hex.replace("#","").match(/[0-9a-f]{2}/gi);
+        if (!m || m.length !== 3) return hex;
+        return "rgba(" + parseInt(m[0],16) + "," + parseInt(m[1],16) + "," + parseInt(m[2],16) + "," + a + ")";
+      };
+      root.style.setProperty("--accent-glow", hexToRgba(accentHex, 0.45));
+
+      const text = (V.text != null && V.text !== "")
+        ? V.text
+        : "The only tool you\n{*actually*} {*need*}\nto grow {*faster*}";
+
+      const escapeHTML = (s) => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+      const lines = text.split("\n");
+      stage.innerHTML = lines.map((line) => {
+        const inner = escapeHTML(line).replace(/\{\*(.+?)\*\}/g, (_, w) =>
+          '<span class="highlight-wrap"><span class="hl-bar"></span><span class="hl-text">' + w + '</span></span>'
+        );
+        return '<div class="line">' + inner + '</div>';
+      }).join("");
+
+      const lineEls = stage.querySelectorAll(".line");
+      const highlights = stage.querySelectorAll(".highlight-wrap");
+      const TOTAL = 3.5;
+      const tl = gsap.timeline({ paused: true });
+
+      tl.from(lineEls, {
+        opacity: 0, y: 22, duration: 0.55, stagger: 0.12, ease: "power3.out"
+      }, 0.15);
+
+      const HL_START = 1.05;
+      const HL_GAP   = 0.4;
+      const glowText = hexToRgba(accentHex, 0.55);
+      highlights.forEach((wrap, i) => {
+        const bar  = wrap.querySelector(".hl-bar");
+        const text = wrap.querySelector(".hl-text");
+        const t    = HL_START + i * HL_GAP;
+        tl.to(bar,  { scaleX: 1, duration: 0.4, ease: "expo.out" }, t);
+        tl.to(text, { color: accentHex, textShadow: "0 0 28px " + glowText, duration: 0.22, ease: "power2.out" }, t + 0.12);
+      });
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

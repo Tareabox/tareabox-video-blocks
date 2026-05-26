@@ -1,0 +1,17 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "layout-yt-watchlater-12-tb-v",
+  "type": "hyperframes:block",
+  "title": "YouTube Watch Later Scroll (Vertical)",
+  "description": "YouTube Watch Later mobile mockup with scrolling video cards, real thumbnails via YouTube CDN, and PIP talking-head overlay. Vertical 9:16 format.",
+  "tags": ["layout", "youtube", "watchlater", "scroll", "pip", "vertical", "tareabox"],
+  "dimensions": {"width": 1080, "height": 1920},
+  "duration": 8.0,
+  "files": [
+    {"path": "layout-yt-watchlater-12-tb-v.html", "target": "compositions/layout-yt-watchlater-12-tb-v.html", "type": "hyperframes:composition"}
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-yt-watchlater-12-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-yt-watchlater-12-tb-v.png"
+  }
+}

@@ -1,0 +1,193 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  conversationapp-discord-13-tb · Discord chat message · 4 seconds
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="conversationapp-discord-13-tb" data-composition-id="conversationapp-discord-13-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="4">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE ──────────────────────────────────── */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="conversationapp-discord-13-tb"] {
+      --tb-accent: var(--tb-brand-accent, #5865F2);
+      --tb-bg: #313338; --tb-text: #f2f3f5; --tb-text-dim: #949ba4;
+      --tb-blurple: #5865f2;
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --dc-name: "Jon Smith";
+      --dc-time: "Today at 2:14 PM";
+      --dc-msg:  "shipping the pack tonight 🚀  who wants early access?";
+      --dc-tag:  "MOD";
+      --dc-rxn1-emoji: "🔥"; --dc-rxn1-count: "12";
+      --dc-rxn2-emoji: "🙋"; --dc-rxn2-count: "47";
+      --dc-rxn3-emoji: "✨"; --dc-rxn3-count: "8";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE — No tocar a menos que sepas lo que hacés */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="conversationapp-discord-13-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+      display: flex; align-items: center; justify-content: center;
+    }
+    [data-composition-id="conversationapp-discord-13-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+    [data-composition-id="conversationapp-discord-13-tb"] .msg {
+      width: 80%;
+      display: flex; gap: 1.6vmin;
+      padding: 2.2vmin 2vmin;
+      background: rgba(78,79,86,0.18);
+      border-left: 3px solid var(--tb-blurple);
+      border-radius: 6px;
+      opacity: 0;
+    }
+    [data-composition-id="conversationapp-discord-13-tb"] .avatar {
+      width: 8vmin; height: 8vmin; border-radius: 50%;
+      background: linear-gradient(135deg, var(--tb-blurple), #eb459e);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700;
+      font-size: clamp(20px, 2.6vmin, 32px);
+      flex-shrink: 0;
+    }
+    [data-composition-id="conversationapp-discord-13-tb"] .body {
+      flex: 1;
+      display: flex; flex-direction: column;
+      gap: 0.8vmin;
+    }
+    [data-composition-id="conversationapp-discord-13-tb"] .top {
+      display: flex; align-items: center; gap: 1vmin;
+    }
+    [data-composition-id="conversationapp-discord-13-tb"] .name {
+      font-size: clamp(28px, 3.2vmin, 44px);
+      font-weight: 700;
+      color: var(--tb-text);
+    }
+    [data-composition-id="conversationapp-discord-13-tb"] .tag {
+      font-size: clamp(16px, 1.8vmin, 24px);
+      font-weight: 600;
+      color: #fff;
+      background: var(--tb-blurple);
+      padding: 0.3vmin 0.8vmin;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
+    }
+    [data-composition-id="conversationapp-discord-13-tb"] .time {
+      font-size: clamp(18px, 2vmin, 28px);
+      color: var(--tb-text-dim);
+    }
+    [data-composition-id="conversationapp-discord-13-tb"] .text {
+      font-size: clamp(28px, 3.4vmin, 44px);
+      color: var(--tb-text);
+      line-height: 1.4;
+    }
+    [data-composition-id="conversationapp-discord-13-tb"] .reactions {
+      display: flex; gap: 0.6vmin;
+      margin-top: 0.6vmin;
+    }
+    [data-composition-id="conversationapp-discord-13-tb"] .rxn {
+      display: inline-flex; align-items: center; gap: 0.6vmin;
+      background: rgba(88,101,242,0.15);
+      border: 1px solid rgba(88,101,242,0.4);
+      padding: 0.5vmin 1.2vmin;
+      border-radius: 999px;
+      font-size: clamp(20px, 2.2vmin, 30px);
+      font-weight: 600;
+      color: var(--tb-blurple);
+      opacity: 0;
+    }
+    [data-composition-id="conversationapp-discord-13-tb"] .bg-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.22) saturate(0.85);
+      z-index: 0;
+    }
+    [data-composition-id="conversationapp-discord-13-tb"] .vignette-bg {
+      position: absolute; inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+</style>
+
+    <!--
+      ASSET — darkened background video (Pexels free license).
+      Replace `src` with your own video. The brightness filter keeps the
+      foreground block legible regardless of source content.
+    -->
+    <video class="bg-video"
+           src="https://videos.pexels.com/video-files/6963836/6963836-hd_2048_1080_25fps.mp4"
+           crossorigin="anonymous" data-tb-asset="background-darkened"
+           data-start="0" data-duration="4" data-track-index="0"
+           muted playsinline></video>
+    <svg class="vignette-bg" preserveAspectRatio="none"
+         style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1">
+      <defs>
+        <filter id="vig-bg-conversationapp-discord-13-tb" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur stdDeviation="120" />
+        </filter>
+      </defs>
+      <path d="M 0,0 L 100,0 L 100,100 L 0,100 Z M 22,18 L 78,18 L 78,82 L 22,82 Z"
+            fill="black" fill-rule="evenodd" opacity="0.7"
+            filter="url(#vig-bg-conversationapp-discord-13-tb)"
+            transform="scale(20)" />
+    </svg>
+
+    <div class="msg" id="dc13-msg">
+      <div class="avatar">N</div>
+      <div class="body">
+        <div class="top">
+          <span class="name" id="dc13-name"></span>
+          <span class="tag"  id="dc13-tag"></span>
+          <span class="time" id="dc13-time"></span>
+        </div>
+        <div class="text" id="dc13-text"></div>
+        <div class="reactions">
+          <div class="rxn" id="dc13-r1"><span id="dc13-r1e"></span><span id="dc13-r1c"></span></div>
+          <div class="rxn" id="dc13-r2"><span id="dc13-r2e"></span><span id="dc13-r2c"></span></div>
+          <div class="rxn" id="dc13-r3"><span id="dc13-r3e"></span><span id="dc13-r3c"></span></div>
+        </div>
+      </div>
+    </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["conversationapp-discord-13-tb"] = (function () {
+      const root = document.querySelector('[data-composition-id="conversationapp-discord-13-tb"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      $("#dc13-name").textContent  = G("--dc-name");
+      $("#dc13-tag").textContent   = G("--dc-tag");
+      $("#dc13-time").textContent  = G("--dc-time");
+      $("#dc13-text").textContent  = G("--dc-msg");
+      $("#dc13-r1e").textContent   = G("--dc-rxn1-emoji"); $("#dc13-r1c").textContent = G("--dc-rxn1-count");
+      $("#dc13-r2e").textContent   = G("--dc-rxn2-emoji"); $("#dc13-r2c").textContent = G("--dc-rxn2-count");
+      $("#dc13-r3e").textContent   = G("--dc-rxn3-emoji"); $("#dc13-r3c").textContent = G("--dc-rxn3-count");
+
+      const tl = gsap.timeline({ paused: true });
+      const msg = $("#dc13-msg");
+      gsap.set(msg, { x: -20 });
+      tl.to(msg, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 0.2);
+      ["#dc13-r1","#dc13-r2","#dc13-r3"].forEach((id, i) => {
+        const r = $(id);
+        gsap.set(r, { scale: 0 });
+        tl.to(r, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.5)" }, 0.9 + i * 0.15);
+      });
+      tl.to({}, { duration: 4 }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

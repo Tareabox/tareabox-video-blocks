@@ -1,0 +1,387 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  text-popup-words-28-tb-v (vertical 1080x1920)
+  Tareabox Hyperframes Effect
+  Description: Vertical reel · video luisa · libro abre 1.07s → POP OUT 3 palabras "Creativa es Conexión" en cascada · libro cierra 2.37s → palabras POP IN al libro y desaparecen. Brand Creativa Studio tape recorte.
+  Category: natalie (custom)
+  Duration: 4.17 seconds · Format: 1080×1920
+  Brand: Creativa Studio Malta · coral #EA9F84 + sage #5D9493
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"word1","type":"string","label":"Word 1 (mint pill)","default":"Done"},
+  {"id":"word2","type":"string","label":"Word 2 (pink pill)","default":"beats"},
+  {"id":"word3","type":"string","label":"Word 3 (mint pill)","default":"perfect"},
+  {"id":"accent","type":"color","label":"Accent / coral color","default":"#39e4e4"},
+  {"id":"sage","type":"color","label":"Sage color","default":"#FE83B9"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#0a0a0c"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800;1,900&family=Raleway:wght@400;500;700&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="text-popup-words-28-tb-v" data-composition-id="text-popup-words-28-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="4.17">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-popup-words-28-tb-v"] {
+      --tb-accent: var(--tb-brand-accent, #39e4e4);
+      --tb-bg:           #0a0a0c;
+      --tb-text:         #ffffff;
+
+      /* Brand Creativa Studio Malta */
+      --tb-coral:        #39e4e4;
+      --tb-sage:         #FE83B9;
+      --tb-cream:        #F6F0ED;
+      --tb-soft-pink:    #C4F5F2;
+      --tb-deep-coral:   #1cc7c7;
+
+      --tb-font-display: var(--tb-brand-font-display, "Playfair Display", "Times New Roman", serif);
+      --tb-font-body:    "Raleway", sans-serif;
+
+      /* 2 palabras */
+      --w1: "Done";
+      --w2: "beats";
+      --w3: "perfect";
+
+      /* Burst origin (donde está el libro en el video) */
+      --burst-x: 50%;
+      --burst-y: 72%;
+      --burst-at: "1.07";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-popup-words-28-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-body);
+    }
+    [data-composition-id="text-popup-words-28-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="text-popup-words-28-tb-v"] .vid {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    /* Cream brand background that fades in when video ends — evita el freeze del último frame */
+    [data-composition-id="text-popup-words-28-tb-v"] .end-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 30%,
+          color-mix(in srgb, var(--tb-soft-pink) 50%, transparent) 0%,
+          transparent 60%),
+        radial-gradient(ellipse at 50% 80%,
+          color-mix(in srgb, var(--tb-sage) 18%, transparent) 0%,
+          transparent 70%),
+        var(--tb-cream);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
+    [data-composition-id="text-popup-words-28-tb-v"] .end-bg::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(rgba(0,0,0,0.025) 1.5px, transparent 1.5px),
+        radial-gradient(rgba(0,0,0,0.018) 1px, transparent 1px);
+      background-size: 18px 18px, 12px 12px;
+      mix-blend-mode: multiply;
+    }
+
+    /* Soft overlay gradient para que el blanco resalte mejor sobre el video */
+    [data-composition-id="text-popup-words-28-tb-v"] .scene-soften {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 45%,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0.18) 60%,
+        rgba(0,0,0,0.35) 100%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    [data-composition-id="text-popup-words-28-tb-v"] .stage {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    [data-composition-id="text-popup-words-28-tb-v"] .burst-el {
+      position: absolute;
+      left: var(--burst-x);
+      top: var(--burst-y);
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    /* WORD pills — Creativa Studio tape style, GRANDES y CENTRADAS */
+    [data-composition-id="text-popup-words-28-tb-v"] .word-tape {
+      font-family: var(--tb-font-display);
+      font-style: italic;
+      font-weight: 800;
+      font-size: clamp(72px, 13vmin, 200px);
+      letter-spacing: -0.015em;
+      padding: 0.4vmin 4vmin 1.4vmin;
+      color: var(--tb-text);
+      white-space: nowrap;
+      line-height: 1;
+      text-shadow: 0 3px 14px rgba(0,0,0,0.22);
+    }
+    [data-composition-id="text-popup-words-28-tb-v"] .word-tape.coral { background: var(--tb-coral); }
+    [data-composition-id="text-popup-words-28-tb-v"] .word-tape.sage  { background: var(--tb-sage); }
+
+    /* Subtle paper texture grain */
+    [data-composition-id="text-popup-words-28-tb-v"] .word-tape::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 4px 4px;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    /* Inner soft drop-shadow on the tape edge (depth) */
+    [data-composition-id="text-popup-words-28-tb-v"] .word-tape::before {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 6px;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.18));
+      pointer-events: none;
+    }
+
+    /* Decorative center divider · pequeño corazón coral elegante */
+    [data-composition-id="text-popup-words-28-tb-v"] .divider {
+      width: clamp(32px, 5vmin, 70px);
+      height: clamp(32px, 5vmin, 70px);
+    }
+    [data-composition-id="text-popup-words-28-tb-v"] .divider svg {
+      width: 100%; height: 100%;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
+    }
+
+    /* HEARTS / sparkles decorativos brand */
+    [data-composition-id="text-popup-words-28-tb-v"] .heart {
+      width: clamp(26px, 3.6vmin, 56px);
+      height: clamp(26px, 3.6vmin, 56px);
+    }
+    [data-composition-id="text-popup-words-28-tb-v"] .heart svg {
+      width: 100%; height: 100%;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+    }
+    [data-composition-id="text-popup-words-28-tb-v"] .spark {
+      width: clamp(20px, 2.8vmin, 44px);
+      height: clamp(20px, 2.8vmin, 44px);
+    }
+    [data-composition-id="text-popup-words-28-tb-v"] .spark svg {
+      width: 100%; height: 100%;
+      stroke: var(--tb-coral);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 6px color-mix(in srgb, var(--tb-coral) 70%, transparent));
+    }
+</style>
+
+
+    <!--
+      ASSET (vertical) — demo from Pexels (free license, attribution in README).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+                      (the `..` walks up from compositions/ to the project root)
+    -->
+    <video id="na12v-vid"
+           class="vid"
+           src="https://videos.pexels.com/video-files/5940726/5940726-hd_1280_720_25fps.mp4" crossorigin="anonymous" data-tb-asset="vertical"
+           data-start="0" data-duration="4.17" data-track-index="0"
+           muted playsinline></video>
+
+    <!-- Audio · obligatorio separado del video (Hyperframes spec) -->
+    <audio id="na12v-audio"
+           src="../assets/tb-media/tb-luisa-audio.m4a"
+           data-start="0" data-duration="4.17" data-track-index="2"
+           data-volume="1"></audio>
+
+    <div class="end-bg" id="na12v-endbg"></div>
+    <div class="scene-soften" id="na12v-soft"></div>
+
+    <div class="stage">
+      <!-- 3 PALABRAS: Creativa / es / Conexión -->
+      <div class="burst-el word-tape coral" id="na12v-w1"></div>
+      <div class="burst-el word-tape sage"  id="na12v-w2" style="font-size: clamp(40px, 7vmin, 110px);"></div>
+      <div class="burst-el word-tape coral" id="na12v-w3"></div>
+
+      <!-- Hearts decorativos (color brand, sutiles, pocas) -->
+      <div class="burst-el heart"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="#EA9F84"/></svg></div>
+      <div class="burst-el heart"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="#5D9493"/></svg></div>
+      <div class="burst-el heart"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="#F5D1C1"/></svg></div>
+      <div class="burst-el heart"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="#FDB79E"/></svg></div>
+
+      <!-- Sparkles -->
+      <div class="burst-el spark"><svg viewBox="0 0 24 24"><path d="M12 4 L13.5 10.5 L20 12 L13.5 13.5 L12 20 L10.5 13.5 L4 12 L10.5 10.5 Z" fill="currentColor" style="color:#EA9F84"/></svg></div>
+      <div class="burst-el spark"><svg viewBox="0 0 24 24"><path d="M12 2 L12 22 M2 12 L22 12 M5 5 L19 19 M5 19 L19 5"/></svg></div>
+      <div class="burst-el spark"><svg viewBox="0 0 24 24"><path d="M12 4 L13.5 10.5 L20 12 L13.5 13.5 L12 20 L10.5 13.5 L4 12 L10.5 10.5 Z" fill="currentColor" style="color:#5D9493"/></svg></div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["text-popup-words-28-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="text-popup-words-28-tb-v"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      /* Native HyperFrames variables → override CSS custom properties */
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, '"' + String(val) + '"');
+      };
+      const setRaw = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, String(val));
+      };
+      setStr("--w1", V.word1);
+      setStr("--w2", V.word2);
+      setStr("--w3", V.word3);
+      setRaw("--tb-coral", V.accent);
+      setRaw("--tb-accent", V.accent);
+      setRaw("--tb-sage",  V.sage);
+      setRaw("--tb-bg",    V.bg);
+
+      $("#na12v-w1").textContent = G("--w1");
+      $("#na12v-w2").textContent = G("--w2");
+      $("#na12v-w3").textContent = G("--w3");
+
+      const BURST = parseFloat(G("--burst-at")) || 1.07;
+      const EXIT  = 2.37;   // libro se cierra → palabras pop IN al libro
+      const TOTAL = 4.17;
+      const tl = gsap.timeline({ paused: true });
+
+      const w1 = $("#na12v-w1"),
+            w2 = $("#na12v-w2"),
+            w3 = $("#na12v-w3"),
+            soft = $("#na12v-soft"),
+            endbg = $("#na12v-endbg");
+      const decor = root.querySelectorAll(".heart, .spark");
+
+      /* Soft overlay fade — para que las palabras se lean mejor */
+      tl.to(soft, { opacity: 1, duration: 0.3, ease: "power2.out" }, BURST - 0.1);
+
+      /* ═══════════════════════════════════════════════════════
+         POP OUT — palabras pop del libro a 1.07s en cascada rápida
+         (window de lectura: 1.07 → 2.37 = 1.3s)
+         ═══════════════════════════════════════════════════════ */
+      const wordTargets = [
+        { el: w1, dx: 0, dy: -240, rot: -2 },    // Creativa arriba
+        { el: w2, dx: 0, dy:  -80, rot:  2 },    // es centro
+        { el: w3, dx: 0, dy:  80,  rot: -1.5 },  // Conexión abajo
+      ];
+
+      wordTargets.forEach(({ el, dx, dy, rot }, i) => {
+        /* xPercent/yPercent + transformOrigin centered → preview === render */
+        gsap.set(el, {
+          xPercent: -50,
+          yPercent: -50,
+          transformOrigin: "center center",
+          scale: 0.3,
+          rotation: rot - 6
+        });
+
+        const at = BURST + (i * 0.15);
+
+        tl.to(el, {
+          opacity: 1,
+          scale: 1,
+          x: dx,
+          y: dy,
+          rotation: rot,
+          duration: 0.55,
+          ease: "back.out(2.4)"
+        }, at);
+
+        tl.to(el, {
+          y: dy - 4,
+          duration: 0.5,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: 1
+        }, at + 0.6);
+      });
+
+      /* ═══════════════════════════════════════════════════════
+         POP IN AL LIBRO — libro cierra a 2.37s, palabras se contraen al origen
+         ═══════════════════════════════════════════════════════ */
+      tl.to([w1, w2, w3], {
+        x: 0,
+        y: 0,             // vuelven al origen del burst (donde estaba el libro)
+        scale: 0.1,
+        opacity: 0,
+        duration: 0.4,
+        ease: "back.in(2.5)",
+        stagger: 0.04
+      }, EXIT);
+
+      tl.to(soft, { opacity: 0, duration: 0.4, ease: "power2.in" }, EXIT);
+
+      /* ═══════════════════════════════════════════════════════
+         DECOR · hearts + sparkles random scatter (pocas, sutiles)
+         ═══════════════════════════════════════════════════════ */
+      decor.forEach((el, i) => {
+        const angle = gsap.utils.random(-180, 0);
+        const distance = gsap.utils.random(220, 420);
+        const rad = angle * Math.PI / 180;
+        const dx = Math.cos(rad) * distance;
+        const dy = Math.sin(rad) * distance;
+
+        gsap.set(el, { scale: 0.2, rotation: gsap.utils.random(-30, 30) });
+
+        const at = BURST + (i * 0.05);
+
+        /* Pop OUT con palabras */
+        tl.to(el, {
+          opacity: 1,
+          scale: gsap.utils.random(0.85, 1.15),
+          x: dx,
+          y: dy,
+          rotation: gsap.utils.random(-360, 360),
+          duration: 0.7,
+          ease: "back.out(2)"
+        }, at);
+
+        /* Pop IN al libro (junto con palabras) */
+        tl.to(el, {
+          x: 0,
+          y: 0,
+          scale: 0.05,
+          opacity: 0,
+          rotation: 0,
+          duration: 0.4,
+          ease: "back.in(2)"
+        }, EXIT);
+      });
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

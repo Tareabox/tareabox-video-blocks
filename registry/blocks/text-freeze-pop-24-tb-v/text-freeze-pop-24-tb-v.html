@@ -1,0 +1,258 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  text-freeze-pop-24-tb-v (vertical 1080x1920)
+  Tareabox Hyperframes Effect
+  Description: Vertical reel · "nat luisa" video plays normally → at 1.18s freezes with flash → 3 punk-pop words pop in sequenced → words hold → video fades out.
+  Category: natalie (custom)
+  Duration: 5.5 seconds · Format: 1080×1920
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"word1","type":"string","label":"Word 1 (accent)","default":"CONNECTION"},
+  {"id":"word2","type":"string","label":"Word 2 (accent-2)","default":"COMMUNITY"},
+  {"id":"word3","type":"string","label":"Word 3 (white)","default":"CREATIVITY"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#ec4899"},
+  {"id":"accent2","type":"color","label":"Accent 2 color","default":"#facc15"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#0a0a0c"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="text-freeze-pop-24-tb-v" data-composition-id="text-freeze-pop-24-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="5.5">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-freeze-pop-24-tb-v"] {
+      --tb-bg:           #0a0a0c;
+      --tb-text:         #fafafa;
+      --tb-accent:       var(--tb-brand-accent, #ec4899);
+      --tb-accent-2:     var(--tb-brand-accent-2, #facc15);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --w1: "CONNECTION";
+      --w2: "COMMUNITY";
+      --w3: "CREATIVITY";
+
+      /* Freeze timing (segundos) */
+      --freeze-at: "1.18";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-freeze-pop-24-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="text-freeze-pop-24-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ── Video full bleed vertical ── */
+    [data-composition-id="text-freeze-pop-24-tb-v"] .vid {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    /* ── Freeze flash ── */
+    [data-composition-id="text-freeze-pop-24-tb-v"] .freeze-flash {
+      position: absolute; inset: 0;
+      background: #fff;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── Halftone overlay during freeze ── */
+    [data-composition-id="text-freeze-pop-24-tb-v"] .freeze-half {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(0,0,0,0.18) 1.5px, transparent 1.5px);
+      background-size: 9px 9px;
+      mix-blend-mode: multiply;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* ── Vignette during freeze (focus on words) ── */
+    [data-composition-id="text-freeze-pop-24-tb-v"] .freeze-veil {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 50%,
+        rgba(10,10,12,0.05) 0%,
+        rgba(10,10,12,0.65) 80%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* ── 3 punk-pop words ── */
+    [data-composition-id="text-freeze-pop-24-tb-v"] .words {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex; flex-direction: column;
+      align-items: center;
+      gap: 1.8vmin;
+      pointer-events: none;
+      z-index: 20;
+    }
+    [data-composition-id="text-freeze-pop-24-tb-v"] .word {
+      position: relative;
+      display: inline-block;
+      font-size: clamp(48px, 7.5vmin, 110px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      padding: 1.2vmin 3vmin;
+      color: #0a0a0c;
+      opacity: 0;
+      box-shadow: 5px 7px 0 #0a0a0c;
+      border: 3px solid #0a0a0c;
+      white-space: nowrap;
+      transform-origin: center;
+    }
+    [data-composition-id="text-freeze-pop-24-tb-v"] .word.w1 { background: var(--tb-accent); }
+    [data-composition-id="text-freeze-pop-24-tb-v"] .word.w2 { background: var(--tb-accent-2); }
+    [data-composition-id="text-freeze-pop-24-tb-v"] .word.w3 { background: #fafafa; }
+
+    /* Tape strip decoraciones */
+    [data-composition-id="text-freeze-pop-24-tb-v"] .word.w1::before {
+      content: "";
+      position: absolute;
+      top: -1.4vmin; right: -1.6vmin;
+      width: 6vmin; height: 1.6vmin;
+      background: #0a0a0c;
+      transform: rotate(15deg);
+      opacity: 0.85;
+    }
+    [data-composition-id="text-freeze-pop-24-tb-v"] .word.w3::before {
+      content: "";
+      position: absolute;
+      bottom: -1.4vmin; left: -1.6vmin;
+      width: 5vmin; height: 1.4vmin;
+      background: #0a0a0c;
+      transform: rotate(-12deg);
+      opacity: 0.85;
+    }
+</style>
+
+
+    <!-- VIDEO · plays from 0 to 1.18s naturally, then last frame holds via clip duration -->
+    <!--
+      ASSET (vertical) — demo from Pexels (free license, attribution in README).
+      To use your own footage, replace the `src` with one of these:
+        Public URL:   src="https://yourdomain.com/your-video.mp4"
+        Local path:   src="../assets/tb-media/your-video.mp4"
+                      (the `..` walks up from compositions/ to the project root)
+    -->
+    <video id="na04v-vid"
+           class="vid"
+           src="https://videos.pexels.com/video-files/37670635/15970268_1080_1920_60fps.mp4" crossorigin="anonymous" data-tb-asset="vertical"
+           data-start="0" data-duration="5.5" data-track-index="0"
+           muted playsinline></video>
+
+    <!-- Freeze layer overlays -->
+    <div class="freeze-half"  id="na04v-halftone"></div>
+    <div class="freeze-veil"  id="na04v-veil"></div>
+    <div class="freeze-flash" id="na04v-flash"></div>
+
+    <!-- 3 punk-pop words -->
+    <div class="words">
+      <div class="word w1" id="na04v-w1"></div>
+      <div class="word w2" id="na04v-w2"></div>
+      <div class="word w3" id="na04v-w3"></div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["text-freeze-pop-24-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="text-freeze-pop-24-tb-v"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, '"' + String(val) + '"');
+      };
+      const setRaw = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, String(val));
+      };
+      setStr("--w1", V.word1);
+      setStr("--w2", V.word2);
+      setStr("--w3", V.word3);
+      setRaw("--tb-accent",   V.accent);
+      setRaw("--tb-accent-2", V.accent2);
+      setRaw("--tb-bg",       V.bg);
+
+      $("#na04v-w1").textContent = G("--w1");
+      $("#na04v-w2").textContent = G("--w2");
+      $("#na04v-w3").textContent = G("--w3");
+
+      const FREEZE = parseFloat(G("--freeze-at")) || 1.18;
+      const TOTAL = 5.5;
+      const tl = gsap.timeline({ paused: true });
+
+      const flash = $("#na04v-flash");
+      const half  = $("#na04v-halftone");
+      const veil  = $("#na04v-veil");
+      const vid   = $("#na04v-vid");
+      const w1 = $("#na04v-w1"), w2 = $("#na04v-w2"), w3 = $("#na04v-w3");
+
+      /* ── FREEZE moment at t=1.18s ── */
+
+      /* Pause the video by setting its src playback rate to 0 — actually we let it keep
+         playing under the overlay (Hyperframes doesn't let us pause). The visual freeze
+         is achieved by the heavy halftone + veil overlay covering the moving video. */
+
+      /* White flash punch */
+      tl.to(flash, { opacity: 1, duration: 0.08, ease: "power3.in"  }, FREEZE - 0.05);
+      tl.to(flash, { opacity: 0, duration: 0.25, ease: "power3.out" }, FREEZE + 0.03);
+
+      /* Halftone + veil fade in instantly (creates "frozen" feel) */
+      tl.to(half, { opacity: 1, duration: 0.20, ease: "power2.out" }, FREEZE);
+      tl.to(veil, { opacity: 1, duration: 0.20, ease: "power2.out" }, FREEZE);
+
+      /* ── 3 words pop in staggered (post-freeze) ── */
+      const popStart = FREEZE + 0.15;
+
+      gsap.set(w1, { scale: 0, rotation: -8 });
+      tl.to(w1, { opacity: 1, scale: 1, rotation: -2, duration: 0.45, ease: "back.out(2.5)" }, popStart);
+
+      gsap.set(w2, { scale: 0, rotation: 10 });
+      tl.to(w2, { opacity: 1, scale: 1, rotation: 1, duration: 0.45, ease: "back.out(2.5)" }, popStart + 0.35);
+
+      gsap.set(w3, { scale: 0, rotation: -6 });
+      tl.to(w3, { opacity: 1, scale: 1, rotation: -1.5, duration: 0.45, ease: "back.out(2.5)" }, popStart + 0.7);
+
+      /* Wobble while held */
+      tl.to([w1, w2, w3], {
+        y: -4,
+        duration: 0.6,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: 2,
+        stagger: 0.08
+      }, popStart + 1.3);
+
+      /* Final anchor */
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

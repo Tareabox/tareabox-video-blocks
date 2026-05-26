@@ -1,0 +1,17 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "layout-video-caption-04-tb",
+  "type": "hyperframes:block",
+  "title": "Layout Video Caption (Horizontal)",
+  "description": "Horizontal 16:9 — talking head con caption card (avatar + autor + cita)",
+  "tags": ["layout", "video", "caption", "horizontal", "tareabox"],
+  "dimensions": {"width": 1920, "height": 1080},
+  "duration": 5.0,
+  "files": [
+    {"path": "layout-video-caption-04-tb.html", "target": "compositions/layout-video-caption-04-tb.html", "type": "hyperframes:composition"}
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-video-caption-04-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-video-caption-04-tb.png"
+  }
+}

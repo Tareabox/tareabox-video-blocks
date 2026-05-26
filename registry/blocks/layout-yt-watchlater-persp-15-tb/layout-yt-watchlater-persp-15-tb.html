@@ -1,0 +1,376 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  layout-yt-watchlater-persp-15-tb (horizontal 1920x1080)
+  Description: YouTube Watch Later page mockup floating in 3D perspective with
+               scrolling video list and flat PIP (picture-in-picture) overlay.
+               Tilted screen with sidebar, topbar, search bar, real thumbnails
+               via YouTube CDN, and a flat talking-head PIP on the right.
+  Category: layout
+  Duration: 8 seconds
+  REQUIRES: gsap (CDN), Google Fonts (Roboto)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"headerText","type":"string","label":"Page header","default":"Watch later"},
+  {"id":"countText","type":"string","label":"Video count","default":"47 saved videos"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#ff0000"},
+  {"id":"bg","type":"color","label":"Background color","default":"#0a0a0a"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=block" rel="stylesheet" />
+</head>
+<body style="margin:0;background:#0a0a0a;">
+<div id="layout-yt-watchlater-persp-15-tb" data-composition-id="layout-yt-watchlater-persp-15-tb"
+     data-width="1920" data-height="1080"
+     data-start="0" data-duration="8">
+<style>
+  /* ═══════════════════════════════════════════════════════ */
+  /* 🎨 CUSTOMIZE HERE                                       */
+  /* ═══════════════════════════════════════════════════════ */
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] {
+    --tb-bg:           #0a0a0a;
+    --tb-yt-bg:        #0f0f0f;
+    --tb-text:         #ffffff;
+    --tb-text-muted:   #aaaaaa;
+    --tb-accent:       #ff0000;
+    --tb-border:       #272727;
+    --tb-surface:      #121212;
+    --tb-pip-border:   rgba(255,255,255,0.12);
+    --tb-font:         "Roboto", sans-serif;
+
+    /* Video IDs for thumbnails (YouTube CDN) */
+    --tb-vid-00: "fb_SQe51UCk";  --tb-vid-01: "M1gu9MDucMA";
+    --tb-vid-02: "t5SieIcMMjo";  --tb-vid-03: "myzs0mcpmFI";
+    --tb-vid-04: "7iJrn8iwCtI";  --tb-vid-05: "ar9gkUGGfcE";
+    --tb-vid-06: "Ir7xFCQP1pQ";  --tb-vid-07: "IyYC-hSFEFQ";
+    --tb-vid-08: "Gc4Xh8u19NU";  --tb-vid-09: "6sJFI8LbhpY";
+    --tb-vid-10: "oxneJ4czNSw";  --tb-vid-11: "BtiQvhQF8IA";
+    --tb-vid-12: "2v4_95OJ7k4";  --tb-vid-13: "rf60MejMz3E";
+    --tb-vid-14: "ZFeByEwsjME";  --tb-vid-15: "UB1O30fR-EE";
+    --tb-vid-16: "SznYHNMktQQ";  --tb-vid-17: "_shA5Xwe8_4";
+    --tb-vid-18: "uD8FluUovqI";  --tb-vid-19: "3dHNOWTI7H8";
+
+    /* Card titles */
+    --tb-title-00: "Build your landing page from scratch with AI";
+    --tb-title-01: "COMPLETE Notion tutorial for productivity 2025";
+    --tb-title-02: "How to automate your business with Make";
+    --tb-title-03: "SEO for beginners: Step by step guide";
+    --tb-title-04: "Web design with Figma: intensive tutorial";
+    --tb-title-05: "Email marketing that WORKS: full strategy";
+    --tb-title-06: "Google Ads from zero: campaigns that convert";
+    --tb-title-07: "Edit videos like a PRO with CapCut";
+    --tb-title-08: "WordPress vs Webflow vs Framer: which one?";
+    --tb-title-09: "Complete Python course for automation";
+    --tb-title-10: "How to start a podcast from scratch";
+    --tb-title-11: "Content strategy for YouTube growth";
+    --tb-title-12: "Canva PRO: tricks nobody tells you";
+    --tb-title-13: "Artificial intelligence for creators";
+    --tb-title-14: "Build your online store with Shopify";
+    --tb-title-15: "Adobe Premiere Pro: professional editing";
+    --tb-title-16: "Data analysis with Sheets and ChatGPT";
+    --tb-title-17: "How to use Claude for deep research";
+    --tb-title-18: "TikTok for business: organic strategy";
+    --tb-title-19: "Build a SaaS in 30 days with No-Code";
+  }
+  /* ═══════════════════════════════════════════════════════ */
+  /* ⛔ EFFECT CODE — do not edit below                      */
+  /* ═══════════════════════════════════════════════════════ */
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] {
+    position: relative; width: 100%; height: 100%; overflow: hidden;
+    background: var(--tb-bg);
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+
+  /* Background glow */
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .bg-glow {
+    position: absolute; top: 45%; left: 40%;
+    width: 1100px; height: 900px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Ground shadow */
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-shadow {
+    position: absolute;
+    top: 82%; left: 62%;
+    width: 900px; height: 100px;
+    transform: translate(-50%, 0);
+    background: radial-gradient(ellipse, rgba(0,0,0,0.4) 0%, transparent 70%);
+    filter: blur(20px);
+    pointer-events: none;
+  }
+
+  /* ── PERSPECTIVE STAGE for YouTube mockup ── */
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .persp-stage {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    perspective: 1400px;
+    padding-right: 280px; /* offset left to leave room for PIP on the right */
+  }
+
+  /* ── YouTube screen (tilted in 3D) ── */
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-screen {
+    position: relative;
+    width: 1280px; height: 800px;
+    background: var(--tb-yt-bg);
+    border-radius: 16px;
+    border: 2px solid #222;
+    overflow: hidden;
+    transform: rotateY(18deg) rotateX(3deg);
+    box-shadow:
+      0 50px 100px rgba(0,0,0,0.5),
+      0 20px 40px rgba(0,0,0,0.3),
+      inset 0 0 0 1px rgba(255,255,255,0.05);
+  }
+
+  /* ── Sidebar (inside tilted screen) ── */
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-sidebar {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 200px;
+    background: var(--tb-yt-bg); border-right: 1px solid var(--tb-border);
+    padding: 14px 10px; z-index: 2;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-logo {
+    display: flex; align-items: center; gap: 5px;
+    padding: 6px 10px; margin-bottom: 18px;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-logo-icon {
+    width: 30px; height: 22px; background: var(--tb-accent); border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-logo-icon::after {
+    content: ''; width: 0; height: 0;
+    border-left: 7px solid #fff; border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+    margin-left: 2px;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-logo-text {
+    font-family: var(--tb-font); font-size: 18px; font-weight: 700; color: var(--tb-text); letter-spacing: -0.5px;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-nav-item {
+    font-family: var(--tb-font); font-size: 14px; color: var(--tb-text-muted);
+    padding: 10px 12px; border-radius: 8px; margin-bottom: 3px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-nav-item.active { background: var(--tb-border); color: var(--tb-text); }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-nav-icon {
+    width: 18px; height: 18px; border-radius: 3px; background: #555; opacity: 0.5;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-nav-item.active .yt-nav-icon { opacity: 1; background: var(--tb-text); }
+
+  /* ── Main content (inside tilted screen) ── */
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-main {
+    position: absolute; left: 200px; top: 0; right: 0; bottom: 0; overflow: hidden;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-topbar {
+    height: 44px; background: var(--tb-yt-bg); border-bottom: 1px solid var(--tb-border);
+    display: flex; align-items: center; padding: 0 18px;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-search {
+    width: 400px; height: 34px; background: var(--tb-surface); border: 1px solid #303030;
+    border-radius: 18px; margin: 0 auto;
+    display: flex; align-items: center; padding: 0 14px;
+    font-family: var(--tb-font); font-size: 13px; color: #888;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-content-area {
+    position: absolute; top: 44px; left: 0; right: 0; bottom: 0; overflow: hidden;
+    background: var(--tb-yt-bg);
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-scroll-container {
+    position: absolute; top: 0; left: 0; right: 0; padding: 16px 22px;
+    background: var(--tb-yt-bg);
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-wl-header {
+    font-family: var(--tb-font); font-size: 28px; font-weight: 700; color: var(--tb-text); margin-bottom: 4px;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-wl-count {
+    font-family: var(--tb-font); font-size: 13px; color: var(--tb-text-muted); margin-bottom: 16px;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-video-row {
+    display: flex; gap: 18px; margin-bottom: 10px; padding: 10px; border-radius: 10px; align-items: center;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-thumb {
+    width: 320px; height: 180px; border-radius: 10px; flex-shrink: 0;
+    position: relative; overflow: hidden; background-size: cover; background-position: center; background-color: #1a1a1a;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-thumb-dur {
+    position: absolute; bottom: 6px; right: 6px; background: rgba(0,0,0,0.85); color: #fff;
+    font-family: var(--tb-font); font-size: 11px; font-weight: 500; padding: 2px 6px; border-radius: 3px;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-video-info { display: flex; flex-direction: column; gap: 6px; }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-video-title {
+    font-family: var(--tb-font); font-size: 19px; font-weight: 500; color: var(--tb-text); line-height: 1.3;
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-video-channel {
+    font-family: var(--tb-font); font-size: 14px; color: var(--tb-text-muted);
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .yt-video-meta {
+    font-family: var(--tb-font); font-size: 14px; color: var(--tb-text-muted);
+  }
+
+  /* ── PIP — FLAT, outside perspective ── */
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .pip-wrap {
+    position: absolute; z-index: 10;
+    right: 12%; top: 50%; transform: translateY(-50%);
+    width: 18%; aspect-ratio: 9/14;
+    border-radius: 18px; overflow: hidden;
+    border: 2px solid var(--tb-pip-border);
+    box-shadow: 0 12px 44px rgba(0,0,0,0.7);
+  }
+  [data-composition-id="layout-yt-watchlater-persp-15-tb"] .pip-wrap video {
+    width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
+  }
+</style>
+
+<!-- Background glow -->
+<div class="bg-glow"></div>
+
+<!-- Shadow under screen -->
+<div class="yt-shadow" id="bn15h-shadow"></div>
+
+<!-- ═══ PERSPECTIVE STAGE (YouTube tilted) ═══ -->
+<div class="persp-stage">
+  <div class="yt-screen" id="bn15h-screen">
+    <!-- Sidebar -->
+    <div class="yt-sidebar">
+      <div class="yt-logo">
+        <div class="yt-logo-icon"></div>
+        <span class="yt-logo-text">YouTube</span>
+      </div>
+      <div class="yt-nav-item"><div class="yt-nav-icon"></div>Home</div>
+      <div class="yt-nav-item"><div class="yt-nav-icon"></div>Shorts</div>
+      <div class="yt-nav-item"><div class="yt-nav-icon"></div>Subscriptions</div>
+      <div style="height:12px"></div>
+      <div class="yt-nav-item"><div class="yt-nav-icon"></div>Your channel</div>
+      <div class="yt-nav-item"><div class="yt-nav-icon"></div>History</div>
+      <div class="yt-nav-item active"><div class="yt-nav-icon"></div>Watch later</div>
+      <div class="yt-nav-item"><div class="yt-nav-icon"></div>Liked videos</div>
+    </div>
+
+    <!-- Main content -->
+    <div class="yt-main">
+      <div class="yt-topbar">
+        <div class="yt-search">Search</div>
+      </div>
+      <div class="yt-content-area">
+        <div class="yt-scroll-container" id="bn15h-ytScroll">
+          <div class="yt-wl-header" id="bn15h-header">Watch later</div>
+          <div class="yt-wl-count" id="bn15h-count">47 saved videos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PIP — OUTSIDE perspective (stays flat) ═══ -->
+<div class="pip-wrap" id="bn15h-pip">
+  <video id="bn15h-pip-video"
+    src="https://videos.pexels.com/video-files/6617452/6617452-hd_1920_1080_30fps.mp4"
+    data-start="0" data-duration="8" data-track-index="0"
+    crossorigin="anonymous"
+    data-tb-asset="pip-video"
+    muted playsinline></video>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+window.__timelines = window.__timelines || {};
+window.__timelines["layout-yt-watchlater-persp-15-tb"] = (function () {
+  var root = document.querySelector('[data-composition-id="layout-yt-watchlater-persp-15-tb"]');
+  var cs   = getComputedStyle(root);
+  var V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+
+  var header = root.querySelector("#bn15h-header");
+  var count  = root.querySelector("#bn15h-count");
+  if (V.headerText) header.textContent = V.headerText;
+  if (V.countText)  count.textContent  = V.countText;
+  if (V.bg)     root.style.setProperty("--tb-bg", V.bg);
+  if (V.accent) root.style.setProperty("--tb-accent", V.accent);
+
+  var videoIds = [];
+  for (var i = 0; i < 20; i++) {
+    var k = "--tb-vid-" + String(i).padStart(2, "0");
+    var v = cs.getPropertyValue(k).trim().replace(/^["']|["']$/g, "");
+    videoIds.push(v || "dQw4w9WgXcQ");
+  }
+  var titles = [];
+  for (var i = 0; i < 20; i++) {
+    var k = "--tb-title-" + String(i).padStart(2, "0");
+    var v = cs.getPropertyValue(k).trim().replace(/^["']|["']$/g, "");
+    titles.push(v || "Video title " + (i + 1));
+  }
+
+  var channels = [
+    "Productivity Lab","Carlos Code","Marketing Lab","CreaTech",
+    "Design Pro","Business Master","Ana Growth","Video Academy",
+    "WebDev Hub","Python Pro","Podcast Pro","YT Strategy",
+    "Canva Tips","AI Hub","Commerce Lab","Adobe Guru",
+    "Data Master","AI Tools","Social Pro","NoCode Academy"
+  ];
+  var durations = [
+    "45:21","1:12:03","38:47","52:18","3:04:15","41:33","1:28:44","29:06",
+    "55:12","2:15:38","1:05:22","48:17","35:44","1:42:19","2:08:33",
+    "58:41","44:27","1:15:08","33:56","1:55:20"
+  ];
+  var views = [
+    "128K","45K","312K","89K","567K","23K","198K","412K",
+    "67K","234K","156K","78K","345K","890K","34K",
+    "123K","456K","67K","210K","43K"
+  ];
+
+  var container = root.querySelector("#bn15h-ytScroll");
+  for (var i = 0; i < 40; i++) {
+    var idx = i % 20;
+    var row = document.createElement("div");
+    row.className = "yt-video-row";
+    row.innerHTML =
+      '<div class="yt-thumb" style="background-image: url(\'https://i.ytimg.com/vi/' + videoIds[idx] + '/hqdefault.jpg\');">' +
+        '<div class="yt-thumb-dur">' + durations[idx] + '</div>' +
+      '</div>' +
+      '<div class="yt-video-info">' +
+        '<div class="yt-video-title">' + titles[idx] + '</div>' +
+        '<div class="yt-video-channel">' + channels[idx] + '</div>' +
+        '<div class="yt-video-meta">' + views[idx] + ' views · ' + Math.floor(1 + i * 0.7) + ' weeks ago</div>' +
+      '</div>';
+    container.appendChild(row);
+  }
+
+  var tl = gsap.timeline({ paused: true });
+  var screenEl = root.querySelector("#bn15h-screen");
+  var scrollEl = root.querySelector("#bn15h-ytScroll");
+  var pipEl    = root.querySelector("#bn15h-pip");
+  var shadowEl = root.querySelector("#bn15h-shadow");
+
+  /* Screen entrance */
+  tl.from(screenEl, { scale: 0.85, opacity: 0, duration: 0.7, ease: "power3.out" }, 0.15);
+  tl.from(shadowEl, { opacity: 0, scale: 0.6, duration: 0.7, ease: "power2.out" }, 0.25);
+
+  /* PIP entrance (flat, no perspective) */
+  tl.from(pipEl, { scale: 0.8, opacity: 0, duration: 0.4, ease: "back.out(1.4)" }, 0.3);
+
+  /* Screen gentle float + rotation breathing */
+  tl.to(screenEl, { y: -8, duration: 2, ease: "sine.inOut", yoyo: true, repeat: 3 }, 0.3);
+  tl.to(screenEl, { rotationY: 14, duration: 3.8, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0.4);
+  tl.to(screenEl, { rotationX: 1, duration: 4.2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0.3);
+
+  /* Shadow breathes */
+  tl.to(shadowEl, { scaleX: 1.06, scaleY: 0.92, duration: 2, ease: "sine.inOut", yoyo: true, repeat: 3 }, 0.3);
+
+  /* PIP subtle float (flat, independent) */
+  tl.to(pipEl, { y: -6, duration: 1.8, ease: "sine.inOut", repeat: 3, yoyo: true }, 1);
+
+  /* Content scroll inside tilted screen */
+  tl.to(scrollEl, { y: -800, duration: 3, ease: "power1.out" }, 1);
+  tl.to(scrollEl, { y: -3200, duration: 3.5, ease: "power2.in" }, 4);
+
+  /* Duration anchor */
+  tl.to({}, { duration: 8 }, 0);
+
+  return tl;
+})();
+</script>
+</div>
+</body>
+</html>

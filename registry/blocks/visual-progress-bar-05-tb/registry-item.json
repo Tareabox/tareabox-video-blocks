@@ -1,0 +1,27 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "visual-progress-bar-05-tb",
+  "type": "hyperframes:block",
+  "title": "Visual Progress Bar",
+  "description": "Efecto Tareabox: Visual Progress Bar",
+  "tags": [
+    "visual",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 3.0,
+  "files": [
+    {
+      "path": "visual-progress-bar-05-tb.html",
+      "target": "compositions/visual-progress-bar-05-tb.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-visual-progress-bar-05-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-visual-progress-bar-05-tb.png"
+  }
+}

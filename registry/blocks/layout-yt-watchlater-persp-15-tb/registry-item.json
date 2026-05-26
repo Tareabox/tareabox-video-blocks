@@ -1,0 +1,21 @@
+{
+  "name": "layout-yt-watchlater-persp-15-tb",
+  "description": "YouTube Watch Later page in 3D perspective with scrolling video list and flat PIP overlay. Tilted screen shows sidebar, topbar, search bar, and real thumbnails from YouTube CDN. A flat talking-head PIP floats independently on the right.",
+  "category": "layout",
+  "dimensions": { "width": 1920, "height": 1080 },
+  "duration": 8,
+  "tags": ["youtube", "watch-later", "perspective", "3d", "pip", "mockup", "scroll"],
+  "variables": [
+    { "id": "headerText", "type": "string", "label": "Page header", "default": "Watch later" },
+    { "id": "countText", "type": "string", "label": "Video count", "default": "47 saved videos" },
+    { "id": "accent", "type": "color", "label": "Accent color", "default": "#ff0000" },
+    { "id": "bg", "type": "color", "label": "Background color", "default": "#0a0a0a" }
+  ],
+  "files": [
+    "layout-yt-watchlater-persp-15-tb.html"
+  ],
+  "dependencies": {
+    "fonts": ["Roboto"],
+    "cdn": ["gsap@3.14.2"]
+  }
+}

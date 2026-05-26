@@ -1,0 +1,18 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "visual-meme-cutin-09-tb-v",
+  "type": "hyperframes:block",
+  "title": "Visual Meme Cutin (Vertical)",
+  "description": "Talking head con meme/GIF fullscreen que entra cortando la accion, en formato vertical 9:16",
+  "tags": ["visual", "meme", "gif", "vertical", "tareabox"],
+  "dimensions": {"width": 1080, "height": 1920},
+  "duration": 6.0,
+  "files": [
+    {"path": "visual-meme-cutin-09-tb-v.html", "target": "compositions/visual-meme-cutin-09-tb-v.html", "type": "hyperframes:composition"},
+    {"path": "tb-media/tb-react-mind-blown.mp4", "target": "assets/tb-media/tb-react-mind-blown.mp4", "type": "hyperframes:asset"}
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-visual-meme-cutin-09-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-visual-meme-cutin-09-tb-v.png"
+  }
+}

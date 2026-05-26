@@ -1,0 +1,145 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  text-neon-glow-03-tb-v (vertical 1080x1920)
+  Tareabox Hyperframes Effect
+  Description: Words materialize with a pulsing neon glow, line by line.
+  Category: text
+  Duration: 3.5 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"line1","type":"string","label":"Line 1","default":"BUILD FAST"},
+  {"id":"line2","type":"string","label":"Line 2","default":"SHIP FASTER"},
+  {"id":"accent","type":"color","label":"Neon color","default":"#ec4899"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#080810"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="text-neon-glow-03-tb-v" data-composition-id="text-neon-glow-03-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="3.5">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-neon-glow-03-tb-v"] {
+      --tb-bg:           #080810;
+      --tb-text:         #ffffff;
+      --tb-text-dim:     #6b7280;
+      --tb-accent:       var(--tb-brand-accent, #ec4899);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --line1: "BUILD FAST";
+      --line2: "SHIP FASTER";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-neon-glow-03-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="text-neon-glow-03-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="text-neon-glow-03-tb-v"] .stage {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 0 5%;
+      gap: 0.14em;
+    }
+    /* Vertical: bigger headlines */
+    [data-composition-id="text-neon-glow-03-tb-v"] .line {
+      font-size: clamp(64px, 13vmin, 160px);
+      font-weight: 900;
+      color: var(--tb-text);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      text-align: center;
+      opacity: 0;
+      overflow: hidden;
+    }
+    [data-composition-id="text-neon-glow-03-tb-v"] .line.glow {
+      text-shadow:
+        0 0 22px var(--tb-accent),
+        0 0 64px color-mix(in srgb, var(--tb-accent) 60%, transparent),
+        0 0 128px color-mix(in srgb, var(--tb-accent) 30%, transparent);
+      color: color-mix(in srgb, var(--tb-accent) 15%, #ffffff);
+    }
+    /* Vertical ambient — taller area */
+    [data-composition-id="text-neon-glow-03-tb-v"] .ambient {
+      position: absolute;
+      width: 90%; height: 40%;
+      top: 30%; left: 5%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, color-mix(in srgb, var(--tb-accent) 14%, transparent) 0%, transparent 70%);
+      filter: blur(50px);
+      opacity: 0;
+      pointer-events: none;
+    }
+</style>
+
+    <div class="ambient"></div>
+    <div class="stage">
+      <div class="line" id="ng03v-l1"></div>
+      <div class="line" id="ng03v-l2"></div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["text-neon-glow-03-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="text-neon-glow-03-tb-v"]');
+      const cs   = getComputedStyle(root);
+      const l1   = root.querySelector("#ng03v-l1");
+      const l2   = root.querySelector("#ng03v-l2");
+      const amb  = root.querySelector(".ambient");
+
+      /* Native HyperFrames variables → override CSS custom properties */
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, '"' + String(val) + '"');
+      };
+      const setRaw = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, String(val));
+      };
+      setStr("--line1", V.line1);
+      setStr("--line2", V.line2);
+      setRaw("--tb-accent", V.accent);
+      setRaw("--tb-bg",     V.bg);
+
+      l1.textContent = cs.getPropertyValue("--line1").trim().replace(/^["']|["']$/g, "");
+      l2.textContent = cs.getPropertyValue("--line2").trim().replace(/^["']|["']$/g, "");
+
+      const TOTAL = 3.5;
+      const tl = gsap.timeline({ paused: true });
+
+      tl.to(amb,  { opacity: 1, duration: 0.6, ease: "power2.out" }, 0.1);
+      tl.to(l1,   { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.2);
+      tl.call(() => l1.classList.add("glow"), [], 0.5);
+      tl.to(l2,   { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.65);
+      tl.call(() => l2.classList.add("glow"), [], 0.95);
+
+      tl.to([l1, l2], {
+        textShadow: "0 0 8px var(--tb-accent), 0 0 24px color-mix(in srgb, var(--tb-accent) 40%, transparent)",
+        duration: 0.8, ease: "power1.inOut", yoyo: true, repeat: 1
+      }, 1.4);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

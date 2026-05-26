@@ -1,0 +1,27 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "data-checklist-02-tb",
+  "type": "hyperframes:block",
+  "title": "Data Checklist",
+  "description": "Efecto Tareabox: Data Checklist",
+  "tags": [
+    "data",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 3.0,
+  "files": [
+    {
+      "path": "data-checklist-02-tb.html",
+      "target": "compositions/data-checklist-02-tb.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-data-checklist-02-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-data-checklist-02-tb.png"
+  }
+}

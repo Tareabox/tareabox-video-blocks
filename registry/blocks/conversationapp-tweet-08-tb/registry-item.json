@@ -1,0 +1,32 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "conversationapp-tweet-08-tb",
+  "type": "hyperframes:block",
+  "title": "Conversationapp Tweet",
+  "description": "Efecto Tareabox: Conversationapp Tweet",
+  "tags": [
+    "conversationapp",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 4.0,
+  "files": [
+    {
+      "path": "conversationapp-tweet-08-tb.html",
+      "target": "compositions/conversationapp-tweet-08-tb.html",
+      "type": "hyperframes:composition"
+    },
+    {
+      "path": "tb-media/tb-tareabox-logo.png",
+      "target": "assets/tb-media/tb-tareabox-logo.png",
+      "type": "hyperframes:asset"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-conversationapp-tweet-08-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-conversationapp-tweet-08-tb.png"
+  }
+}

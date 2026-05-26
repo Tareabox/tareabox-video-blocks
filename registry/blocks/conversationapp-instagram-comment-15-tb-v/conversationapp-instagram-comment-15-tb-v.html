@@ -1,0 +1,160 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  conversationapp-instagram-comment-15-tb-v (vertical 1080x1920)
+  Vertical 9:16 — Instagram comment with likes/heart · 4 seconds
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"icName","type":"string","label":"Username","default":"alex.designs"},
+  {"id":"icTime","type":"string","label":"Time ago","default":"3m"},
+  {"id":"icMsg","type":"string","label":"Comment text","default":"wait HOW does the typewriter sync to the audio?? need this immediately 😭"},
+  {"id":"icLikes","type":"string","label":"Likes label","default":"234 likes"},
+  {"id":"icReply","type":"string","label":"Reply label","default":"Reply"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#E1306C"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#000000"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="conversationapp-instagram-comment-15-tb-v" data-composition-id="conversationapp-instagram-comment-15-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="4">
+<style>
+    /* 🎨 CUSTOMIZE HERE */
+    [data-composition-id="conversationapp-instagram-comment-15-tb-v"] {
+      --tb-accent: var(--tb-brand-accent, #E1306C);
+      --tb-bg: #000; --tb-text: #fafafa; --tb-text-dim: #a8a8a8;
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --ic-name:  "alex.designs";
+      --ic-time:  "3m";
+      --ic-msg:   "wait HOW does the typewriter sync to the audio?? need this immediately 😭";
+      --ic-likes: "234 likes";
+      --ic-reply: "Reply";
+    }
+    /* ⛔ EFFECT CODE */
+    [data-composition-id="conversationapp-instagram-comment-15-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 4%;
+    }
+    [data-composition-id="conversationapp-instagram-comment-15-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+    [data-composition-id="conversationapp-instagram-comment-15-tb-v"] .row {
+      width: 92%;
+      display: flex; gap: 3vmin;
+      align-items: flex-start;
+      background: rgba(255,255,255,0.03);
+      border-radius: 24px;
+      padding: 5vmin 5vmin 4vmin;
+      opacity: 0;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    }
+    [data-composition-id="conversationapp-instagram-comment-15-tb-v"] .ring {
+      width: 14vmin; height: 14vmin;
+      border-radius: 50%;
+      padding: 0.4vmin;
+      background: conic-gradient(from 0deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #f09433);
+      flex-shrink: 0;
+    }
+    [data-composition-id="conversationapp-instagram-comment-15-tb-v"] .avatar {
+      width: 100%; height: 100%; border-radius: 50%;
+      background: #1c1c1c;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700;
+      font-size: clamp(26px, 3.4vmin, 42px);
+    }
+    [data-composition-id="conversationapp-instagram-comment-15-tb-v"] .body {
+      flex: 1;
+      display: flex; flex-direction: column;
+      gap: 1.2vmin;
+      min-width: 0;
+    }
+    [data-composition-id="conversationapp-instagram-comment-15-tb-v"] .text {
+      font-size: clamp(32px, 4.2vmin, 54px);
+      color: var(--tb-text);
+      line-height: 1.4;
+    }
+    [data-composition-id="conversationapp-instagram-comment-15-tb-v"] .name {
+      font-weight: 700;
+      margin-right: 0.6vmin;
+    }
+    [data-composition-id="conversationapp-instagram-comment-15-tb-v"] .meta {
+      display: flex; align-items: center; gap: 3vmin; flex-wrap: wrap;
+      font-size: clamp(24px, 2.8vmin, 36px);
+      color: var(--tb-text-dim);
+    }
+    [data-composition-id="conversationapp-instagram-comment-15-tb-v"] .meta strong {
+      font-weight: 600;
+      color: var(--tb-text);
+    }
+    [data-composition-id="conversationapp-instagram-comment-15-tb-v"] .heart {
+      flex-shrink: 0;
+      display: flex; align-items: flex-start;
+      padding-top: 1vmin;
+    }
+    [data-composition-id="conversationapp-instagram-comment-15-tb-v"] .heart svg {
+      width: clamp(36px, 4.2vmin, 56px); height: clamp(36px, 4.2vmin, 56px);
+      stroke: #ed4956; fill: #ed4956; stroke-width: 2;
+      transform: scale(0);
+    }
+</style>
+
+    <div class="row" id="ic15v-row">
+      <div class="ring"><div class="avatar">a</div></div>
+      <div class="body">
+        <div class="text"><span class="name" id="ic15v-name"></span><span id="ic15v-msg"></span></div>
+        <div class="meta">
+          <span id="ic15v-time"></span>
+          <span><strong id="ic15v-likes"></strong></span>
+          <span id="ic15v-reply"></span>
+        </div>
+      </div>
+      <div class="heart">
+        <svg id="ic15v-heart" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["conversationapp-instagram-comment-15-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="conversationapp-instagram-comment-15-tb-v"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, '"' + String(val) + '"'); };
+      const setRaw = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, String(val)); };
+      setStr("--ic-name",  V.icName);
+      setStr("--ic-time",  V.icTime);
+      setStr("--ic-msg",   V.icMsg);
+      setStr("--ic-likes", V.icLikes);
+      setStr("--ic-reply", V.icReply);
+      setRaw("--tb-accent", V.accent);
+      setRaw("--tb-bg",     V.bg);
+
+      $("#ic15v-name").textContent  = G("--ic-name");
+      $("#ic15v-msg").textContent   = " " + G("--ic-msg");
+      $("#ic15v-time").textContent  = G("--ic-time");
+      $("#ic15v-likes").textContent = G("--ic-likes");
+      $("#ic15v-reply").textContent = G("--ic-reply");
+
+      const tl = gsap.timeline({ paused: true });
+      const row = $("#ic15v-row"), heart = $("#ic15v-heart");
+      gsap.set(row, { y: 16 });
+      tl.to(row, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.2);
+      tl.to(heart, { scale: 1.3, duration: 0.3, ease: "back.out(3)" }, 1.2);
+      tl.to(heart, { scale: 1, duration: 0.25, ease: "power2.out" }, 1.5);
+      tl.to({}, { duration: 4 }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

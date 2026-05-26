@@ -1,0 +1,299 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Pack Natalie
+  conversationapp-imessage-pure-18-tb-v (vertical 1080x1920)
+  Vertical 9:16 — iMessage bubbles cascade puro estilo Samuel Kraft blog post.
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"m1","type":"string","label":"Message 1 (out)","default":"Hey there! What's up"},
+  {"id":"m2","type":"string","label":"Message 2 (in)","default":"Checking out iOS7 you know.."},
+  {"id":"m3","type":"string","label":"Message 3 (out)","default":"Check out this bubble!"},
+  {"id":"m4","type":"string","label":"Message 4 (in)","default":"It's pretty cool!"},
+  {"id":"m5","type":"string","label":"Message 5 (in)","default":"And it's in css?"},
+  {"id":"m6","type":"string","label":"Message 6 (out)","default":"Yeah it's pure CSS & HTML"},
+  {"id":"avOutName","type":"string","label":"Outgoing name","default":"Natalie"},
+  {"id":"avInName","type":"string","label":"Incoming name","default":"Sam"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#007AFF"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#1a1a1c"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="conversationapp-imessage-pure-18-tb-v" data-composition-id="conversationapp-imessage-pure-18-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="5">
+<style>
+    /* 🎨 CUSTOMIZE HERE */
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] {
+      --tb-accent: var(--tb-brand-accent, #007AFF);
+      --tb-text:         #ffffff;
+      --tb-bg:           #1a1a1c;
+      --tb-sent:         #0b93f6;
+      --tb-received:     #e5e5ea;
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --m1: "Hey there! What's up";          --m1-side: "out";
+      --m2: "Checking out iOS7 you know..";  --m2-side: "in";
+      --m3: "Check out this bubble!";        --m3-side: "out";
+      --m4: "It's pretty cool!";             --m4-side: "in";
+      --m5: "And it's in css?";              --m5-side: "in";
+      --m6: "Yeah it's pure CSS & HTML";     --m6-side: "out";
+
+      --av-out-name:    "Natalie";
+      --av-in-name:     "Sam";
+      --av-out-img: url("https://i.pravatar.cc/200?img=47");
+      --av-in-img:  url("https://i.pravatar.cc/200?img=12");
+    }
+    /* ⛔ EFFECT CODE */
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: var(--tb-bg);
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+      display: flex; align-items: center; justify-content: center;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.025);
+      pointer-events: none;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bg-shape.s1 {
+      width: 60vmin; height: 60vmin;
+      top: -20%; right: -10%;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bg-shape.s2 {
+      width: 80vmin; height: 80vmin;
+      bottom: -25%; left: -15%;
+    }
+
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .list {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      max-width: 1000px;
+      width: 92%;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+      z-index: 2;
+    }
+
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble {
+      position: relative;
+      max-width: 80%;
+      width: max-content;
+      margin-bottom: 1.5vmin;
+      padding: 2.4vmin 4vmin;
+      line-height: 1.2;
+      word-wrap: break-word;
+      border-radius: 3.4vmin;
+      font-size: clamp(36px, 4.2vmin, 60px);
+      opacity: 0;
+    }
+
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble.tail::before,
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble.tail::after {
+      position: absolute;
+      bottom: 0;
+      height: 3.4vmin;
+      content: "";
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble.tail::before {
+      width: 2.8vmin;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble.tail::after {
+      width: 3.6vmin;
+      background-color: var(--tb-bg);
+    }
+
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble.out {
+      align-self: flex-end;
+      color: white;
+      background: var(--tb-sent);
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble.out.tail::before {
+      right: -0.9vmin;
+      background-color: var(--tb-sent);
+      border-bottom-left-radius: 2vmin 1.8vmin;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble.out.tail::after {
+      right: -3.6vmin;
+      border-bottom-left-radius: 1.4vmin;
+    }
+
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble.in {
+      align-self: flex-start;
+      color: black;
+      background: var(--tb-received);
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble.in.tail::before {
+      left: -0.9vmin;
+      background-color: var(--tb-received);
+      border-bottom-right-radius: 2vmin 1.8vmin;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble.in.tail::after {
+      left: -3.6vmin;
+      border-bottom-right-radius: 1.4vmin;
+    }
+
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .row {
+      display: flex;
+      align-items: flex-end;
+      gap: 2vmin;
+      margin-bottom: 1.4vmin;
+      opacity: 0;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .row.out {
+      flex-direction: row-reverse;
+      align-self: flex-end;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .row.in {
+      align-self: flex-start;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .row .bubble {
+      opacity: 1;
+      margin-bottom: 0;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .row.stacked-row {
+      margin-bottom: 0.4vmin;
+    }
+
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .who {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8vmin;
+      flex-shrink: 0;
+      width: 13vmin;
+      overflow: visible;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .avatar {
+      width: 9vmin;
+      height: 9vmin;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      background-color: #2a2a2c;
+      box-shadow: 0 0.4vmin 1.2vmin rgba(0,0,0,0.4);
+      border: 0.2vmin solid rgba(255,255,255,0.08);
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .avatar.out { background-image: var(--av-out-img); }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .avatar.in  { background-image: var(--av-in-img); }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .uname {
+      font-size: clamp(15px, 1.7vmin, 22px);
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      overflow: visible;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .who.spacer {
+      visibility: hidden;
+    }
+
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble.stacked {
+      margin-bottom: 2px;
+    }
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble.stacked::before,
+    [data-composition-id="conversationapp-imessage-pure-18-tb-v"] .bubble.stacked::after {
+      opacity: 0;
+    }
+</style>
+
+
+    <div class="bg-shape s1"></div>
+    <div class="bg-shape s2"></div>
+
+    <ul class="list">
+      <li class="row out" id="im18v-r1">
+        <div class="who"><div class="avatar out" id="im18v-av1"></div><div class="uname" id="im18v-un1"></div></div>
+        <div class="bubble out tail" id="im18v-m1"></div>
+      </li>
+      <li class="row in" id="im18v-r2">
+        <div class="who"><div class="avatar in" id="im18v-av2"></div><div class="uname" id="im18v-un2"></div></div>
+        <div class="bubble in tail" id="im18v-m2"></div>
+      </li>
+      <li class="row out" id="im18v-r3">
+        <div class="who"><div class="avatar out" id="im18v-av3"></div><div class="uname" id="im18v-un3"></div></div>
+        <div class="bubble out tail" id="im18v-m3"></div>
+      </li>
+      <li class="row in" id="im18v-r4">
+        <div class="who"><div class="avatar in" id="im18v-av4"></div><div class="uname" id="im18v-un4"></div></div>
+        <div class="bubble in tail" id="im18v-m4"></div>
+      </li>
+      <li class="row in" id="im18v-r5">
+        <div class="who"><div class="avatar in" id="im18v-av5"></div><div class="uname" id="im18v-un5"></div></div>
+        <div class="bubble in tail" id="im18v-m5"></div>
+      </li>
+      <li class="row out" id="im18v-r6">
+        <div class="who"><div class="avatar out" id="im18v-av6"></div><div class="uname" id="im18v-un6"></div></div>
+        <div class="bubble out tail" id="im18v-m6"></div>
+      </li>
+    </ul>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["conversationapp-imessage-pure-18-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="conversationapp-imessage-pure-18-tb-v"]');
+      const cs   = getComputedStyle(root);
+      const $    = (s) => root.querySelector(s);
+      const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, '"' + String(val) + '"'); };
+      const setRaw = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, String(val)); };
+      setStr("--m1", V.m1); setStr("--m2", V.m2); setStr("--m3", V.m3);
+      setStr("--m4", V.m4); setStr("--m5", V.m5); setStr("--m6", V.m6);
+      setStr("--av-out-name", V.avOutName);
+      setStr("--av-in-name",  V.avInName);
+      setRaw("--tb-accent", V.accent);
+      setRaw("--tb-bg",     V.bg);
+
+      [1,2,3,4,5,6].forEach(i => {
+        $("#im18v-m" + i).textContent = G("--m" + i);
+      });
+
+      const outName = G("--av-out-name"), inName = G("--av-in-name");
+      [1,2,3,4,5,6].forEach(i => {
+        const av = $("#im18v-av" + i);
+        const un = $("#im18v-un" + i);
+        if (!un) return;
+        const isOut = av && av.classList.contains("out");
+        un.textContent = isOut ? outName : inName;
+      });
+
+      const TOTAL = 5;
+      const tl = gsap.timeline({ paused: true });
+
+      [1,2,3,4,5,6].forEach((i, idx) => {
+        const r = $("#im18v-r" + i);
+        const at = 0.3 + idx * 0.55;
+        const side = G("--m" + i + "-side");
+        const xStart = side === "out" ? 30 : -30;
+
+        gsap.set(r, { x: xStart, scale: 0.9 });
+        tl.to(r, {
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          duration: 0.45,
+          ease: "back.out(1.5)"
+        }, at);
+      });
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

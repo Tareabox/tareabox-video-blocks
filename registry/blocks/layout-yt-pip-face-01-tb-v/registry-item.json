@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "layout-yt-pip-face-01-tb-v",
+  "type": "hyperframes:block",
+  "title": "Layout YT PiP Face (Vertical)",
+  "description": "Screen recording de fondo con face cam PiP en bottom-right en formato vertical 9:16",
+  "tags": [
+    "layout",
+    "pip",
+    "video",
+    "vertical",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1080,
+    "height": 1920
+  },
+  "duration": 5.0,
+  "files": [
+    {
+      "path": "layout-yt-pip-face-01-tb-v.html",
+      "target": "compositions/layout-yt-pip-face-01-tb-v.html",
+      "type": "hyperframes:composition"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-yt-pip-face-01-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-layout-yt-pip-face-01-tb-v.png"
+  }
+}
