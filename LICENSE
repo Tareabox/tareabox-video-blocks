@@ -40,6 +40,24 @@ and stream demo assets from the Pexels CDN (Pexels License, attribution
 not required). End users are responsible for complying with those licenses
 in their own projects.
 
+TRADEMARKS & NON-AFFILIATION
+"HyperFrames" is a trademark of Heygen Inc. This catalog is an independent,
+third-party project. It is NOT affiliated with, sponsored by, endorsed by,
+or officially supported by Heygen or HyperFrames. Use of the "HyperFrames"
+name in this repository is purely descriptive (to identify the framework
+this catalog targets) and constitutes nominative fair use.
+
+"GSAP" is a trademark of Webflow Inc. (formerly GreenSock). This catalog
+references GSAP only as an external dependency via CDN; no GSAP code is
+redistributed by this catalog.
+
+"Pexels" is a trademark of Pexels GmbH. This catalog streams demo videos
+from the Pexels CDN under the Pexels License; no Pexels content is
+redistributed or hosted by this catalog.
+
+All other product names, logos, and brands referenced are property of
+their respective owners.
+
 EXPERIMENTAL STATUS
 This catalog is a personal experimental project. The author publishes
 blocks that worked for her own video production. Code quality varies —

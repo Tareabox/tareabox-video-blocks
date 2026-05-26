@@ -10,6 +10,8 @@
 > - **No me hago responsable** si algo no anda como esperás, rompe tu proyecto, o causa pérdidas de cualquier tipo (ver [LICENSE](LICENSE)).
 > - No tengo obligación de dar soporte, arreglar bugs, o aceptar PRs (aunque me encanta cuando lo hacen 💜).
 > - Sugerencias y feedback son super bienvenidos; demandas y reclamos legales no.
+>
+> **"HyperFrames" es marca de Heygen Inc.** Este catálogo es un proyecto independiente y NO está afiliado, patrocinado, ni respaldado por Heygen. Solo es compatible con su framework.
 
 Registry de bloques de video para [HyperFrames](https://hyperframes.heygen.com).
 **+100 bloques de video** y creciendo — un catálogo vivo de bloques HyperFrames listos para instalar con `hyperframes add`.
