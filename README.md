@@ -71,7 +71,21 @@ registry/
 
 La lista completa de los 127 está en `registry/registry.json`.
 
-## Cómo instalar un bloque
+## Install rápido con Claude Code (sin código)
+
+Si usás **Claude Code**, hay una skill que automatiza todo: instala HyperFrames + configura el registry + te guía a montar el video sin que toques nada.
+
+```bash
+git clone https://github.com/Tareabox/tareabox-video-edit-skill ~/.claude/skills/tareabox-video-edit
+```
+
+Después en Claude Code decile algo como *"haceme un video con tareabox"* y la skill toma el control.
+
+**Skill repo:** [Tareabox/tareabox-video-edit-skill](https://github.com/Tareabox/tareabox-video-edit-skill) (MIT)
+
+---
+
+## Cómo instalar un bloque (manual)
 
 Hay dos formas:
 
