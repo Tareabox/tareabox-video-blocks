@@ -1,0 +1,178 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  data-metric-flip-03-tb
+  Tareabox Hyperframes Effect
+  Description: Before/after metric cards — numbers flip in with rotateX and an arrow shows improvement.
+  Category: data
+  Duration: 3 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="data-metric-flip-03-tb" data-composition-id="data-metric-flip-03-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="3">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="data-metric-flip-03-tb"] {
+      --tb-bg:           #09090b;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #c4c4c8;
+      --tb-accent:       var(--tb-brand-accent, #10b981);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --metric-label:  "Build time";
+      --before-value:  "4m 12s";
+      --after-value:   "38s";
+      --before-label:  "Before";
+      --after-label:   "After";
+      --delta-label:   "6.6× faster";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="data-metric-flip-03-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: transparent;
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="data-metric-flip-03-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="data-metric-flip-03-tb"] .stage {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 4vmin;
+    }
+    [data-composition-id="data-metric-flip-03-tb"] .metric-label {
+      font-size: clamp(18px, 3vmin, 32px);
+      font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--tb-text-dim);
+      opacity: 0;
+    }
+    [data-composition-id="data-metric-flip-03-tb"] .cards-row {
+      display: flex; align-items: center; gap: 4vmin;
+    }
+    [data-composition-id="data-metric-flip-03-tb"] .metric-card {
+      display: flex; flex-direction: column; align-items: center; gap: 1.5vmin;
+      padding: 4vmin 6vmin;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.20);
+      perspective: 800px;
+      opacity: 0;
+    }
+    [data-composition-id="data-metric-flip-03-tb"] .metric-card.after {
+      border-color: color-mix(in srgb, var(--tb-accent) 35%, rgba(255,255,255,0.06));
+      background: color-mix(in srgb, var(--tb-accent) 4%, rgba(9,9,11,0.98));
+    }
+    [data-composition-id="data-metric-flip-03-tb"] .card-tag {
+      font-size: clamp(15px, 3.5vmin, 30px);
+      font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--tb-text-dim);
+    }
+    [data-composition-id="data-metric-flip-03-tb"] .metric-card.after .card-tag {
+      color: var(--tb-accent);
+    }
+    [data-composition-id="data-metric-flip-03-tb"] .card-value {
+      font-size: clamp(36px, 8vmin, 100px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--tb-text);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    [data-composition-id="data-metric-flip-03-tb"] .metric-card.after .card-value {
+      color: var(--tb-accent);
+    }
+    [data-composition-id="data-metric-flip-03-tb"] .arrow-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 1vmin;
+      opacity: 0;
+    }
+    [data-composition-id="data-metric-flip-03-tb"] .arrow-icon {
+      color: var(--tb-accent);
+      width: 3vmin; height: 3vmin;
+    }
+    [data-composition-id="data-metric-flip-03-tb"] .delta-label {
+      font-size: clamp(19px, 2.5vmin, 27px);
+      font-weight: 700;
+      color: var(--tb-accent);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+</style>
+
+    <div class="stage">
+      <div class="metric-label" id="mf03-label"></div>
+      <div class="cards-row">
+        <div class="metric-card before" id="mf03-before">
+          <span class="card-tag"   id="mf03-before-tag"></span>
+          <span class="card-value" id="mf03-before-val"></span>
+        </div>
+        <div class="arrow-wrap" id="mf03-arrow">
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+          <span class="delta-label" id="mf03-delta"></span>
+        </div>
+        <div class="metric-card after" id="mf03-after">
+          <span class="card-tag"   id="mf03-after-tag"></span>
+          <span class="card-value" id="mf03-after-val"></span>
+        </div>
+      </div>
+    </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["data-metric-flip-03-tb"] = (function () {
+      const root = document.querySelector('[data-composition-id="data-metric-flip-03-tb"]');
+      const cs   = getComputedStyle(root);
+
+      root.querySelector("#mf03-label").textContent      = cs.getPropertyValue("--metric-label").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#mf03-before-tag").textContent = cs.getPropertyValue("--before-label").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#mf03-after-tag").textContent  = cs.getPropertyValue("--after-label").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#mf03-before-val").textContent = cs.getPropertyValue("--before-value").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#mf03-after-val").textContent  = cs.getPropertyValue("--after-value").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#mf03-delta").textContent      = cs.getPropertyValue("--delta-label").trim().replace(/^["']|["']$/g,"");
+
+      const label  = root.querySelector("#mf03-label");
+      const before = root.querySelector("#mf03-before");
+      const after  = root.querySelector("#mf03-after");
+      const arrow  = root.querySelector("#mf03-arrow");
+      const bVal   = root.querySelector("#mf03-before-val");
+      const aVal   = root.querySelector("#mf03-after-val");
+
+      const TOTAL = 3;
+      const tl = gsap.timeline({ paused: true });
+
+      tl.to(label, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.from(label, { y: 10, duration: 0.35, ease: "power2.out" }, 0.1);
+
+      gsap.set([before, after], { rotateX: -90, transformPerspective: 800 });
+      tl.to(before, { opacity: 1, rotateX: 0, duration: 0.5, ease: "back.out(1.4)" }, 0.3);
+      tl.to(after,  { opacity: 1, rotateX: 0, duration: 0.5, ease: "back.out(1.4)" }, 0.55);
+
+      tl.to(arrow, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.7);
+      tl.from(arrow, { scale: 0.7, duration: 0.3, ease: "back.out(2)" }, 0.7);
+
+      tl.to(aVal, { scale: 1.08, duration: 0.2, ease: "power2.out", yoyo: true, repeat: 1 }, 0.95);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

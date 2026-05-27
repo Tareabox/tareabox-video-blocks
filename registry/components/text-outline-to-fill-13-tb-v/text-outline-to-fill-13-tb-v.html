@@ -1,0 +1,161 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  text-outline-to-fill-13-tb-v (vertical 1080x1920)
+  Tareabox Hyperframes Effect
+  Description: Vertical 9:16 — SVG text strokes draw in, then the fill floods from left to right.
+  Category: text
+  Duration: 3.5 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"headline","type":"string","label":"Headline","default":"LAUNCH"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#facc15"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#0a0a0a"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="text-outline-to-fill-13-tb-v" data-composition-id="text-outline-to-fill-13-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="3.5">
+<style>
+    [data-composition-id="text-outline-to-fill-13-tb-v"] {
+      --tb-bg:           #0a0a0a;
+      --tb-text:         #ffffff;
+      --tb-text-dim:     #6b7280;
+      --tb-accent:       var(--tb-brand-accent, #facc15);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --headline: "LAUNCH";
+    }
+    [data-composition-id="text-outline-to-fill-13-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: transparent;
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="text-outline-to-fill-13-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="text-outline-to-fill-13-tb-v"] .svg-stage {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+    }
+    [data-composition-id="text-outline-to-fill-13-tb-v"] #otf13v-outline {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    [data-composition-id="text-outline-to-fill-13-tb-v"] #otf13v-filled {
+      clip-path: url(#otf13v-clip);
+    }
+</style>
+
+    <svg class="svg-stage" viewBox="0 0 1080 1920">
+      <defs>
+        <clipPath id="otf13v-clip">
+          <rect id="otf13v-clip-rect" x="-10" y="0" width="0" height="1920" />
+        </clipPath>
+      </defs>
+      <text id="otf13v-outline"
+            x="540" y="1010"
+            text-anchor="middle"
+            font-family="Geist, sans-serif"
+            font-size="220"
+            font-weight="900"
+            letter-spacing="-8"
+            stroke-width="4"
+            stroke-dasharray="0 9999"
+            stroke-dashoffset="0">
+      </text>
+      <text id="otf13v-filled"
+            x="540" y="1010"
+            text-anchor="middle"
+            font-family="Geist, sans-serif"
+            font-size="220"
+            font-weight="900"
+            letter-spacing="-8">
+      </text>
+    </svg>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["text-outline-to-fill-13-tb-v"] = (function () {
+      const root      = document.querySelector('[data-composition-id="text-outline-to-fill-13-tb-v"]');
+      const cs        = getComputedStyle(root);
+      const outlineEl = root.querySelector("#otf13v-outline");
+      const filledEl  = root.querySelector("#otf13v-filled");
+      const clipRect  = root.querySelector("#otf13v-clip-rect");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, '"' + String(val) + '"');
+      };
+      const setRaw = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, String(val));
+      };
+      setStr("--headline", V.headline);
+      setRaw("--tb-accent", V.accent);
+      setRaw("--tb-bg",     V.bg);
+
+      const headline  = cs.getPropertyValue("--headline").trim().replace(/^["']|["']$/g, "");
+      const accent    = cs.getPropertyValue("--tb-accent").trim();
+      outlineEl.textContent = headline;
+      filledEl.textContent  = headline;
+
+      /* Dynamic font fit per HyperFrames skill (SKILL.md:366) — shrink only */
+      if (window.__hyperframes && window.__hyperframes.fitTextFontSize) {
+        [
+              outlineEl,
+              filledEl
+        ].forEach((__el) => {
+          try {
+            if (!__el || !__el.textContent || !__el.parentElement) return;
+            const __cs = getComputedStyle(__el);
+            const __cur = parseFloat(__cs.fontSize);
+            const __pw  = __el.parentElement.getBoundingClientRect().width || 0;
+            if (__pw < 40) return;
+            const __ff  = (__cs.fontFamily.split(",")[0] || "Geist").replace(/["\']/g,"").trim();
+            const __fw  = parseInt(__cs.fontWeight) || 700;
+            const __fit = window.__hyperframes.fitTextFontSize(__el.textContent, {
+              maxWidth: __pw * 0.96, fontFamily: __ff, fontWeight: __fw,
+            });
+            if (__fit && __fit < __cur) __el.style.fontSize = __fit + "px";
+          } catch (e) {}
+        });
+      }
+      outlineEl.setAttribute("stroke", accent);
+      filledEl.setAttribute("fill", accent);
+
+      const totalLen = outlineEl.getTotalLength ? outlineEl.getTotalLength() : 4000;
+      outlineEl.setAttribute("stroke-dasharray", `0 ${totalLen}`);
+
+      const TOTAL = 3.5;
+      const tl = gsap.timeline({ paused: true });
+
+      tl.to(outlineEl, {
+        attr: { "stroke-dasharray": `${totalLen} 0` },
+        duration: 1.2, ease: "power2.inOut"
+      }, 0.15);
+
+      tl.to(clipRect, {
+        attr: { width: 1100 },
+        duration: 0.9, ease: "power3.inOut"
+      }, 1.5);
+
+      tl.to(outlineEl, { opacity: 0, duration: 0.4, ease: "power2.in" }, 1.9);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

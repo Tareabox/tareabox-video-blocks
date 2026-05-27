@@ -1,0 +1,30 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "text-outline-to-fill-13-tb",
+  "type": "hyperframes:component",
+  "title": "Text Outline To Fill",
+  "description": "Tareabox component: SVG text strokes draw in, then the fill floods from left to right. Transparent background — layer over any video, image, or block.",
+  "tags": [
+    "text",
+    "outline",
+    "headline",
+    "tareabox",
+    "component"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 3.5,
+  "files": [
+    {
+      "path": "text-outline-to-fill-13-tb.html",
+      "target": "compositions/components/text-outline-to-fill-13-tb.html",
+      "type": "hyperframes:snippet"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-outline-to-fill-13-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-outline-to-fill-13-tb.png"
+  }
+}

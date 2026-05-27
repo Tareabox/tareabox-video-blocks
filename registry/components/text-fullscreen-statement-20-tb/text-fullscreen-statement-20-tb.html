@@ -1,0 +1,142 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  text-fullscreen-statement-20-tb
+  Tareabox Hyperframes Effect
+  Description: A single giant statement slams onto screen with a cinematic scale-blur reveal and accent underline.
+  Category: text
+  Duration: 3 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="text-fullscreen-statement-20-tb" data-composition-id="text-fullscreen-statement-20-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="3">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-fullscreen-statement-20-tb"] {
+      --tb-bg:           #080808;
+      --tb-text:         #ffffff;
+      --tb-text-dim:     #6b7280;
+      --tb-accent:       var(--tb-brand-accent, #ef4444);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --statement: "MAKE IT";
+      --sub:       "COUNT";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="text-fullscreen-statement-20-tb"] {
+      position: relative; width: 100%; height: 100%;
+      background: transparent;
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="text-fullscreen-statement-20-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="text-fullscreen-statement-20-tb"] .stage {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0;
+    }
+    [data-composition-id="text-fullscreen-statement-20-tb"] .statement {
+      font-size: clamp(80px, 15vmin, 180px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.92;
+      color: var(--tb-text);
+      text-align: center;
+      opacity: 0;
+    }
+    [data-composition-id="text-fullscreen-statement-20-tb"] .sub {
+      font-size: clamp(80px, 15vmin, 180px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.92;
+      color: var(--tb-accent);
+      text-align: center;
+      opacity: 0;
+    }
+    [data-composition-id="text-fullscreen-statement-20-tb"] .slash {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 6px;
+      background: var(--tb-accent);
+      left: 50%;
+      transform: scaleY(0) translateX(-50%);
+      transform-origin: center;
+      opacity: 0.5;
+    }
+    [data-composition-id="text-fullscreen-statement-20-tb"] .flash {
+      position: absolute; inset: 0;
+      background: var(--tb-accent);
+      opacity: 0;
+    }
+</style>
+
+    <div class="flash" id="fs20-flash"></div>
+    <div class="slash" id="fs20-slash"></div>
+    <div class="stage">
+      <div class="statement" id="fs20-stmt"></div>
+      <div class="sub"       id="fs20-sub"></div>
+    </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["text-fullscreen-statement-20-tb"] = (function () {
+      const root    = document.querySelector('[data-composition-id="text-fullscreen-statement-20-tb"]');
+      const cs      = getComputedStyle(root);
+      const stmtEl  = root.querySelector("#fs20-stmt");
+      const subEl   = root.querySelector("#fs20-sub");
+      const flashEl = root.querySelector("#fs20-flash");
+      const slashEl = root.querySelector("#fs20-slash");
+
+      stmtEl.textContent = cs.getPropertyValue("--statement").trim().replace(/^["']|["']$/g, "");
+      subEl.textContent  = cs.getPropertyValue("--sub").trim().replace(/^["']|["']$/g, "");
+
+      const TOTAL = 3;
+      const tl = gsap.timeline({ paused: true });
+
+      // Vertical slash slams down as intro
+      tl.to(slashEl, { scaleY: 1, opacity: 0.4, duration: 0.18, ease: "power4.out", transformOrigin: "top center" }, 0.05);
+      tl.to(slashEl, { opacity: 0, duration: 0.25, ease: "power2.in" }, 0.25);
+
+      // Statement slams in — scale from large to final + blur clears
+      tl.fromTo(stmtEl,
+        { opacity: 0, scale: 1.35, filter: "blur(28px)" },
+        { opacity: 1, scale: 1,    filter: "blur(0px)", duration: 0.55, ease: "expo.out" },
+        0.2);
+
+      // Flash on impact
+      tl.to(flashEl, { opacity: 0.12, duration: 0, ease: "none" }, 0.2);
+      tl.to(flashEl, { opacity: 0,    duration: 0.3, ease: "power2.out" }, 0.21);
+
+      // Sub word slams in right after
+      tl.fromTo(subEl,
+        { opacity: 0, scale: 1.25, filter: "blur(20px)" },
+        { opacity: 1, scale: 1,    filter: "blur(0px)", duration: 0.5, ease: "expo.out" },
+        0.55);
+
+      // Second flash
+      tl.to(flashEl, { opacity: 0.08, duration: 0, ease: "none" }, 0.55);
+      tl.to(flashEl, { opacity: 0,    duration: 0.25, ease: "power2.out" }, 0.56);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

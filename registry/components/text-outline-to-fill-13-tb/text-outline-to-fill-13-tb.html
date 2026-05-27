@@ -1,0 +1,161 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  text-outline-to-fill-13-tb (component)
+  Tareabox Hyperframes Component
+  Description: SVG text strokes draw in, then the fill floods left → right.
+  Transparent background — layer over any video, image, or composition.
+  Category: text (component)
+  Duration: 3.5s
+  REQUIRES: gsap (CDN)
+
+  HOW TO ADAPT (variables you can override from the parent composition or via
+  HyperFrames' data-composition-variables):
+    --headline       : the word to draw (default "LAUNCH")
+    --tb-accent      : stroke + fill color (default #facc15)
+    --anchor-x       : horizontal anchor in % of stage width   (default 50%)
+    --anchor-y       : vertical anchor in % of stage height    (default 58%)
+    --font-size      : font size in px (SVG units, viewBox 1920x1080) (default 220)
+    --tb-font-display: font family (default "Geist")
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"headline","type":"string","label":"Headline","default":"LAUNCH"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#facc15"},
+  {"id":"anchorX","type":"string","label":"Anchor X (%)","default":"50%"},
+  {"id":"anchorY","type":"string","label":"Anchor Y (%)","default":"58%"},
+  {"id":"fontSize","type":"string","label":"Font size (SVG units)","default":"220"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="text-outline-to-fill-13-tb" data-composition-id="text-outline-to-fill-13-tb"
+       data-width="1920" data-height="1080"
+       data-start="0" data-duration="3.5">
+<style>
+    [data-composition-id="text-outline-to-fill-13-tb"] {
+      --tb-accent:       var(--tb-brand-accent, #facc15);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --headline:  "LAUNCH";
+      --anchor-x:  50%;
+      --anchor-y:  58%;
+      --font-size: 220;
+
+      position: relative; width: 100%; height: 100%;
+      background: transparent;
+      overflow: visible;
+      font-family: var(--tb-font-display);
+      pointer-events: none;
+    }
+    [data-composition-id="text-outline-to-fill-13-tb"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="text-outline-to-fill-13-tb"] .svg-stage {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+    }
+    [data-composition-id="text-outline-to-fill-13-tb"] #otf13-outline {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    [data-composition-id="text-outline-to-fill-13-tb"] #otf13-filled {
+      clip-path: url(#otf13-clip);
+    }
+</style>
+
+    <svg class="svg-stage" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <clipPath id="otf13-clip">
+          <rect id="otf13-clip-rect" x="-10" y="0" width="0" height="1080" />
+        </clipPath>
+        <clipPath id="otf13-out-clip">
+          <rect id="otf13-out-clip-rect" x="-10" y="0" width="0" height="1080" />
+        </clipPath>
+      </defs>
+      <text id="otf13-outline"
+            text-anchor="middle"
+            font-family="Geist, sans-serif"
+            font-weight="900"
+            letter-spacing="-8"
+            stroke-width="4"
+            clip-path="url(#otf13-out-clip)">
+      </text>
+      <text id="otf13-filled"
+            text-anchor="middle"
+            font-family="Geist, sans-serif"
+            font-weight="900"
+            letter-spacing="-8">
+      </text>
+    </svg>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["text-outline-to-fill-13-tb"] = (function () {
+      const root        = document.querySelector('[data-composition-id="text-outline-to-fill-13-tb"]');
+      const cs          = getComputedStyle(root);
+      const outlineEl   = root.querySelector("#otf13-outline");
+      const filledEl    = root.querySelector("#otf13-filled");
+      const clipRect    = root.querySelector("#otf13-clip-rect");
+      const outClipRect = root.querySelector("#otf13-out-clip-rect");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, '"' + String(val) + '"');
+      };
+      const setRaw = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, String(val));
+      };
+      setStr("--headline", V.headline);
+      setRaw("--tb-accent", V.accent);
+      setRaw("--anchor-x",  V.anchorX);
+      setRaw("--anchor-y",  V.anchorY);
+      setRaw("--font-size", V.fontSize);
+
+      const headline = cs.getPropertyValue("--headline").trim().replace(/^["']|["']$/g, "");
+      const accent   = cs.getPropertyValue("--tb-accent").trim();
+      const ax       = parseFloat(cs.getPropertyValue("--anchor-x")) / 100;
+      const ay       = parseFloat(cs.getPropertyValue("--anchor-y")) / 100;
+      const fs       = parseFloat(cs.getPropertyValue("--font-size")) || 220;
+
+      const px = Math.round(1920 * (isFinite(ax) ? ax : 0.5));
+      const py = Math.round(1080 * (isFinite(ay) ? ay : 0.58));
+
+      [outlineEl, filledEl].forEach(el => {
+        el.setAttribute("x", px);
+        el.setAttribute("y", py);
+        el.setAttribute("font-size", fs);
+        el.textContent = headline;
+      });
+      outlineEl.setAttribute("stroke", accent);
+      outlineEl.setAttribute("fill", "none");
+      filledEl.setAttribute("fill", accent);
+
+      const TOTAL = 3.5;
+      const tl = gsap.timeline({ paused: true });
+
+      tl.to(outClipRect, {
+        attr: { width: 1940 },
+        duration: 1.2, ease: "power2.inOut"
+      }, 0.15);
+
+      tl.to(clipRect, {
+        attr: { width: 1940 },
+        duration: 0.9, ease: "power3.inOut"
+      }, 1.5);
+
+      tl.to(outlineEl, { opacity: 0, duration: 0.4, ease: "power2.in" }, 1.9);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

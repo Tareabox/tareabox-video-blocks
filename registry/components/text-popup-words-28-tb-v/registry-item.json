@@ -1,0 +1,34 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "text-popup-words-28-tb-v",
+  "type": "hyperframes:component",
+  "title": "Text Popup Words (Vertical)",
+  "description": "Efecto Tareabox: 3 palabras pop out del libro y pop in al cerrarse, en formato vertical 9:16",
+  "tags": [
+    "text",
+    "popup",
+    "vertical",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1080,
+    "height": 1920
+  },
+  "duration": 4.17,
+  "files": [
+    {
+      "path": "text-popup-words-28-tb-v.html",
+      "target": "compositions/components/text-popup-words-28-tb-v.html",
+      "type": "hyperframes:snippet"
+    },
+    {
+      "path": "tb-media/tb-luisa-audio.m4a",
+      "target": "assets/tb-media/tb-luisa-audio.m4a",
+      "type": "hyperframes:asset"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-popup-words-28-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-popup-words-28-tb-v.png"
+  }
+}

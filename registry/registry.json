@@ -101,19 +101,19 @@
     },
     {
       "name": "data-checklist-02-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "data-checklist-02-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "data-metric-flip-03-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "data-metric-flip-03-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "layout-perspective-scroll-14-tb",
@@ -265,275 +265,275 @@
     },
     {
       "name": "text-chapter-reveal-21-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-chapter-reveal-21-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-definition-22-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-definition-22-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-delete-rewrite-07-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-delete-rewrite-07-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-elastic-11-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-elastic-11-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-freeze-pop-24-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-fullscreen-statement-20-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-fullscreen-statement-20-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-glitch-brackets-05-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-glitch-brackets-05-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-gravity-drop-15-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-gravity-drop-15-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-headline-highlight-09-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-headline-highlight-09-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-kinetic-08-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-kinetic-08-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-morph-06-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-morph-06-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-neon-flashing-12-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-neon-flashing-12-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-neon-glow-03-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-neon-glow-03-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-outline-to-fill-13-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-outline-to-fill-13-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-popup-words-28-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-pro-tip-23-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-pro-tip-23-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-split-apart-14-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-split-apart-14-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-typewriter-dark-01-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-typewriter-dark-01-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-typewriter-light-02-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-typewriter-light-02-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-typewriter-wide-19-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-typewriter-wide-19-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-vhs-16-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-vhs-16-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-warp-arc-18-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-warp-arc-18-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-warp-diagonal-wave-10-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-warp-diagonal-wave-10-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-warp-scurve-17-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "text-warp-scurve-17-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-callout-note-03-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-callout-note-03-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-callout-tip-01-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-callout-tip-01-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-callout-warning-02-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-callout-warning-02-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-gif-burst-10-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-gif-burst-10-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-gif-crumple-11-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-gif-crumple-11-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-gif-stickers-08-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-gif-stickers-08-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-keyboard-shortcut-04-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-keyboard-shortcut-04-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-meme-cutin-09-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-meme-cutin-09-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-progress-bar-05-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-progress-bar-05-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-timestamp-cue-07-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-timestamp-cue-07-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-zoom-indicator-06-tb",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     },
     {
       "name": "visual-zoom-indicator-06-tb-v",
-      "type": "hyperframes:block"
+      "type": "hyperframes:component"
     }
   ]
 }

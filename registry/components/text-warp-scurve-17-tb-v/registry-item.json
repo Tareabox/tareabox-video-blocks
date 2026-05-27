@@ -1,0 +1,31 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "text-warp-scurve-17-tb-v",
+  "type": "hyperframes:component",
+  "title": "Text Warp S-Curve (Vertical)",
+  "description": "Vertical 9:16 \u2014 Texto fluye por una curva S vertical, desliz\u00e1ndose de arriba a abajo",
+  "tags": [
+    "text",
+    "warp",
+    "scurve",
+    "svg",
+    "vertical",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1080,
+    "height": 1920
+  },
+  "duration": 6,
+  "files": [
+    {
+      "path": "text-warp-scurve-17-tb-v.html",
+      "target": "compositions/components/text-warp-scurve-17-tb-v.html",
+      "type": "hyperframes:snippet"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-warp-scurve-17-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-warp-scurve-17-tb-v.png"
+  }
+}

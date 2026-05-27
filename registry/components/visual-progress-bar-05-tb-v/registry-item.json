@@ -1,0 +1,29 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "visual-progress-bar-05-tb-v",
+  "type": "hyperframes:component",
+  "title": "Visual Progress Bar (Vertical)",
+  "description": "Barra de progreso de tutorial al pie con label y contador, en formato vertical 9:16",
+  "tags": [
+    "visual",
+    "progress",
+    "vertical",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1080,
+    "height": 1920
+  },
+  "duration": 3.0,
+  "files": [
+    {
+      "path": "visual-progress-bar-05-tb-v.html",
+      "target": "compositions/components/visual-progress-bar-05-tb-v.html",
+      "type": "hyperframes:snippet"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-visual-progress-bar-05-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-visual-progress-bar-05-tb-v.png"
+  }
+}

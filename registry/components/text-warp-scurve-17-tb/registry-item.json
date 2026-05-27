@@ -1,0 +1,27 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "text-warp-scurve-17-tb",
+  "type": "hyperframes:component",
+  "title": "Text Warp Scurve",
+  "description": "Efecto Tareabox: Text Warp Scurve",
+  "tags": [
+    "text",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 6,
+  "files": [
+    {
+      "path": "text-warp-scurve-17-tb.html",
+      "target": "compositions/components/text-warp-scurve-17-tb.html",
+      "type": "hyperframes:snippet"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-warp-scurve-17-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-warp-scurve-17-tb.png"
+  }
+}

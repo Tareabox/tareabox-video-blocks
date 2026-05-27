@@ -1,0 +1,31 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "text-outline-to-fill-13-tb-v",
+  "type": "hyperframes:component",
+  "title": "Text Outline to Fill (Vertical)",
+  "description": "Vertical 9:16 \u2014 Texto SVG con strokes que se dibujan y luego un fill que inunda de izquierda a derecha",
+  "tags": [
+    "text",
+    "outline",
+    "fill",
+    "svg",
+    "vertical",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1080,
+    "height": 1920
+  },
+  "duration": 3.5,
+  "files": [
+    {
+      "path": "text-outline-to-fill-13-tb-v.html",
+      "target": "compositions/components/text-outline-to-fill-13-tb-v.html",
+      "type": "hyperframes:snippet"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-outline-to-fill-13-tb-v.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-outline-to-fill-13-tb-v.png"
+  }
+}

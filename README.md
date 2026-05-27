@@ -19,14 +19,18 @@ Registry de bloques de video para [HyperFrames](https://hyperframes.heygen.com).
 Este repo es mi laboratorio público: a medida que experimento con HyperFrames, los bloques que realmente me gustan los subo acá.
 
 <!-- AUTO-STATS-START -->
-**127 bloques** (65 verticales 9:16 + 62 horizontales 16:9)
+**133 items** = 61 blocks + 72 components (67 verticales 9:16 + 66 horizontales 16:9)
 
 Por categoría:
-- `conversationapp`: 24
-- `data`: 4
-- `layout`: 31
-- `text`: 46
-- `visual`: 22
+- `conversationapp`: 24 blocks
+- `data`: 4 components
+- `layout`: 37 blocks
+- `text`: 46 components
+- `visual`: 22 components
+
+**Blocks vs Components:**
+- **Blocks** = composiciones full-screen self-contained (escenas completas con bg propio)
+- **Components** = piezas con fondo transparente para apilar/overlay sobre otros bloques (texto, callouts, data widgets, visuales)
 <!-- AUTO-STATS-END -->
 
 ## Sobre el creador
@@ -53,23 +57,31 @@ Este catálogo es parte de **[Tareabox](https://tareabox.com)** — producto cre
 
 ```
 registry/
-├─ registry.json          ← manifiesto: lista los 127 bloques
-└─ blocks/
-   └─ <nombre-del-bloque>/
-      ├─ <nombre>.html         ← el efecto (formato bloque de registry)
-      ├─ registry-item.json    ← metadata del bloque
-      └─ tb-media/             ← assets que usa el bloque, si tiene
+├─ registry.json              ← manifiesto: lista los 133 items
+├─ blocks/                    ← 61 composiciones full-screen (escenas completas)
+│  └─ <nombre>/
+│     ├─ <nombre>.html
+│     ├─ registry-item.json
+│     └─ tb-media/            ← assets que usa el bloque (si tiene)
+└─ components/                ← 72 overlays transparentes para apilar
+   └─ <nombre>/
+      ├─ <nombre>.html        ← background: transparent
+      ├─ registry-item.json   ← type: hyperframes:component
+      └─ tb-media/            ← assets si aplica
 ```
 
-## Categorías de bloques
+## Categorías
 
-- **text** (46) — typewriter, warp, neon, kinetic, glitch, chapter, headline...
-- **layout** (31) — YouTube setups, video hero/pip/hook, split-screen, tutoriales
+**Blocks (61)** — escenas completas con bg propio:
+- **layout** (37) — YouTube setups, video hero/pip/hook, split-screen, tutoriales
 - **conversationapp** (24) — iMessage, WhatsApp, Slack, Discord, Instagram DM, Twitter, notifs iOS/Android
+
+**Components (72)** — overlays transparentes apilables sobre cualquier bloque/video:
+- **text** (46) — typewriter, warp, neon, kinetic, glitch, chapter, headline...
 - **visual** (22) — GIF stickers, callouts, indicadores (zoom, timestamp, progress, keyboard)
 - **data** (4) — checklist, metric flip
 
-La lista completa de los 127 está en `registry/registry.json`.
+La lista completa de los 133 items está en `registry/registry.json`.
 
 ## Install rápido con Claude Code (sin código)
 

@@ -1,0 +1,215 @@
+<!doctype html>
+<!--
+  © 2026 Natalie Digital · tareabox.com · Tareabox Hyperframes Pack
+  data-metric-flip-03-tb-v (vertical 1080x1920)
+  Tareabox Hyperframes Effect
+  Description: Before/after metric cards stacked vertically — numbers flip in with rotateX and a down-arrow shows improvement.
+  Category: data
+  Duration: 3 seconds
+  REQUIRES: gsap (CDN)
+-->
+<html lang="en" data-composition-variables='[
+  {"id":"metricLabel","type":"string","label":"Metric label","default":"Build time"},
+  {"id":"beforeValue","type":"string","label":"Before value","default":"4m 12s"},
+  {"id":"afterValue","type":"string","label":"After value","default":"38s"},
+  {"id":"beforeLabel","type":"string","label":"Before tag","default":"Before"},
+  {"id":"afterLabel","type":"string","label":"After tag","default":"After"},
+  {"id":"deltaLabel","type":"string","label":"Delta label","default":"6.6× faster"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#10b981"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#09090b"}
+]'>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=block" rel="stylesheet" />
+</head>
+<body>
+<div id="data-metric-flip-03-tb-v" data-composition-id="data-metric-flip-03-tb-v"
+       data-width="1080" data-height="1920"
+       data-start="0" data-duration="3">
+<style>
+    /* ═══════════════════════════════════════════════════════ */
+    /* 🎨 CUSTOMIZE HERE                                       */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="data-metric-flip-03-tb-v"] {
+      --tb-bg:           #09090b;
+      --tb-text:         #fafafa;
+      --tb-text-dim:     #c4c4c8;
+      --tb-accent:       var(--tb-brand-accent, #10b981);
+      --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
+
+      --metric-label:  "Build time";
+      --before-value:  "4m 12s";
+      --after-value:   "38s";
+      --before-label:  "Before";
+      --after-label:   "After";
+      --delta-label:   "6.6× faster";
+    }
+    /* ═══════════════════════════════════════════════════════ */
+    /* ⛔ EFFECT CODE                                          */
+    /* ═══════════════════════════════════════════════════════ */
+    [data-composition-id="data-metric-flip-03-tb-v"] {
+      position: relative; width: 100%; height: 100%;
+      background: transparent;
+      overflow: hidden;
+      font-family: var(--tb-font-display);
+    }
+    [data-composition-id="data-metric-flip-03-tb-v"] * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    [data-composition-id="data-metric-flip-03-tb-v"] .stage {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 8% 6%;
+      gap: 3.5vmin;
+    }
+    /* Vertical: bigger label */
+    [data-composition-id="data-metric-flip-03-tb-v"] .metric-label {
+      font-size: clamp(22px, 3.8vmin, 44px);
+      font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--tb-text-dim);
+      text-align: center;
+      opacity: 0;
+    }
+    /* Stacked column instead of horizontal row */
+    [data-composition-id="data-metric-flip-03-tb-v"] .cards-col {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 3vmin;
+      width: 100%;
+    }
+    [data-composition-id="data-metric-flip-03-tb-v"] .metric-card {
+      display: flex; flex-direction: column; align-items: center; gap: 2vmin;
+      padding: 6vmin 8vmin;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.20);
+      perspective: 800px;
+      min-width: 70%;
+      opacity: 0;
+    }
+    [data-composition-id="data-metric-flip-03-tb-v"] .metric-card.after {
+      border-color: color-mix(in srgb, var(--tb-accent) 35%, rgba(255,255,255,0.06));
+      background: color-mix(in srgb, var(--tb-accent) 4%, rgba(9,9,11,0.98));
+    }
+    [data-composition-id="data-metric-flip-03-tb-v"] .card-tag {
+      font-size: clamp(18px, 4vmin, 40px);
+      font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--tb-text-dim);
+    }
+    [data-composition-id="data-metric-flip-03-tb-v"] .metric-card.after .card-tag {
+      color: var(--tb-accent);
+    }
+    /* Vertical: bigger numbers */
+    [data-composition-id="data-metric-flip-03-tb-v"] .card-value {
+      font-size: clamp(56px, 12vmin, 150px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--tb-text);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    [data-composition-id="data-metric-flip-03-tb-v"] .metric-card.after .card-value {
+      color: var(--tb-accent);
+    }
+    /* Arrow now between stacked cards — points down */
+    [data-composition-id="data-metric-flip-03-tb-v"] .arrow-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 1.2vmin;
+      opacity: 0;
+    }
+    [data-composition-id="data-metric-flip-03-tb-v"] .arrow-icon {
+      color: var(--tb-accent);
+      width: 5vmin; height: 5vmin;
+    }
+    [data-composition-id="data-metric-flip-03-tb-v"] .delta-label {
+      font-size: clamp(22px, 3.2vmin, 38px);
+      font-weight: 700;
+      color: var(--tb-accent);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+</style>
+
+    <div class="stage">
+      <div class="metric-label" id="mf03v-label"></div>
+      <div class="cards-col">
+        <div class="metric-card before" id="mf03v-before">
+          <span class="card-tag"   id="mf03v-before-tag"></span>
+          <span class="card-value" id="mf03v-before-val"></span>
+        </div>
+        <div class="arrow-wrap" id="mf03v-arrow">
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <polyline points="5 12 12 19 19 12"/>
+          </svg>
+          <span class="delta-label" id="mf03v-delta"></span>
+        </div>
+        <div class="metric-card after" id="mf03v-after">
+          <span class="card-tag"   id="mf03v-after-tag"></span>
+          <span class="card-value" id="mf03v-after-val"></span>
+        </div>
+      </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+    window.__timelines = window.__timelines || {};
+    window.__timelines["data-metric-flip-03-tb-v"] = (function () {
+      const root = document.querySelector('[data-composition-id="data-metric-flip-03-tb-v"]');
+      const cs   = getComputedStyle(root);
+
+      /* Native HyperFrames variables → override CSS custom properties */
+      const V = (window.__hyperframes && window.__hyperframes.getVariables)
+        ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, '"' + String(val) + '"');
+      };
+      const setRaw = (cssVar, val) => {
+        if (val !== undefined && val !== null && val !== "")
+          root.style.setProperty(cssVar, String(val));
+      };
+      setStr("--metric-label", V.metricLabel);
+      setStr("--before-value", V.beforeValue);
+      setStr("--after-value",  V.afterValue);
+      setStr("--before-label", V.beforeLabel);
+      setStr("--after-label",  V.afterLabel);
+      setStr("--delta-label",  V.deltaLabel);
+      setRaw("--tb-accent",    V.accent);
+      setRaw("--tb-bg",        V.bg);
+
+      root.querySelector("#mf03v-label").textContent      = cs.getPropertyValue("--metric-label").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#mf03v-before-tag").textContent = cs.getPropertyValue("--before-label").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#mf03v-after-tag").textContent  = cs.getPropertyValue("--after-label").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#mf03v-before-val").textContent = cs.getPropertyValue("--before-value").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#mf03v-after-val").textContent  = cs.getPropertyValue("--after-value").trim().replace(/^["']|["']$/g,"");
+      root.querySelector("#mf03v-delta").textContent      = cs.getPropertyValue("--delta-label").trim().replace(/^["']|["']$/g,"");
+
+      const label  = root.querySelector("#mf03v-label");
+      const before = root.querySelector("#mf03v-before");
+      const after  = root.querySelector("#mf03v-after");
+      const arrow  = root.querySelector("#mf03v-arrow");
+      const aVal   = root.querySelector("#mf03v-after-val");
+
+      const TOTAL = 3;
+      const tl = gsap.timeline({ paused: true });
+
+      tl.to(label, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.from(label, { y: 10, duration: 0.35, ease: "power2.out" }, 0.1);
+
+      gsap.set([before, after], { rotateX: -90, transformPerspective: 800 });
+      tl.to(before, { opacity: 1, rotateX: 0, duration: 0.5, ease: "back.out(1.4)" }, 0.3);
+      tl.to(after,  { opacity: 1, rotateX: 0, duration: 0.5, ease: "back.out(1.4)" }, 0.55);
+
+      tl.to(arrow, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.7);
+      tl.from(arrow, { scale: 0.7, duration: 0.3, ease: "back.out(2)" }, 0.7);
+
+      tl.to(aVal, { scale: 1.08, duration: 0.2, ease: "power2.out", yoyo: true, repeat: 1 }, 0.95);
+
+      tl.to({}, { duration: TOTAL }, 0);
+      return tl;
+    })();
+  </script>
+</div>
+</body>
+</html>

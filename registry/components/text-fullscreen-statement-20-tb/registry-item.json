@@ -1,0 +1,27 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "text-fullscreen-statement-20-tb",
+  "type": "hyperframes:component",
+  "title": "Text Fullscreen Statement",
+  "description": "Efecto Tareabox: Text Fullscreen Statement",
+  "tags": [
+    "text",
+    "tareabox"
+  ],
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration": 3.0,
+  "files": [
+    {
+      "path": "text-fullscreen-statement-20-tb.html",
+      "target": "compositions/components/text-fullscreen-statement-20-tb.html",
+      "type": "hyperframes:snippet"
+    }
+  ],
+  "preview": {
+    "video": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-fullscreen-statement-20-tb.mp4",
+    "poster": "https://tareabox.com/hyperframes-catalog-free/previews/hf-cat-free-text-fullscreen-statement-20-tb.png"
+  }
+}
