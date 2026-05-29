@@ -8,7 +8,18 @@
   Duration: 5 seconds
   REQUIRES: gsap (CDN)
 -->
-<html lang="en">
+<html lang="en" data-composition-variables='[
+  {"id":"m1","type":"string","label":"Message 1 (out)","default":"Hey! Are we still on for tonight?"},
+  {"id":"m2","type":"string","label":"Message 2 (in)","default":"Yes! Just wrapping up at work"},
+  {"id":"m3","type":"string","label":"Message 3 (out)","default":"Perfect — see you at 8?"},
+  {"id":"m4","type":"string","label":"Message 4 (in)","default":"Sounds great 🎉"},
+  {"id":"m5","type":"string","label":"Message 5 (in)","default":"Should I bring anything?"},
+  {"id":"m6","type":"string","label":"Message 6 (out)","default":"Just yourself!"},
+  {"id":"avOutName","type":"string","label":"Outgoing name","default":"Natalie"},
+  {"id":"avInName","type":"string","label":"Incoming name","default":"Sam"},
+  {"id":"accent","type":"color","label":"Accent color","default":"#0b93f6"},
+  {"id":"bg","type":"string","label":"Background (color or \"transparent\")","default":"#1a1a1c"}
+]'>
 <head>
   <meta charset="UTF-8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,12 +44,12 @@
       --tb-font-display: var(--tb-brand-font-display, "Geist", sans-serif);
 
       /* 6 messages — cascade alternating */
-      --m1: "Hey there! What's up";          --m1-side: "out";
-      --m2: "Checking out iOS7 you know..";  --m2-side: "in";
-      --m3: "Check out this bubble!";        --m3-side: "out";
-      --m4: "It's pretty cool!";             --m4-side: "in";
-      --m5: "And it's in css?";              --m5-side: "in";   /* stacked — no tail */
-      --m6: "Yeah it's pure CSS & HTML";     --m6-side: "out";
+      --m1: "Hey! Are we still on for tonight?"; --m1-side: "out";
+      --m2: "Yes! Just wrapping up at work";      --m2-side: "in";
+      --m3: "Perfect — see you at 8?";            --m3-side: "out";
+      --m4: "Sounds great 🎉";                    --m4-side: "in";
+      --m5: "Should I bring anything?";           --m5-side: "in";   /* stacked — no tail */
+      --m6: "Just yourself!";                     --m6-side: "out";
 
       /* Avatares (imagenes reales) + nombres */
       --av-out-name:    "Natalie";
@@ -260,6 +271,16 @@
       const cs   = getComputedStyle(root);
       const $    = (s) => root.querySelector(s);
       const G    = (v) => cs.getPropertyValue(v).trim().replace(/^["']|["']$/g,"");
+
+      const V = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
+      const setStr = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, '"' + String(val) + '"'); };
+      const setRaw = (cssVar, val) => { if (val !== undefined && val !== null && val !== "") root.style.setProperty(cssVar, String(val)); };
+      setStr("--m1", V.m1); setStr("--m2", V.m2); setStr("--m3", V.m3);
+      setStr("--m4", V.m4); setStr("--m5", V.m5); setStr("--m6", V.m6);
+      setStr("--av-out-name", V.avOutName);
+      setStr("--av-in-name",  V.avInName);
+      setRaw("--tb-sent", V.accent);
+      setRaw("--tb-bg",   V.bg);
 
       [1,2,3,4,5,6].forEach(i => {
         $("#im18-m" + i).textContent = G("--m" + i);
