@@ -18,22 +18,18 @@ Registry de bloques de video para [HyperFrames](https://hyperframes.heygen.com).
 
 Este repo es mi laboratorio público: a medida que experimento con HyperFrames, los bloques que realmente me gustan los subo acá.
 
-<!-- AUTO-STATS-START -->
-**133 items** = **55 blocks** + **78 components** (67 verticales 9:16 + 66 horizontales 16:9)
+**Blocks** — escenas completas con bg propio:
+- `layout`
+- `conversationapp`
+- `visual`
+- `text`
 
-**Blocks (55)** — escenas completas con bg propio:
-- `layout`: 27
-- `conversationapp`: 12
-- `visual`: 10
-- `text`: 6
-
-**Components (78)** — overlays transparentes para apilar sobre cualquier video / block:
-- `text`: 40
-- `conversationapp`: 12
-- `visual`: 12
-- `layout`: 10
-- `data`: 4
-<!-- AUTO-STATS-END -->
+**Components** — overlays transparentes para apilar sobre cualquier video / block:
+- `text`
+- `conversationapp`
+- `visual`
+- `layout`
+- `data`
 
 ## Sobre el creador
 
@@ -59,13 +55,13 @@ Este catálogo es parte de **[Tareabox](https://tareabox.com)** — producto cre
 
 ```
 registry/
-├─ registry.json              ← manifiesto: lista los 133 items
-├─ blocks/                    ← 55 composiciones full-screen (escenas)
+├─ registry.json              ← manifiesto: lista todos los items
+├─ blocks/                    ← composiciones full-screen (escenas)
 │  └─ <nombre>/
 │     ├─ <nombre>.html
 │     ├─ registry-item.json
 │     └─ tb-media/            ← assets que usa el bloque (si tiene)
-└─ components/                ← 78 overlays transparentes para apilar
+└─ components/                ← overlays transparentes para apilar
    └─ <nombre>/
       ├─ <nombre>.html        ← background: transparent (excepto chat-apps)
       ├─ registry-item.json   ← type: hyperframes:component
@@ -74,20 +70,20 @@ registry/
 
 ## Categorías
 
-**Blocks (55)** — escenas completas con bg propio:
-- **layout** (27) — YouTube setups (PIP, watchlater, split-screen, tier-list...), tutorials, recap, hooks
-- **conversationapp** (12) — iMessage, WhatsApp, Discord, android-notif, imessage-pure, gif-chat (scenes completas)
-- **visual** (10) — efectos con video integral (meme-cutin, gif-burst, gif-stickers, gif-crumple, zoom-indicator)
-- **text** (6) — neon-flashing, neon-glow, chapter-reveal (full-screen typography scenes)
+**Blocks** — escenas completas con bg propio:
+- **layout** — YouTube setups (PIP, watchlater, split-screen, tier-list...), tutorials, recap, hooks
+- **conversationapp** — iMessage, WhatsApp, Discord, android-notif, imessage-pure, gif-chat (scenes completas)
+- **visual** — efectos con video integral (meme-cutin, gif-burst, gif-stickers, gif-crumple, zoom-indicator)
+- **text** — neon-flashing, neon-glow, chapter-reveal (full-screen typography scenes)
 
-**Components (78)** — overlays transparentes para layerear sobre cualquier video/block:
-- **text** (40) — typewriter, warp, kinetic, glitch, headline-highlight, fullscreen-statement, etc.
-- **conversationapp** (12) — instagram-dm, ios-notif, instagram-comment, slack, tweet, tweet-quote (cards flotantes)
-- **visual** (12) — callouts (tip/note/warning), keyboard-shortcut, progress-bar, timestamp-cue
-- **layout** (10) — recap-card, lower-third, video-caption, video-hero, video-hook (overlay treatments)
-- **data** (4) — checklist, metric-flip
+**Components** — overlays transparentes para layerear sobre cualquier video/block:
+- **text** — typewriter, warp, kinetic, glitch, headline-highlight, fullscreen-statement, etc.
+- **conversationapp** — instagram-dm, ios-notif, instagram-comment, slack, tweet, tweet-quote (cards flotantes)
+- **visual** — callouts (tip/note/warning), keyboard-shortcut, progress-bar, timestamp-cue
+- **layout** — recap-card, lower-third, video-caption, video-hero, video-hook (overlay treatments)
+- **data** — checklist, metric-flip
 
-La lista completa de los 133 items está en `registry/registry.json`.
+La lista completa está en `registry/registry.json`.
 
 ## Install rápido con Claude Code (sin código)
 
@@ -148,7 +144,7 @@ Editá el bloque `🎨 CUSTOMIZE HERE` dentro del `.html` instalado (es tu copia
 
 ## Preview de todos los bloques
 
-Ver los 127 bloques renderizados en grilla: **https://tareabox.com/hf-catalog-free/**
+Ver todos los bloques renderizados en grilla: **https://tareabox.com/hf-catalog-free/**
 
 Para previewar local desde el repo clonado:
 
